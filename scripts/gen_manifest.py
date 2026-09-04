@@ -14,6 +14,20 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "manifest.json")
 
 
+def fm_block(text, key):
+    """Return the indented list block under frontmatter key."""
+    m = re.search(rf"^{key}:\s*\n(.*?)(?=^[a-z_]+:|^---)", text, re.M | re.S)
+    return m.group(1) if m else ""
+
+
+def list_items(block):
+    """Capture `- xxx` and `- id: xxx` list entries."""
+    items = re.findall(r"^\s+-\s+id:\s*([a-z0-9\-/]+)\s*$", block, re.M)
+    if not items:
+        items = re.findall(r"^\s+-\s+([a-z0-9\-/]+)\s*$", block, re.M)
+    return items
+
+
 def load_roles():
     roles = []
     rdir = os.path.join(ROOT, "roles")
@@ -35,10 +49,8 @@ def load_roles():
             "domain": fm.get("domain", ""),
             "deliverable_type": fm.get("deliverable_type", ""),
             "status": fm.get("status", ""),
-            "standards": [s.strip() for s in
-                          re.findall(r"-\s+([a-z0-9\-]+)", fm.get("standards_bound", ""))],
-            "skills_bound": len(re.findall(r"^\s+-\s+[a-z0-9\-/]+$",
-                                           fm.get("skills_bound", ""), re.M)),
+            "standards": list_items(fm_block(text, "standards_bound")),
+            "skills_bound": len(list_items(fm_block(text, "skills_bound"))),
         })
     return roles
 

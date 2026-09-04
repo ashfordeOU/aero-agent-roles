@@ -85,10 +85,12 @@ def main():
             for tf in os.listdir(tdir):
                 if tf.endswith(".md"):
                     template_text += open(os.path.join(tdir, tf)).read()
-        combined = (text + "\n" + template_text).lower()
+        combined = re.sub(r"\s+", " ", (text + "\n" + template_text).lower())
         if not any(p in combined for p in
                    ["not an approval", "not a finding", "not an approval document",
-                    "not a certification", "supplier-approval decision"]):
+                    "not a certification", "supplier-approval decision",
+                    "not launch readiness", "not flight software release",
+                    "not a clearance", "not production release"]):
             problems.append(f"{slug}: no-approval boundary missing")
     if problems:
         print(f"ROLE-LINT: {len(problems)} problem(s)")

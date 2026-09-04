@@ -9,16 +9,16 @@
 
 <!-- gen:statline -->
 <p align="center">
-  <img src="docs/statline-dark.png" alt="3 roles · 33 skills bound · 16 offline tests · 5 gates per role · Apache-2.0" width="100%">
+  <img src="docs/statline-dark.png" alt="12 roles · 336 skills bound · 61 offline tests · 5 gates per role · Apache-2.0" width="100%">
 </p>
 <!-- /gen:statline -->
 
 <!-- gen:badges -->
 <p align="center">
-  <a href="roles/"><img src="https://img.shields.io/badge/roles-3-a78bfa?style=flat&labelColor=1a1e35" alt="roles 3"></a>
-  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-33-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 33"></a>
-  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-16-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 16"></a>
-  <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-13-f97316?style=flat&labelColor=1a1e35" alt="standards 13"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/roles-12-a78bfa?style=flat&labelColor=1a1e35" alt="roles 12"></a>
+  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-336-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 336"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-61-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 61"></a>
+  <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-9-f97316?style=flat&labelColor=1a1e35" alt="standards 9"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/format-agentskills.io-8b5cf6?style=flat&labelColor=1a1e35" alt="format agentskills.io"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2ea043?style=flat&labelColor=1a1e35" alt="Apache-2.0"></a>
 </p>
@@ -43,9 +43,32 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 
 | Role | Deliverable | Skills bound |
 |---|---|---|
-| [DO-178C Certification Engineer](roles/do178c-cert-engineer/ROLE.md) | Plan for Software Aspects of Certification + verification evidence | 9 |
-| [Airworthiness Compliance Engineer](roles/airworthiness-compliance-engineer/ROLE.md) | Compliance checklist / certification matrix | 9 |
-| [AS9100 Quality Auditor](roles/as9100-quality-auditor/ROLE.md) | Audit plan + findings + corrective-action follow-up | 15 |
+| [AS9100 Quality / Internal Auditor](roles/as9100-quality-auditor/ROLE.md) | audit plan + findings report + corrective-action follow-up | 15 |
+| [Aerodynamics Engineer](roles/aerodynamics-engineer/ROLE.md) | aerodynamic design + analysis report | 28 |
+| [Aircraft Conceptual Design Engineer](roles/aircraft-design-engineer/ROLE.md) | concept design package (sizing + layout + cost) | 34 |
+| [Airworthiness Compliance Engineer](roles/airworthiness-compliance-engineer/ROLE.md) | compliance checklist / certification matrix | 9 |
+| [DO-178C Software Certification Engineer](roles/do178c-cert-engineer/ROLE.md) | certification plan + verification evidence set | 9 |
+| [Engineering Analysis and Data Engineer](roles/engineering-analysis-engineer/ROLE.md) | analysis verification + engineering report | 42 |
+| [Flight Mechanics Engineer](roles/flight-mechanics-engineer/ROLE.md) | performance + stability and control analysis report | 38 |
+| [Flight Test Engineer](roles/flight-test-engineer/ROLE.md) | flight test plan + envelope expansion report | 21 |
+| [Guidance, Navigation and Control (GNC) Engineer](roles/gnc-engineer/ROLE.md) | control design + guidance/navigation analysis report | 23 |
+| [Propulsion Engineer](roles/propulsion-engineer/ROLE.md) | propulsion system design + cycle analysis report | 34 |
+| [Space Systems Engineer](roles/space-systems-engineer/ROLE.md) | spacecraft mission + subsystem design report | 45 |
+| [Structures and Loads Engineer](roles/structures-loads-engineer/ROLE.md) | loads + strength/stability analysis report | 38 |
+|---|| Role | Deliverable | Skills bound |
+|---|---|---|
+| [AS9100 Quality / Internal Auditor](roles/as9100-quality-auditor/ROLE.md) | audit plan + findings report + corrective-action follow-up | 15 |
+| [Aerodynamics Engineer](roles/aerodynamics-engineer/ROLE.md) | aerodynamic design + analysis report | 28 |
+| [Aircraft Conceptual Design Engineer](roles/aircraft-design-engineer/ROLE.md) | concept design package (sizing + layout + cost) | 34 |
+| [Airworthiness Compliance Engineer](roles/airworthiness-compliance-engineer/ROLE.md) | compliance checklist / certification matrix | 9 |
+| [DO-178C Software Certification Engineer](roles/do178c-cert-engineer/ROLE.md) | certification plan + verification evidence set | 9 |
+| [Engineering Analysis and Data Engineer](roles/engineering-analysis-engineer/ROLE.md) | analysis verification + engineering report | 42 |
+| [Flight Mechanics Engineer](roles/flight-mechanics-engineer/ROLE.md) | performance + stability and control analysis report | 38 |
+| [Flight Test Engineer](roles/flight-test-engineer/ROLE.md) | flight test plan + envelope expansion report | 21 |
+| [Guidance, Navigation and Control (GNC) Engineer](roles/gnc-engineer/ROLE.md) | control design + guidance/navigation analysis report | 23 |
+| [Propulsion Engineer](roles/propulsion-engineer/ROLE.md) | propulsion system design + cycle analysis report | 34 |
+| [Space Systems Engineer](roles/space-systems-engineer/ROLE.md) | spacecraft mission + subsystem design report | 45 |
+| [Structures and Loads Engineer](roles/structures-loads-engineer/ROLE.md) | loads + strength/stability analysis report | 38 |
 
 ## How a role works
 

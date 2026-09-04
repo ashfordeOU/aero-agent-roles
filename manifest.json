@@ -1,16 +1,41 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 3,
+ "count": 12,
  "roles": [
+  {
+   "slug": "aerodynamics-engineer",
+   "title": "Aerodynamics Engineer",
+   "domain": "aerodynamics",
+   "deliverable_type": "aerodynamic design + analysis report",
+   "status": "draft",
+   "standards": [
+    "far-25"
+   ],
+   "skills_bound": 28
+  },
+  {
+   "slug": "aircraft-design-engineer",
+   "title": "Aircraft Conceptual Design Engineer",
+   "domain": "vehicle-design",
+   "deliverable_type": "concept design package (sizing + layout + cost)",
+   "status": "draft",
+   "standards": [
+    "far-25"
+   ],
+   "skills_bound": 34
+  },
   {
    "slug": "airworthiness-compliance-engineer",
    "title": "Airworthiness Compliance Engineer",
    "domain": "systems-engineering-safety",
    "deliverable_type": "compliance checklist / certification matrix",
    "status": "draft",
-   "standards": [],
-   "skills_bound": 0
+   "standards": [
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 9
   },
   {
    "slug": "as9100-quality-auditor",
@@ -18,8 +43,10 @@
    "domain": "manufacturing-quality",
    "deliverable_type": "audit plan + findings report + corrective-action follow-up",
    "status": "draft",
-   "standards": [],
-   "skills_bound": 0
+   "standards": [
+    "as9100"
+   ],
+   "skills_bound": 15
   },
   {
    "slug": "do178c-cert-engineer",
@@ -27,8 +54,90 @@
    "domain": "avionics",
    "deliverable_type": "certification plan + verification evidence set",
    "status": "draft",
-   "standards": [],
-   "skills_bound": 0
+   "standards": [
+    "do-178c"
+   ],
+   "skills_bound": 9
+  },
+  {
+   "slug": "engineering-analysis-engineer",
+   "title": "Engineering Analysis and Data Engineer",
+   "domain": "cross-cutting",
+   "deliverable_type": "analysis verification + engineering report",
+   "status": "draft",
+   "standards": [
+    "asme-y14-5"
+   ],
+   "skills_bound": 42
+  },
+  {
+   "slug": "flight-mechanics-engineer",
+   "title": "Flight Mechanics Engineer",
+   "domain": "flight-mechanics",
+   "deliverable_type": "performance + stability and control analysis report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "mil-std-1797a"
+   ],
+   "skills_bound": 38
+  },
+  {
+   "slug": "flight-test-engineer",
+   "title": "Flight Test Engineer",
+   "domain": "flight-test-operations",
+   "deliverable_type": "flight test plan + envelope expansion report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "mil-std-1797a"
+   ],
+   "skills_bound": 21
+  },
+  {
+   "slug": "gnc-engineer",
+   "title": "Guidance, Navigation and Control (GNC) Engineer",
+   "domain": "gnc-autonomy",
+   "deliverable_type": "control design + guidance/navigation analysis report",
+   "status": "draft",
+   "standards": [
+    "mil-std-1797a"
+   ],
+   "skills_bound": 23
+  },
+  {
+   "slug": "propulsion-engineer",
+   "title": "Propulsion Engineer",
+   "domain": "propulsion",
+   "deliverable_type": "propulsion system design + cycle analysis report",
+   "status": "draft",
+   "standards": [
+    "far-33"
+   ],
+   "skills_bound": 34
+  },
+  {
+   "slug": "space-systems-engineer",
+   "title": "Space Systems Engineer",
+   "domain": "space-systems",
+   "deliverable_type": "spacecraft mission + subsystem design report",
+   "status": "draft",
+   "standards": [
+    "ecss"
+   ],
+   "skills_bound": 45
+  },
+  {
+   "slug": "structures-loads-engineer",
+   "title": "Structures and Loads Engineer",
+   "domain": "structures",
+   "deliverable_type": "loads + strength/stability analysis report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "mmpsd"
+   ],
+   "skills_bound": 38
   }
  ]
 }
