@@ -92,9 +92,27 @@ The role produces:
 
 ## Verification
 
-- tests/test_role_do178c.py (offline): bound skills resolve; workflow
-  stage order is deterministic; evidence-gate smoke on a synthetic
-  project (mock requirements + tests) produces a complete PSAC skeleton.
+The role runs STANDALONE: `core/do178c_core.py` is an executable engine
+that determines DAL from failure severity, computes coverage targets,
+structural coverage, independence, life cycle data, BUILDS the PSAC, and
+gate-checks deliverables. No AeroSkills checkout required.
+
+Run the role:
+```bash
+python3 cli.py build --out psac.md                     # example item (DAL B)
+python3 cli.py build --failure-condition catastrophic  # DAL A variant
+python3 cli.py check --file psac.md --dal B            # gate-check a PSAC
+```
+
+Tests:
+- tests/test_do178c_core.py (11 tests): domain rules + PSAC builder +
+  gates + standalone (no skills repo)
+- tests/test_role_do178c.py: bound-skill resolution (skips if the skills
+  repo is absent) + workflow + template present + boundaries
+
+Bound skills in Aero Agent Skills deepen individual stages when the
+library is present (verification logic, CM, tool qualification); the
+core engine does not depend on them.
 
 ## Compliance
 

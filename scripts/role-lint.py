@@ -72,6 +72,14 @@ def main():
         if not os.path.isdir(os.path.join(rdir, "tests")) or not any(
                 f.startswith("test_") for f in os.listdir(os.path.join(rdir, "tests"))):
             problems.append(f"{slug}: tests/ missing")
+        # 100% standard: executable core + cli + core test present
+        if not os.path.isdir(os.path.join(rdir, "core")) or not any(
+                f.endswith("_core.py") for f in os.listdir(os.path.join(rdir, "core"))):
+            problems.append(f"{slug}: core/ engine missing (100% standard)")
+        if not os.path.exists(os.path.join(rdir, "cli.py")):
+            problems.append(f"{slug}: cli.py missing (100% standard)")
+        if not os.path.exists(os.path.join(rdir, "tests", f"test_{slug.replace('-', '_')}_core.py")):
+            problems.append(f"{slug}: core test missing (100% standard)")
         if not os.path.exists(os.path.join(rdir, "SOURCES.md")):
             problems.append(f"{slug}: SOURCES.md missing")
         low = text.lower()

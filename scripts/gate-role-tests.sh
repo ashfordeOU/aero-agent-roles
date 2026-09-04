@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# gate-role-tests.sh — run every role's offline test suite.
+# gate-role-tests.sh — run every role test file (core + structure).
 set -uo pipefail
 cd "$(dirname "$0")/.."
 fail=0

@@ -98,6 +98,12 @@ class TestDo178cRole(unittest.TestCase):
         p = os.path.join(ROLE_DIR, "SOURCES.md")
         self.assertTrue(os.path.exists(p), "SOURCES.md missing for role")
 
+    def test_core_engine_exists(self):
+        """100% standard: every role ships an executable core + cli."""
+        for f in ["core", "cli.py"]:
+            self.assertTrue(os.path.exists(os.path.join(ROLE_DIR, f)),
+                            f"{f} missing - role is not executable")
+
 
 if __name__ == "__main__":
     unittest.main()
