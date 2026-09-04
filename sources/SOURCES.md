@@ -15,14 +15,14 @@ this file is the cross-repo view.
 
 | Standard | Tier | Needed by role | Acquisition | Cost est. |
 |---|---|---|---|---|
-| RTCA DO-178C / ED-12C | 2 | do178c-cert-engineer | NEEDED (founder) | ~$400 |
-| RTCA DO-330 | 2 | do178c-cert-engineer | NEEDED | ~$250 |
-| SAE ARP4754A | 2 | do178c + airworthiness | NEEDED (shared) | ~$200 |
-| SAE ARP4761A | 2 | (future systems-safety) | NEEDED | ~$200 |
-| AS9100D | 2 | as9100-quality-auditor | NEEDED | ~$150 |
-| AS9102 | 2 | as9100-quality-auditor | NEEDED | ~$100 |
-| ISO 19011 | 2 | as9100-quality-auditor | NEEDED | ~$120 |
-| ISO 9001:2015 | 2 | as9100-quality-auditor | NEEDED | ~$120 |
+| RTCA DO-178C / ED-12C | 2 | do178c-cert-engineer | TO ACQUIRE | ~$400 |
+| RTCA DO-330 | 2 | do178c-cert-engineer | TO ACQUIRE | ~$250 |
+| SAE ARP4754A | 2 | do178c + airworthiness | TO ACQUIRE (shared) | ~$200 |
+| SAE ARP4761A | 2 | (future systems-safety) | TO ACQUIRE | ~$200 |
+| AS9100D | 2 | as9100-quality-auditor | TO ACQUIRE | ~$150 |
+| AS9102 | 2 | as9100-quality-auditor | TO ACQUIRE | ~$100 |
+| ISO 19011 | 2 | as9100-quality-auditor | TO ACQUIRE | ~$120 |
+| ISO 9001:2015 | 2 | as9100-quality-auditor | TO ACQUIRE | ~$120 |
 | FAA AC 20-115D | 1 | do178c-cert-engineer | owned (free) | $0 |
 | EASA AMC 20-115C | 1 | do178c-cert-engineer | owned (free) | $0 |
 | 14 CFR Part 21/25 | 1 | airworthiness-compliance | owned (free) | $0 |
@@ -30,11 +30,10 @@ this file is the cross-repo view.
 | IAQG public guides | 1 | as9100-quality-auditor | owned (free) | $0 |
 
 **First-cohort buy-list total: ~$1,540** (DO-178C + DO-330 + ARP4754A +
-AS9100D + AS9102 + ISO 19011 + ISO 9001). Founder per-purchase GO
-required (money > €50 rule). See roles/*/SOURCES.md for per-role detail.
-**Founder note (2026-09-04): founder CAN PROVIDE sources/books/documents
-on request** — before any purchase, ASK the founder whether he already
-has the standard/book; only buy what he cannot provide.
+AS9100D + AS9102 + ISO 19011 + ISO 9001). Acquisition requires
+maintainer approval. See roles/*/SOURCES.md for per-role detail.
+Sources may be provided by the maintainer on request; verify
+availability before any purchase.
 
 ## Storage rule
 Owned PDFs live OUTSIDE the git repo (git-ignored, license-aware).

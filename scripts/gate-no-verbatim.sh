@@ -8,7 +8,7 @@ cd "$(dirname "$0")/.."
 fail=0
 
 # Heuristic: flag long verbatim-looking runs of standard boilerplate.
-# Real check is human/CEO review before any public push (founder gate).
+# Real check is maintainer review before any public release.
 for f in roles/*/templates/*.md roles/*/SOURCES.md; do
   [ -f "$f" ] || continue
   # flag phrases that indicate copied proprietary text

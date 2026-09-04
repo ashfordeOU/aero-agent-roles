@@ -15,7 +15,7 @@ import tempfile
 import unittest
 
 ROLES_REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
-    os.path.abspath(__file__)))))          # ~/company-ops/aero-agent-roles
+    os.path.abspath(__file__)))))          # repo root (4 up from tests/)
 AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills"))
 ROLE_DIR = os.path.join(ROLES_REPO, "roles", "do178c-cert-engineer")
 PSAC_TEMPLATE = os.path.join(ROLE_DIR, "templates", "psac-template.md")

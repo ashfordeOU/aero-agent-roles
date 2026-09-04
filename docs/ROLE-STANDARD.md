@@ -52,7 +52,7 @@ metadata:
 - skills_bound entries MUST resolve to real leaves in aero-agent-skills.
   A role that binds a nonexistent skill FAILS the role creation gate.
 - templates/ are ORIGINAL structure — never copied from AFuzion, Visure,
-  or any proprietary template vendor (founder security/copyright gate).
+  or any proprietary template vendor (maintainer security/copyright gate).
 - SOURCES.md records every standard/book the role depends on, with tier,
   acquisition status, extraction status, verification notes.
 - Tests must run OFFLINE (stdlib only) — no network in role tests.
