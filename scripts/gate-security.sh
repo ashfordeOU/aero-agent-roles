@@ -2,7 +2,7 @@
 # gate-security.sh — roles repo tripwire: no secrets, credentials,
 # machine paths, or dangerous content in anything that could go public.
 # NOTE: this script derives the local-path pattern from $HOME at runtime
-# so no literal local path ever appears in the repository (founder
+# so no literal local path ever appears in the repository (maintainer
 # mandate: no local info in public repos).
 set -uo pipefail
 cd "$(dirname "$0")/.."

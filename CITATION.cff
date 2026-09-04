@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use Aero Agent Roles in your work, please cite it as below."
+title: "Aero Agent Roles"
+abstract: >-
+  Open library of professional engineering roles for AI agents, built on
+  Aero Agent Skills. Each role binds verified skills into end-to-end
+  deliverables (certification plans, compliance matrices, audit reports),
+  published by Ashforde OÜ under Apache-2.0. Standards are referenced and
+  summarized, never reproduced.
+authors:
+  - family-names: "Ashforde OÜ"
+    affiliation: "Ashforde OÜ (Estonia)"
+version: "0.1.0"
+date-released: "2026-09-04"
+license: Apache-2.0
+keywords:
+  - aerospace
+  - certification
+  - ai-agents
+  - engineering-roles
+  - agentskills

@@ -1,19 +1,16 @@
-# SOURCES.md — Airworthiness Compliance Engineer
+# SOURCES.md - Airworthiness Compliance Engineer
 
-| Source | Edition | Tier | Acquisition | Cost | Extraction | Verified |
-|---|---|---|---|---|---|---|
-| 14 CFR Part 21 (cert procedures) | current | TIER-1 public-domain | owned (free, eCFR) | $0 | process-extracted | — |
-| 14 CFR Part 25 (airworthiness) | current | TIER-1 public-domain | owned (free, eCFR) | $0 | process-extracted | — |
-| EASA CS-25 + AMC-25 | current | TIER-1 free-download | owned (free) | $0 | process-extracted | — |
-| EASA Part 21 (Easy Access Rules) | current | TIER-1 free-download | owned (free) | $0 | process-extracted | — |
-| SAE ARP4754A (dev assurance, shared) | A | TIER-2 | **NEEDED — shared** | ~$200 | not-started | — |
+Standards and documents this role references. Summary-not-copy: see
+[STANDARDS.md](../../STANDARDS.md) for the full rule and purchase links.
 
-## Notes
-- FAR/CS are public domain (TIER-1) — quotable with citation, which makes
-  the compliance matrix role buildable at FULL depth today without
-  purchases (unlike DO-178C role). First role cohort can ship this one
-  immediately; do178c needs its TIER-2 purchases first for full depth.
-- MMEL/AD/TCDS/in-service items reference public FAA/EASA data sources.
+| Source | Role use | Gated |
+|---|---|---|
+| 14 CFR Part 21 | certification procedures (TC/STC/TSO) | false |
+| 14 CFR Part 25 | airworthiness standards for transport category | false |
+| EASA CS-25 | EASA certification specifications | false |
+| EASA Part 21 (Easy Access Rules) | EASA certification procedures | false |
+| SAE ARP4754A | development assurance context (shared) | true |
 
-## Quotable?
-TIER-1 yes with citation. TIER-2 (ARP4754A) never reproduce.
+FAR and CS are public-domain regulations, quotable with citation. The
+compliance matrix template in `templates/` is an original structure; rows
+map regulation to means of compliance to evidence document.

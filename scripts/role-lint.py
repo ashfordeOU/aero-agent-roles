@@ -18,6 +18,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROLES = os.path.join(ROOT, "roles")
 AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills"))
+HAS_SKILLS = os.path.isdir(os.path.join(AEROSKILLS, "skills"))
 
 REQUIRED_FM = ["type", "name", "title", "domain", "deliverable_type",
                "standards_bound", "skills_bound", "forbidden",
@@ -58,8 +59,10 @@ def main():
                 problems.append(f"{slug}: section '{sec}' missing")
         if fm.get("type") != "role":
             problems.append(f"{slug}: type != role")
-        # bound skills resolve
+        # bound skills resolve (skip when skills checkout absent - CI verifies)
         for leaf in re.findall(r"^\s+-\s+([a-z0-9\-/]+)$", fm.get("skills_bound", ""), re.M) if fm.get("skills_bound") else []:
+            if not HAS_SKILLS:
+                break
             if os.path.exists(os.path.join(AEROSKILLS, "skills", leaf, "SKILL.md")):
                 continue
             problems.append(f"{slug}: bound skill unresolved: {leaf}")

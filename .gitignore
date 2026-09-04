@@ -14,3 +14,6 @@ __pycache__/
 # Source PDFs (license-aware: never commit owned standard PDFs)
 sources/**/*.pdf
 !sources/**/*.md
+
+# internal acquisition tracking lives in the KB, never here
+sources/

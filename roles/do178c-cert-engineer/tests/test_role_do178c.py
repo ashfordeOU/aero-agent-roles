@@ -16,7 +16,11 @@ import unittest
 
 ROLES_REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__)))))          # repo root (4 up from tests/)
+# Bound-skill resolution requires the Aero Agent Skills checkout. It is a
+# cross-repo dev check: when the skills repo is absent (fresh public clone),
+# skip resolution rather than fail - the role's bound list is verified in CI.
 AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills"))
+HAS_SKILLS = os.path.isdir(os.path.join(AEROSKILLS, "skills"))
 ROLE_DIR = os.path.join(ROLES_REPO, "roles", "do178c-cert-engineer")
 PSAC_TEMPLATE = os.path.join(ROLE_DIR, "templates", "psac-template.md")
 
@@ -49,6 +53,8 @@ def read_role_md():
 class TestDo178cRole(unittest.TestCase):
 
     def test_bound_skills_resolve_in_aeroskills(self):
+        if not HAS_SKILLS:
+            self.skipTest("Aero Agent Skills checkout not present (cross-repo dev check)")
         for leaf in EXPECTED_BOUND:
             sk = os.path.join(AEROSKILLS, "skills", leaf, "SKILL.md")
             self.assertTrue(

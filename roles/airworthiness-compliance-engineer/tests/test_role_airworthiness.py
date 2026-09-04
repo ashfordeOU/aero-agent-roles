@@ -14,6 +14,9 @@ import unittest
 ROLES_REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__)))))
 AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills"))
+# Bound-skill resolution requires the Aero Agent Skills checkout (cross-repo
+# dev check); skip when absent so fresh public clones can still run make validate.
+HAS_SKILLS = os.path.isdir(os.path.join(AEROSKILLS, "skills"))
 ROLE_DIR = os.path.join(ROLES_REPO, "roles", "airworthiness-compliance-engineer")
 MATRIX = os.path.join(ROLE_DIR, "templates", "compliance-matrix-template.md")
 
@@ -42,6 +45,8 @@ def role_text():
 class TestAirworthinessRole(unittest.TestCase):
 
     def test_bound_skills_resolve(self):
+        if not HAS_SKILLS:
+            self.skipTest("Aero Agent Skills checkout not present (cross-repo dev check)")
         for leaf in EXPECTED_BOUND:
             self.assertTrue(
                 os.path.exists(os.path.join(AEROSKILLS, "skills", leaf, "SKILL.md")),
