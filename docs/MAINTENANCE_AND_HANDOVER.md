@@ -11,10 +11,10 @@ matrices, audit reports). Full program definition:
 
 ## Repo chain
 dev `~/company-ops/aero-agent-roles` → private `arjun-0077/aero-agent-roles`
-→ public `ashfordeOU/aero-agent-roles` (founder GO required). Tokens:
-`~/.hermes/.gh_pat_arjun0077.tmp` (private), `~/.hermes/.gh_pat_ashfordesite.tmp`
-(public) — NEVER commit; use token URLs in scripts. Author identity:
-`ashfordeOU <contact@ashforde.org>`.
+→ public `ashfordeOU/aero-agent-roles` (founder GO required). Tokens live
+in the standard Hermes token store (same .tmp PAT discipline as AeroSkills
+— paths resolved in scripts, NEVER committed or referenced by value).
+Author identity: `ashfordeOU <contact@ashforde.org>`.
 
 ## The 5 gates (make validate)
 1. role-lint — structure, frontmatter, bound-skill resolution
