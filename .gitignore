@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# OS
+.DS_Store
+
+# Local state (never commit)
+*.state
+*.tmp
+
+# Source PDFs (license-aware: never commit owned standard PDFs)
+sources/**/*.pdf
+!sources/**/*.md

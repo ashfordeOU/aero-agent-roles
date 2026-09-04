@@ -1,0 +1,34 @@
+{
+ "schema_version": 1,
+ "generated_from": "roles/*/ROLE.md frontmatter",
+ "count": 3,
+ "roles": [
+  {
+   "slug": "airworthiness-compliance-engineer",
+   "title": "Airworthiness Compliance Engineer",
+   "domain": "systems-engineering-safety",
+   "deliverable_type": "compliance checklist / certification matrix",
+   "status": "draft",
+   "standards": [],
+   "skills_bound": 0
+  },
+  {
+   "slug": "as9100-quality-auditor",
+   "title": "AS9100 Quality / Internal Auditor",
+   "domain": "manufacturing-quality",
+   "deliverable_type": "audit plan + findings report + corrective-action follow-up",
+   "status": "draft",
+   "standards": [],
+   "skills_bound": 0
+  },
+  {
+   "slug": "do178c-cert-engineer",
+   "title": "DO-178C Software Certification Engineer",
+   "domain": "avionics",
+   "deliverable_type": "certification plan + verification evidence set",
+   "status": "draft",
+   "standards": [],
+   "skills_bound": 0
+  }
+ ]
+}
