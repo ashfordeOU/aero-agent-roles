@@ -32,6 +32,9 @@ this file is the cross-repo view.
 **First-cohort buy-list total: ~$1,540** (DO-178C + DO-330 + ARP4754A +
 AS9100D + AS9102 + ISO 19011 + ISO 9001). Founder per-purchase GO
 required (money > €50 rule). See roles/*/SOURCES.md for per-role detail.
+**Founder note (2026-09-04): founder CAN PROVIDE sources/books/documents
+on request** — before any purchase, ASK the founder whether he already
+has the standard/book; only buy what he cannot provide.
 
 ## Storage rule
 Owned PDFs live OUTSIDE the git repo (git-ignored, license-aware).
