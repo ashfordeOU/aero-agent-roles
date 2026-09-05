@@ -9,7 +9,7 @@
 
 <!-- gen:statline -->
 <p align="center">
-  <img src="docs/statline-dark.png" alt="12 roles · 336 skills bound · 61 offline tests · 5 gates per role · Apache-2.0" width="100%">
+  <img src="docs/statline-dark.png" alt="12 roles · 12 executable engines · 353 tests · 5 gates per role · Apache-2.0" width="100%">
 </p>
 <!-- /gen:statline -->
 
@@ -17,7 +17,7 @@
 <p align="center">
   <a href="roles/"><img src="https://img.shields.io/badge/roles-12-a78bfa?style=flat&labelColor=1a1e35" alt="roles 12"></a>
   <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-336-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 336"></a>
-  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-61-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 61"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-353-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 353"></a>
   <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-9-f97316?style=flat&labelColor=1a1e35" alt="standards 9"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/format-agentskills.io-8b5cf6?style=flat&labelColor=1a1e35" alt="format agentskills.io"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2ea043?style=flat&labelColor=1a1e35" alt="Apache-2.0"></a>
