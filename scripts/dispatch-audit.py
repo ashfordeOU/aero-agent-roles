@@ -82,6 +82,59 @@ DISPATCH_MAP = {
             "skill_param_map": {},
         },
     ],
+    "guidance-engineer": [
+        {
+            "leaf": "gnc-autonomy/guidance/proportional-navigation",
+            "skill_fn": "commanded_acceleration",
+            "core_fn": "commanded_acceleration",
+            "kwargs": {"rx": 1000.0, "ry": 100.0, "vx": -200.0, "vy": 0.0,
+                       "n_nav": 4.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "gnc-autonomy/guidance/augmented-proportional-navigation",
+            "skill_fn": "apn_command",
+            "core_fn": "apn_command",
+            "kwargs": {"navigation_ratio": 4.0,
+                       "closing_velocity": 199.007438041998,
+                       "los_rate": 0.019801980198,
+                       "target_lateral_accel": 20.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "gnc-autonomy/guidance/pursuit-guidance",
+            "skill_fn": "heading_error",
+            "core_fn": "heading_error",
+            "kwargs": {"psi": 0.0, "rx": 1000.0, "ry": 100.0},
+            "skill_param_map": {},
+        },
+    ],
+    "state-estimation-engineer": [
+        {
+            "leaf": "gnc-autonomy/estimation-filtering/complementary-filter",
+            "skill_fn": "steady_state_verdict",
+            "core_fn": "steady_state_verdict",
+            "kwargs": {"innovation_norms": [5e-4, 3e-4, 2e-4, 1e-4],
+                       "tolerance": 1e-3},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "gnc-autonomy/estimation-filtering/unscented-kalman-filter",
+            "skill_fn": "nees",
+            "core_fn": "nees",
+            "kwargs": {"x_est": [300.0, 40.0],
+                       "p_est": [[100.0, 0.0], [0.0, 100.0]],
+                       "x_true": [295.0, 42.0]},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "gnc-autonomy/estimation-filtering/particle-filter",
+            "skill_fn": "effective_sample_size",
+            "core_fn": "effective_sample_size",
+            "kwargs": {"weights": [0.25, 0.25, 0.25, 0.25]},
+            "skill_param_map": {},
+        },
+    ],
 }
 
 

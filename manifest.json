@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 19,
+ "count": 21,
  "roles": [
   {
    "slug": "aerodynamics-engineer",
@@ -167,6 +167,19 @@
    "skills_bound": 23
   },
   {
+   "slug": "guidance-engineer",
+   "title": "Guidance Engineer",
+   "domain": "gnc-autonomy",
+   "deliverable_type": "guidance law design and assessment report",
+   "status": "draft",
+   "standards": [
+    "arp4754a",
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 9
+  },
+  {
    "slug": "high-speed-aerodynamics-engineer",
    "title": "High-Speed Aerodynamics Engineer",
    "domain": "aerodynamics",
@@ -209,6 +222,17 @@
     "ecss"
    ],
    "skills_bound": 45
+  },
+  {
+   "slug": "state-estimation-engineer",
+   "title": "State Estimation Engineer",
+   "domain": "gnc-autonomy",
+   "deliverable_type": "navigation state estimator design report",
+   "status": "draft",
+   "standards": [
+    "arp4754a"
+   ],
+   "skills_bound": 7
   },
   {
    "slug": "structures-loads-engineer",
