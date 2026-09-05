@@ -3,6 +3,10 @@
 </p>
 
 <p align="center">
+  <img src="docs/title-dark.png" alt="Aero Agent Roles — aerospace engineering · by Ashforde OÜ · Apache-2.0" width="620">
+</p>
+
+<p align="center">
   <strong>The role layer for aerospace engineering agents.</strong><br>
   Roles bind verified Aero Agent Skills leaves into end-to-end deliverables — certification plans, compliance matrices, audit reports — with evidence gates and a human sign-off line.
 </p>

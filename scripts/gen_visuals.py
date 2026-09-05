@@ -53,6 +53,31 @@ STYLE = """  <style>
   </style>
 """
 
+TITLE_FONT = ('font-family="Poppins, Nunito, \'SF Pro Rounded\', \'Segoe UI\', '
+              'system-ui, -apple-system, sans-serif" font-weight="800"')
+
+
+def gen_title(t):
+    W, H = 960, 168
+    ramp = ["#38bdf8", "#a78bfa", "#f472b6", "#fb923c"]
+    roles = "".join(f'<tspan fill="{c}">{ch}</tspan>'
+                    for ch, c in zip("Roles", ramp + ramp[:1]))
+    o = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" '
+         f'viewBox="0 0 {W} {H}">', STYLE.rstrip(),
+         f'<rect width="{W}" height="{H}" rx="22" fill="{t["canvas"]}"/>']
+    o.append(f'<text x="{W / 2}" y="92" text-anchor="middle" font-size="72" '
+             f'{TITLE_FONT} fill="{t["ink"]}">Aero <tspan fill="{t["cyan"]}">Agent</tspan> '
+             f'{roles}</text>')
+    o.append(f'<text class="mono" x="{W / 2}" y="142" text-anchor="middle" '
+             f'font-size="16" letter-spacing="4">'
+             f'<tspan fill="{t["cyan"]}">AEROSPACE ENGINEERING</tspan>'
+             f'<tspan fill="{t["pencil"]}" dx="10">·</tspan>'
+             f'<tspan fill="{t["violet"]}" dx="10">BY ASHFORDE OÜ</tspan>'
+             f'<tspan fill="{t["pencil"]}" dx="10">·</tspan>'
+             f'<tspan fill="{t["orange"]}" dx="10">APACHE-2.0</tspan></text>')
+    o.append("</svg>")
+    return "\n".join(o) + "\n"
+
 # Standard id -> (full name, publisher). Names/publishers are the only
 # hand-maintained facts here (external-world data, not derivable from the
 # tree) — everything else about a standard (which roles bind it, whether
@@ -301,12 +326,21 @@ def gen_standards_md(m):
 
 # -------------------------------------------------------------------- main
 
+# SVG -> PNG raster width (rsvg-convert -w), keyed by output stem — 2x the
+# README's display width for retina screens, matching aero-agent-skills.
+PNG_WIDTHS = {
+    "title-dark": 1240,
+    "statline-dark": 2480,
+}
+
+
 def outputs(m):
     docs = REPO / "docs"
     return {
         docs / "metrics.json": json.dumps(
             {k: v for k, v in m.items() if k not in ("per_role", "per_standard")},
             indent=2, sort_keys=True) + "\n",
+        docs / "title-dark.svg": gen_title(DARK),
         docs / "statline-dark.svg": gen_statline(m, DARK),
         REPO / "STANDARDS.md": gen_standards_md(m),
     }
@@ -333,12 +367,13 @@ def main():
 
     if not check:
         rsvg = shutil.which("rsvg-convert")
-        svg_path = REPO / "docs" / "statline-dark.svg"
-        png_path = REPO / "docs" / "statline-dark.png"
-        if rsvg:
-            subprocess.run([rsvg, "-w", "2480", str(svg_path), "-o", str(png_path)], check=True)
-        else:
-            print("WARN rsvg-convert not found — statline-dark.png not regenerated")
+        for stem, width in PNG_WIDTHS.items():
+            svg_path = REPO / "docs" / f"{stem}.svg"
+            png_path = REPO / "docs" / f"{stem}.png"
+            if rsvg:
+                subprocess.run([rsvg, "-w", str(width), str(svg_path), "-o", str(png_path)], check=True)
+            else:
+                print(f"WARN rsvg-convert not found — {png_path.name} not regenerated")
 
     if check:
         if stale:
