@@ -1,0 +1,494 @@
+{
+ "schema": "aero-agent-roles/manifest@1",
+ "counts": {
+  "roles": 22,
+  "domains": 12,
+  "skills_bound": 432,
+  "tests": 829,
+  "standards": 21
+ },
+ "roles": [
+  {
+   "slug": "aerodynamics-engineer",
+   "title": "Aerodynamics Engineer",
+   "domain": "aerodynamics",
+   "deliverable_type": "aerodynamic design + analysis report",
+   "status": "draft",
+   "standards": [
+    "far-25"
+   ],
+   "skills_bound": 28,
+   "tests": 17
+  },
+  {
+   "slug": "aircraft-design-engineer",
+   "title": "Aircraft Conceptual Design Engineer",
+   "domain": "vehicle-design",
+   "deliverable_type": "concept design package (sizing + layout + cost)",
+   "status": "draft",
+   "standards": [
+    "far-25"
+   ],
+   "skills_bound": 34,
+   "tests": 27
+  },
+  {
+   "slug": "airworthiness-compliance-engineer",
+   "title": "Airworthiness Compliance Engineer",
+   "domain": "systems-engineering-safety",
+   "deliverable_type": "compliance checklist / certification matrix",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 9,
+   "tests": 25
+  },
+  {
+   "slug": "as9100-quality-auditor",
+   "title": "AS9100 Quality / Internal Auditor",
+   "domain": "manufacturing-quality",
+   "deliverable_type": "audit plan + findings report + corrective-action follow-up",
+   "status": "draft",
+   "standards": [
+    "as9100"
+   ],
+   "skills_bound": 15,
+   "tests": 32
+  },
+  {
+   "slug": "data-bus-avionics-engineer",
+   "title": "Data Bus / Avionics Network Engineer",
+   "domain": "avionics",
+   "deliverable_type": "avionics data bus loading + protocol assessment",
+   "status": "draft",
+   "standards": [
+    "arinc-429",
+    "arinc-664",
+    "mil-std-1553"
+   ],
+   "skills_bound": 5,
+   "tests": 42
+  },
+  {
+   "slug": "do160-environmental-engineer",
+   "title": "DO-160G Environmental Qualification Engineer",
+   "domain": "avionics",
+   "deliverable_type": "equipment environmental qualification plan/report",
+   "status": "draft",
+   "standards": [
+    "do-160"
+   ],
+   "skills_bound": 6,
+   "tests": 49
+  },
+  {
+   "slug": "do178c-cert-engineer",
+   "title": "DO-178C Software Certification Engineer",
+   "domain": "avionics",
+   "deliverable_type": "certification plan + verification evidence set",
+   "status": "draft",
+   "standards": [
+    "do-178c"
+   ],
+   "skills_bound": 9,
+   "tests": 18
+  },
+  {
+   "slug": "do254-hardware-engineer",
+   "title": "DO-254 Airborne Electronic Hardware Engineer",
+   "domain": "avionics",
+   "deliverable_type": "Plan for Hardware Aspects of Certification (PHAC) + design assurance evidence set",
+   "status": "draft",
+   "standards": [
+    "do-254",
+    "arp4754a"
+   ],
+   "skills_bound": 4,
+   "tests": 38
+  },
+  {
+   "slug": "engineering-analysis-engineer",
+   "title": "Engineering Analysis and Data Engineer",
+   "domain": "cross-cutting",
+   "deliverable_type": "analysis verification + engineering report",
+   "status": "draft",
+   "standards": [
+    "asme-y14-5"
+   ],
+   "skills_bound": 42,
+   "tests": 41
+  },
+  {
+   "slug": "flight-management-engineer",
+   "title": "Flight Management Engineer",
+   "domain": "avionics",
+   "deliverable_type": "flight plan and RNAV/RNP route assessment",
+   "status": "draft",
+   "standards": [
+    "do-236c",
+    "do-283a",
+    "ac-90-105a"
+   ],
+   "skills_bound": 11,
+   "tests": 59
+  },
+  {
+   "slug": "flight-mechanics-engineer",
+   "title": "Flight Mechanics Engineer",
+   "domain": "flight-mechanics",
+   "deliverable_type": "performance + stability and control analysis report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "mil-std-1797a"
+   ],
+   "skills_bound": 38,
+   "tests": 42
+  },
+  {
+   "slug": "flight-test-engineer",
+   "title": "Flight Test Engineer",
+   "domain": "flight-test-operations",
+   "deliverable_type": "flight test plan + envelope expansion report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "mil-std-1797a"
+   ],
+   "skills_bound": 21,
+   "tests": 32
+  },
+  {
+   "slug": "flight-test-performance-engineer",
+   "title": "Flight Test Performance Engineer",
+   "domain": "flight-test-operations",
+   "deliverable_type": "flight test performance data analysis report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 15,
+   "tests": 45
+  },
+  {
+   "slug": "gnc-engineer",
+   "title": "Guidance, Navigation and Control (GNC) Engineer",
+   "domain": "gnc-autonomy",
+   "deliverable_type": "control design + guidance/navigation analysis report",
+   "status": "draft",
+   "standards": [
+    "mil-std-1797a"
+   ],
+   "skills_bound": 23,
+   "tests": 29
+  },
+  {
+   "slug": "guidance-engineer",
+   "title": "Guidance Engineer",
+   "domain": "gnc-autonomy",
+   "deliverable_type": "guidance law design and assessment report",
+   "status": "draft",
+   "standards": [
+    "arp4754a",
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 9,
+   "tests": 41
+  },
+  {
+   "slug": "high-speed-aerodynamics-engineer",
+   "title": "High-Speed Aerodynamics Engineer",
+   "domain": "aerodynamics",
+   "deliverable_type": "High-Speed Aerodynamic Analysis Memo",
+   "status": "draft",
+   "standards": [
+    "naca-tr-824"
+   ],
+   "skills_bound": 19,
+   "tests": 35
+  },
+  {
+   "slug": "ndt-engineer",
+   "title": "NDT Engineer",
+   "domain": "manufacturing-quality",
+   "deliverable_type": "nondestructive test plan + method selection report",
+   "status": "draft",
+   "standards": [
+    "as9100",
+    "nas-410"
+   ],
+   "skills_bound": 10,
+   "tests": 62
+  },
+  {
+   "slug": "numerical-analysis-engineer",
+   "title": "Numerical Analysis Engineer",
+   "domain": "cross-cutting",
+   "deliverable_type": "numerical methods verification memo",
+   "status": "draft",
+   "standards": [
+    "asme-vv-20"
+   ],
+   "skills_bound": 10,
+   "tests": 52
+  },
+  {
+   "slug": "propulsion-engineer",
+   "title": "Propulsion Engineer",
+   "domain": "propulsion",
+   "deliverable_type": "propulsion system design + cycle analysis report",
+   "status": "draft",
+   "standards": [
+    "far-33"
+   ],
+   "skills_bound": 34,
+   "tests": 31
+  },
+  {
+   "slug": "space-systems-engineer",
+   "title": "Space Systems Engineer",
+   "domain": "space-systems",
+   "deliverable_type": "spacecraft mission + subsystem design report",
+   "status": "draft",
+   "standards": [
+    "ecss"
+   ],
+   "skills_bound": 45,
+   "tests": 33
+  },
+  {
+   "slug": "state-estimation-engineer",
+   "title": "State Estimation Engineer",
+   "domain": "gnc-autonomy",
+   "deliverable_type": "navigation state estimator design report",
+   "status": "draft",
+   "standards": [
+    "arp4754a"
+   ],
+   "skills_bound": 7,
+   "tests": 42
+  },
+  {
+   "slug": "structures-loads-engineer",
+   "title": "Structures and Loads Engineer",
+   "domain": "structures",
+   "deliverable_type": "loads + strength/stability analysis report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "mmpsd"
+   ],
+   "skills_bound": 38,
+   "tests": 37
+  }
+ ],
+ "standards": [
+  {
+   "id": "ac-90-105a",
+   "name": "FAA AC 90-105A, Approval Guidance for RNP Operations and Baro-VNAV",
+   "publisher": "FAA",
+   "gated": false,
+   "roles": [
+    "flight-management-engineer"
+   ]
+  },
+  {
+   "id": "arinc-429",
+   "name": "ARINC 429 (Mark 33 DITS)",
+   "publisher": "ARINC / Aeronautical Radio Inc",
+   "gated": true,
+   "roles": [
+    "data-bus-avionics-engineer"
+   ]
+  },
+  {
+   "id": "arinc-664",
+   "name": "ARINC 664 Part 7 (AFDX)",
+   "publisher": "ARINC / Aeronautical Radio Inc",
+   "gated": true,
+   "roles": [
+    "data-bus-avionics-engineer"
+   ]
+  },
+  {
+   "id": "arp4754a",
+   "name": "SAE ARP4754A, Development of Civil Aircraft and Systems",
+   "publisher": "SAE",
+   "gated": true,
+   "roles": [
+    "do254-hardware-engineer",
+    "guidance-engineer",
+    "state-estimation-engineer"
+   ]
+  },
+  {
+   "id": "as9100",
+   "name": "AS9100D, Aerospace QMS Requirements",
+   "publisher": "SAE / IAQG",
+   "gated": true,
+   "roles": [
+    "as9100-quality-auditor",
+    "ndt-engineer"
+   ]
+  },
+  {
+   "id": "asme-vv-20",
+   "name": "ASME V&V 20-2009, Verification and Validation in CFD and Heat Transfer",
+   "publisher": "ASME",
+   "gated": true,
+   "roles": [
+    "numerical-analysis-engineer"
+   ]
+  },
+  {
+   "id": "asme-y14-5",
+   "name": "ASME Y14.5, Dimensioning and Tolerancing",
+   "publisher": "ASME",
+   "gated": true,
+   "roles": [
+    "engineering-analysis-engineer"
+   ]
+  },
+  {
+   "id": "cs-25",
+   "name": "EASA CS-25, Certification Specifications",
+   "publisher": "EASA",
+   "gated": false,
+   "roles": [
+    "airworthiness-compliance-engineer",
+    "flight-test-performance-engineer",
+    "guidance-engineer"
+   ]
+  },
+  {
+   "id": "do-160",
+   "name": "RTCA DO-160G / EUROCAE ED-14G, Environmental Conditions and Test Procedures for Airborne Equipment",
+   "publisher": "RTCA/EUROCAE",
+   "gated": true,
+   "roles": [
+    "do160-environmental-engineer"
+   ]
+  },
+  {
+   "id": "do-178c",
+   "name": "RTCA DO-178C / EUROCAE ED-12C, Software Considerations in Airborne Systems",
+   "publisher": "RTCA/EUROCAE",
+   "gated": true,
+   "roles": [
+    "do178c-cert-engineer"
+   ]
+  },
+  {
+   "id": "do-236c",
+   "name": "RTCA DO-236C, MASPS: RNP for Area Navigation",
+   "publisher": "RTCA",
+   "gated": true,
+   "roles": [
+    "flight-management-engineer"
+   ]
+  },
+  {
+   "id": "do-254",
+   "name": "RTCA DO-254 / EUROCAE ED-80, Design Assurance for Airborne Electronic Hardware",
+   "publisher": "RTCA/EUROCAE",
+   "gated": true,
+   "roles": [
+    "do254-hardware-engineer"
+   ]
+  },
+  {
+   "id": "do-283a",
+   "name": "RTCA DO-283A, MOPS for RNP Area Navigation (RNP AR)",
+   "publisher": "RTCA",
+   "gated": true,
+   "roles": [
+    "flight-management-engineer"
+   ]
+  },
+  {
+   "id": "ecss",
+   "name": "ECSS engineering + product-assurance standards (E-ST-10/32/33/40, Q-ST-80)",
+   "publisher": "ECSS",
+   "gated": true,
+   "roles": [
+    "space-systems-engineer"
+   ]
+  },
+  {
+   "id": "far-25",
+   "name": "14 CFR Part 25, Airworthiness Standards: Transport Category Airplanes",
+   "publisher": "FAA",
+   "gated": false,
+   "roles": [
+    "aerodynamics-engineer",
+    "aircraft-design-engineer",
+    "airworthiness-compliance-engineer",
+    "flight-mechanics-engineer",
+    "flight-test-engineer",
+    "flight-test-performance-engineer",
+    "guidance-engineer",
+    "structures-loads-engineer"
+   ]
+  },
+  {
+   "id": "far-33",
+   "name": "14 CFR Part 33, Airworthiness Standards: Aircraft Engines",
+   "publisher": "FAA",
+   "gated": false,
+   "roles": [
+    "propulsion-engineer"
+   ]
+  },
+  {
+   "id": "mil-std-1553",
+   "name": "MIL-STD-1553B, Digital Time Division Command/Response Multiplex Data Bus",
+   "publisher": "US DoD",
+   "gated": false,
+   "roles": [
+    "data-bus-avionics-engineer"
+   ]
+  },
+  {
+   "id": "mil-std-1797a",
+   "name": "MIL-STD-1797A, Flying Qualities of Piloted Aircraft",
+   "publisher": "US DoD",
+   "gated": false,
+   "roles": [
+    "flight-mechanics-engineer",
+    "flight-test-engineer",
+    "gnc-engineer"
+   ]
+  },
+  {
+   "id": "mmpsd",
+   "name": "MMPDS, Metallic Materials Properties Development and Standardization",
+   "publisher": "Battelle / FAA",
+   "gated": true,
+   "roles": [
+    "structures-loads-engineer"
+   ]
+  },
+  {
+   "id": "naca-tr-824",
+   "name": "NACA Report 824, Summary of Airfoil Data",
+   "publisher": "NACA/NASA (public domain)",
+   "gated": true,
+   "roles": [
+    "high-speed-aerodynamics-engineer"
+   ]
+  },
+  {
+   "id": "nas-410",
+   "name": "NAS 410, Certification and Qualification of Nondestructive Test Personnel",
+   "publisher": "AIA/SAE",
+   "gated": true,
+   "roles": [
+    "ndt-engineer"
+   ]
+  }
+ ]
+}

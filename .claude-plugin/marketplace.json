@@ -1,0 +1,16 @@
+{
+  "name": "aero-agent-roles",
+  "description": "The role layer for aerospace engineering agents by Ashforde OU: roles that bind verified Aero Agent Skills into end-to-end deliverables, gated by a replayable offline battery.",
+  "owner": {
+    "name": "Ashforde OU",
+    "email": "contact@ashforde.org",
+    "url": "https://ashforde.org"
+  },
+  "plugins": [
+    {
+      "name": "aero-agent-roles",
+      "source": "./",
+      "description": "The role layer for aerospace engineering agents: professional roles that bind verified Aero Agent Skills into end-to-end deliverables, with evidence gates and a human sign-off, spanning avionics, aerodynamics, structures, propulsion, GNC, flight test, space systems, and quality."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "aero-agent-roles",
+  "version": "0.1.0",
+  "description": "The role layer for aerospace engineering agents: professional roles that bind verified Aero Agent Skills into end-to-end deliverables, with evidence gates and a human sign-off, spanning avionics, aerodynamics, structures, propulsion, GNC, flight test, space systems, and quality.",
+  "author": {
+    "name": "Ashforde OU",
+    "email": "contact@ashforde.org",
+    "url": "https://ashforde.org"
+  },
+  "homepage": "https://ashforde.org/aeroagentroles",
+  "repository": "https://github.com/ashfordeOU/aero-agent-roles",
+  "license": "Apache-2.0",
+  "keywords": [
+    "aerospace",
+    "aerospace-engineering",
+    "agent-skills",
+    "avionics",
+    "do-178c",
+    "systems-engineering"
+  ]
+}

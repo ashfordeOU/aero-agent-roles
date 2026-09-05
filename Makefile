@@ -37,8 +37,16 @@ release-law:
 
 visuals:
 	@python3 scripts/gen_visuals.py
+	@python3 scripts/gen_npm_manifest.py
 
 visuals-check:
 	@python3 scripts/gen_visuals.py --check
+	@python3 scripts/gen_npm_manifest.py --check
 
-.PHONY: validate growth role-lint role-tests no-verbatim security manifest coverage-check release-law visuals visuals-check
+package-test:
+	@node packages/aero-agent-roles/test/smoke.mjs
+
+about:
+	@bash ops/automation/update-about.sh
+
+.PHONY: validate growth role-lint role-tests no-verbatim security manifest coverage-check release-law visuals visuals-check package-test about
