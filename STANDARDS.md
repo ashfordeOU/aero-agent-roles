@@ -43,6 +43,8 @@ or accessed through the publishers' official channels.
 | do-236c | RTCA DO-236C, Minimum Aviation System Performance Standards: RNP for Area Navigation | RTCA | flight-management-engineer | true |
 | do-283a | RTCA DO-283A, MOPS for RNP Area Navigation (RNP AR) | RTCA | flight-management-engineer | true |
 | ac-90-105a | FAA AC 90-105A, Approval Guidance for RNP Operations and Baro-VNAV | FAA | flight-management-engineer | false |
+| asme-vv-20 | ASME V&V 20-2009, Verification and Validation in CFD and Heat Transfer | ASME | numerical-analysis-engineer | true |
+| naca-tr-824 | NACA Report 824, Summary of Airfoil Data | NACA/NASA (public domain) | numerical-analysis-engineer (numerics-leaf anchor), high-speed-aerodynamics-engineer | false |
 
 ## Purchase links
 

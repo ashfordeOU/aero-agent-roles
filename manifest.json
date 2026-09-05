@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 17,
+ "count": 19,
  "roles": [
   {
    "slug": "aerodynamics-engineer",
@@ -144,6 +144,18 @@
    "skills_bound": 21
   },
   {
+   "slug": "flight-test-performance-engineer",
+   "title": "Flight Test Performance Engineer",
+   "domain": "flight-test-operations",
+   "deliverable_type": "flight test performance data analysis report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 15
+  },
+  {
    "slug": "gnc-engineer",
    "title": "Guidance, Navigation and Control (GNC) Engineer",
    "domain": "gnc-autonomy",
@@ -164,6 +176,17 @@
     "naca-tr-824"
    ],
    "skills_bound": 19
+  },
+  {
+   "slug": "numerical-analysis-engineer",
+   "title": "Numerical Analysis Engineer",
+   "domain": "cross-cutting",
+   "deliverable_type": "numerical methods verification memo",
+   "status": "draft",
+   "standards": [
+    "asme-vv-20"
+   ],
+   "skills_bound": 10
   },
   {
    "slug": "propulsion-engineer",
