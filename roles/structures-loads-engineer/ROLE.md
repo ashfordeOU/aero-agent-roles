@@ -134,14 +134,27 @@ deliverables. No AeroSkills checkout required.
 Run the role:
 ```bash
 python3 cli.py build --out report.md                  # example wing report
+python3 cli.py build --out report.md --bundle         # + evidence bundle
 python3 cli.py build --category commuter --weight 18000  # other wing classes
 python3 cli.py check --file report.md                 # gate-check a report
 ```
+
+Evidence protocol (docs/PROTOCOL.md): `--bundle` emits
+`evidence/{model.json, gates.json, provenance.json}` next to the
+deliverable — the computed model, gate verdicts, and provenance (which
+core function + which bound skill leaf produced each number). When
+AeroSkills is present, the CLI dispatches the bound gust-maneuver-loads
+logic and cross-checks its VC discrete-gust load factor against the
+core's: two independent implementations agreeing (delta 0) is recorded
+in provenance.json. Any harness can consume the bundle programmatically.
 
 Tests:
 - tests/test_structures_loads_core.py (24 tests): domain rules (gust
   alleviation, maneuver limits, Euler/plate/lug/fatigue anchors),
   report builder, evidence gates, standalone (no skills repo).
+- tests/test_bundle_protocol.py (6 tests): bundle emits 3 files, model
+  numbers + status, gates all_pass, dispatch cross-check agrees (when
+  skills present), standalone honest (cross_checked=false).
 - tests/test_role_structures_loads_engineer.py: bound-skill
   resolution (skips if the skills repo is absent), workflow order,
   filled template present, boundaries.
