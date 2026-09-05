@@ -38,7 +38,7 @@ metrics="docs/metrics.json"
 payload=$(METRICS="$metrics" /usr/bin/python3 - <<'PY'
 import json, os
 m = json.load(open(os.environ["METRICS"]))
-desc = ("\U0001F680 The role layer for aerospace engineering agents — "
+desc = ("\U0001F9D1\u200D\U0001F680 The role layer for aerospace engineering agents — "
         f"{m['roles']} roles binding {m['skills_bound']} Aero Agent Skills "
         f"across {m['domains']} domains, verified by {m['tests']} offline "
         f"tests, gated on {m['standards']} standards. Every role ends at "
