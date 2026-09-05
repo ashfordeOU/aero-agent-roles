@@ -62,6 +62,48 @@ CLUSTER_ROLE_MAP = {
         "Certification Basis and Means of Compliance Plan"),
     "gnc-autonomy/autopilot": ("autopilot-control-engineer",
                                "Autopilot Control Law Design Report"),
+    # weak-family clusters (wave R3+ targets)
+    "systems-engineering-safety/arp4754a": (
+        "systems-integration-engineer",
+        "Aircraft-Level System Integration and ARP4754A Plan"),
+    "systems-engineering-safety/arp4761a": (
+        "safety-assessment-engineer",
+        "Functional Hazard and System Safety Assessment"),
+    "systems-engineering-safety/safety-case": (
+        "safety-case-engineer",
+        "Safety Case Report"),
+    "systems-engineering-safety/mbse": (
+        "mbse-modeling-engineer",
+        "Model-Based Systems Engineering Plan"),
+    "manufacturing-quality/as9102": (
+        "first-article-inspection-engineer",
+        "First Article Inspection Report (AS9102)"),
+    "manufacturing-quality/as9103": (
+        "aerospace-variation-management-engineer",
+        "Key Characteristic and Variation Management Plan"),
+    "manufacturing-quality/ndt": (
+        "ndt-engineer",
+        "Nondestructive Test Plan and Method Selection"),
+    "manufacturing-quality/special-processes": (
+        "special-processes-engineer",
+        "Special Process Qualification Plan"),
+    "manufacturing-quality/composites": (
+        "composites-manufacturing-engineer",
+        "Composite Part Manufacturing and Inspection Plan"),
+    "manufacturing-quality/additive": (
+        "additive-manufacturing-engineer",
+        "Additive Manufacturing Qualification Report"),
+    "gnc-autonomy/estimation-filtering": (
+        "state-estimation-engineer",
+        "Navigation State Estimator Design Report"),
+    "gnc-autonomy/guidance": (
+        "guidance-engineer",
+        "Guidance Law Design Report"),
+    "gnc-autonomy/optimal-control": (
+        "optimal-control-engineer",
+        "Optimal Control Design Report"),
+    "vehicle-design/landing-gear": ("landing-gear-engineer",
+                                    "Landing Gear System Design Report"),
 }
 
 
@@ -88,6 +130,10 @@ def plan_next_wave() -> dict:
     ledger = load_ledger()
     fam = ledger.get("per_family", {})
     counts = cluster_unbound_counts(ledger)
+    existing_roles = {
+        d for d in os.listdir(os.path.join(ROOT, "roles"))
+        if os.path.isdir(os.path.join(ROOT, "roles", d))
+    }
 
     # families below the bar, sorted worst-first
     weak_families = sorted(
@@ -103,7 +149,8 @@ def plan_next_wave() -> dict:
                  if family_of_cluster(c) == fam_name
                  and c not in used_clusters
                  and n >= MIN_CLUSTER_UNBOUND
-                 and c in CLUSTER_ROLE_MAP]
+                 and c in CLUSTER_ROLE_MAP
+                 and CLUSTER_ROLE_MAP[c][0] not in existing_roles]
         cands.sort(key=lambda t: -t[1])
         if cands:
             cluster, n = cands[0]
@@ -130,6 +177,8 @@ def plan_next_wave() -> dict:
             if n < MIN_CLUSTER_UNBOUND:
                 continue
             slug, deliverable = CLUSTER_ROLE_MAP[cluster]
+            if slug in existing_roles:
+                continue  # already built — do not re-propose
             f = family_of_cluster(cluster)
             chosen.append({
                 "role": slug,
