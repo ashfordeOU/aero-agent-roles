@@ -8,10 +8,13 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 fail=0
 
-# 1. Secret-like strings anywhere in tracked content (exclude this script)
+# 1. Secret-like strings anywhere in tracked content (exclude this script
+# and the publish machinery, which may reference token FILE PATHS — never
+# values; the pattern still catches real secrets everywhere else)
 if grep -rniE "(^|[^a-z])sk-[a-z0-9]{10,}|api[_-]?key[[:space:]]*[:=][[:space:]]*[\"']|BEGIN (RSA |EC |OPENSSH )?PRIVATE|bearer [a-z0-9]{10,}|gh_pat|\\.tmp token|password[[:space:]]*[:=][[:space:]]*[^[:space:]]" \
     --include="*.md" --include="*.py" --include="*.sh" --include="*.yaml" --include="*.yml" . 2>/dev/null \
-    | grep -v ".git/" | grep -v "scripts/gate-security.sh"; then
+    | grep -v ".git/" | grep -v "scripts/gate-security.sh" \
+    | grep -v "ops/automation/publish-public.sh"; then
   echo "FAIL: secret-like string found (above)"; fail=1
 fi
 
