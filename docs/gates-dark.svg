@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="300" viewBox="0 0 1240 300">
+  <style>
+    .mono { font-family: "JetBrains Mono", "IBM Plex Mono", "Menlo", monospace; }
+    .cond { font-family: "Barlow Condensed", "DIN Condensed", "Arial Narrow", sans-serif; font-weight: 700; text-transform: uppercase; }
+  </style>
+<rect width="1240" height="300" fill="#0a0d1e"/>
+<rect x="30.0" y="106.0" width="90" height="68" fill="#111632" stroke="#edf0fc" stroke-width="1.3"/>
+<text class="mono" x="75.0" y="144.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">COMMIT</text>
+<line x1="120.0" y1="140" x2="142.0" y2="140" stroke="#edf0fc" stroke-width="1.4"/>
+<path d="M 150.0 140 l -9 -4.5 v 9 Z" fill="#edf0fc"/>
+<rect x="154" y="70" width="800" height="140" fill="none" stroke="#a78bfa" stroke-width="1.8"/>
+<text class="mono" x="166.0" y="62.0" text-anchor="start" font-size="11" fill="#a78bfa" letter-spacing="2">MAKE VALIDATE · 5/5 REAL GATES</text>
+<rect x="168.0" y="112.0" width="144.4" height="56" fill="#111632" stroke="#2c3564" stroke-width="1.3"/>
+<text class="mono" x="240.2" y="136.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">ROLE</text>
+<text class="mono" x="240.2" y="152.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">LINT</text>
+<rect x="322.4" y="112.0" width="144.4" height="56" fill="#111632" stroke="#2c3564" stroke-width="1.3"/>
+<text class="mono" x="394.6" y="136.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">ROLE</text>
+<text class="mono" x="394.6" y="152.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">TESTS</text>
+<rect x="476.8" y="112.0" width="144.4" height="56" fill="#111632" stroke="#2c3564" stroke-width="1.3"/>
+<text class="mono" x="549.0" y="136.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">NO-</text>
+<text class="mono" x="549.0" y="152.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">VERBATIM</text>
+<rect x="631.2" y="112.0" width="144.4" height="56" fill="#111632" stroke="#2c3564" stroke-width="1.3"/>
+<text class="mono" x="703.4" y="144.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">SECURITY</text>
+<rect x="785.6" y="112.0" width="144.4" height="56" fill="#111632" stroke="#2c3564" stroke-width="1.3"/>
+<text class="mono" x="857.8" y="144.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">MANIFEST</text>
+<line x1="958.0" y1="140" x2="982.0" y2="140" stroke="#edf0fc" stroke-width="1.4"/>
+<path d="M 990.0 140 l -9 -4.5 v 9 Z" fill="#edf0fc"/>
+<rect x="994.0" y="106.0" width="96" height="68" fill="#111632" stroke="#fb923c" stroke-width="1.8"/>
+<text class="mono" x="1042.0" y="136.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">VISUALS</text>
+<text class="mono" x="1042.0" y="152.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">FRESH</text>
+<line x1="1094.0" y1="140" x2="1116.0" y2="140" stroke="#edf0fc" stroke-width="1.4"/>
+<path d="M 1124.0 140 l -9 -4.5 v 9 Z" fill="#edf0fc"/>
+<rect x="1128" y="106" width="82" height="68" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="2.2"/>
+<text class="mono" x="1169.0" y="138.0" text-anchor="middle" font-size="11" fill="#edf0fc" letter-spacing="1">CI</text>
+<text class="mono" x="1169.0" y="154.0" text-anchor="middle" font-size="11" fill="#edf0fc" letter-spacing="1">GREEN</text>
+<line x1="30" y1="238" x2="1210" y2="238" stroke="#2c3564" stroke-width="0.8"/>
+<text class="mono" x="30.0" y="262.0" text-anchor="start" font-size="10.5" fill="#8a93c4" letter-spacing="2">FAIL-CLOSED: ANY RED GATE BLOCKS THE PUSH · DETERMINISTIC · OFFLINE · REPLAY WITH make validate</text>
+<text class="mono" x="1210.0" y="262.0" text-anchor="end" font-size="9.5" fill="#8a93c4" letter-spacing="1.5" opacity="0.9">AERO AGENT ROLES · ASHFORDE OÜ</text>
+</svg>

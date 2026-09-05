@@ -39,7 +39,27 @@ each stage must produce, and the hard boundary where a human signs.
 > **Skills = "do this task correctly."**
 > **Roles = "own this deliverable end to end."**
 
+## Domain map
+
+<!-- gen:overview -->
+**22 roles** across **12 domains**, binding **432 skills** from Aero Agent Skills and verified by **829 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
+<!-- /gen:overview -->
+
+<p align="center">
+  <img src="docs/domain-radar-dark.png" alt="Domain coverage radar: skills bound vs offline tests across 12 domains" width="100%">
+</p>
+
+<p align="center">
+  <img src="docs/domain-polar-dark.png" alt="Polar rose: roles per domain, area-true" width="100%">
+</p>
+
+Full per-domain role lists: **[docs/DOMAINS.md](docs/DOMAINS.md)**.
+
 ## Roles
+
+<p align="center">
+  <img src="docs/structure-dark.png" alt="Role bank structure sunburst: inner ring of 12 domains, outer ring of roles, arc length proportional to skills bound" width="100%">
+</p>
 
 Each role directory contains `ROLE.md` (the contract), `templates/`
 (original deliverable skeletons), `tests/` (offline verification), and
@@ -72,7 +92,45 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 | [Structures and Loads Engineer](roles/structures-loads-engineer/ROLE.md) | loads + strength/stability analysis report | 38 |
 <!-- /gen:role-table -->
 
+### See a role
+
+This is the artifact — one real role, exactly as agents receive it:
+
+<details>
+<summary><code>do178c-cert-engineer</code> — ROLE.md frontmatter (excerpt)</summary>
+
+```yaml
+name: do178c-cert-engineer
+title: "DO-178C Software Certification Engineer"
+domain: avionics
+deliverable_type: "certification plan + verification evidence set"
+standards_bound:
+  - id: do-178c
+    tier: TIER-2
+    reference-only: true
+skills_bound:
+  - avionics/do178c/planning
+  - avionics/do178c/development
+  - avionics/do178c/verification
+```
+
+</details>
+
+The body walks the agent through: planning → development framework →
+verification strategy → test evidence → configuration management → tool
+qualification → previously-developed-software check → data/control
+coupling analysis → airworthiness liaison — **where the agent must stop
+and let a human sign**.
+
+<p align="center">
+  <img src="docs/role-anatomy-dark.png" alt="Anatomy of a role: frontmatter contract, workflow body with evidence gates, executable domain engine, offline behavior contract test" width="100%">
+</p>
+
 ## How a role works
+
+<p align="center">
+  <img src="docs/how-it-works-dark.png" alt="Pipeline: adopt a role → role binds skills from manifest.json → workflow stages run in order → each stage has an evidence gate → core engine computes the deliverable → stop gate: human sign-off" width="100%">
+</p>
 
 A role binds real, existing skills from Aero Agent Skills and orders them
 into the workflow a practicing engineer follows. The DO-178C role runs:
@@ -96,6 +154,10 @@ Public-domain regulations (FAR/CS) are quotable with citation. See
 ## Quality gates
 
 Every role passes a 5-gate battery before it ships:
+
+<p align="center">
+  <img src="docs/gates-dark.png" alt="Verification battery: commit passes 5 validate gates and the visuals-freshness check before CI goes green" width="100%">
+</p>
 
 ```bash
 make validate

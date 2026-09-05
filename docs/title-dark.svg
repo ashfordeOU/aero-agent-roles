@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="168" viewBox="0 0 960 168">
   <style>
     .mono { font-family: "JetBrains Mono", "IBM Plex Mono", "Menlo", monospace; }
+    .cond { font-family: "Barlow Condensed", "DIN Condensed", "Arial Narrow", sans-serif; font-weight: 700; text-transform: uppercase; }
   </style>
 <rect width="960" height="168" rx="22" fill="#0a0d1e"/>
 <text x="480.0" y="92" text-anchor="middle" font-size="72" font-family="Poppins, Nunito, 'SF Pro Rounded', 'Segoe UI', system-ui, -apple-system, sans-serif" font-weight="800" fill="#edf0fc">Aero <tspan fill="#38bdf8">Agent</tspan> <tspan fill="#38bdf8">R</tspan><tspan fill="#a78bfa">o</tspan><tspan fill="#f472b6">l</tspan><tspan fill="#fb923c">e</tspan><tspan fill="#38bdf8">s</tspan></text>
