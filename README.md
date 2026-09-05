@@ -26,7 +26,24 @@
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/format-agentskills.io-8b5cf6?style=flat&labelColor=1a1e35" alt="format agentskills.io"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2ea043?style=flat&labelColor=1a1e35" alt="Apache-2.0"></a>
 </p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/aero-agent-roles"><img src="https://img.shields.io/badge/npm-aero--agent--roles-0ea5e9?style=flat&labelColor=1a1e35" alt="npm aero-agent-roles"></a>
+  <a href="packages/aero-agent-roles/"><img src="https://img.shields.io/badge/cli-aero--roles-8b5cf6?style=flat&labelColor=1a1e35" alt="cli aero-roles"></a>
+  <a href="packages/aero-agent-roles/lib/mcp.js"><img src="https://img.shields.io/badge/mcp_server-claude_%C2%B7_cursor_%C2%B7_vscode-ec4899?style=flat&labelColor=1a1e35" alt="MCP server for Claude Desktop, Cursor, VS Code"></a>
+  <a href=".claude-plugin/"><img src="https://img.shields.io/badge/claude_code-plugin-f97316?style=flat&labelColor=1a1e35" alt="claude code plugin"></a>
+  <a href="packages/jetbrains-plugin/"><img src="https://img.shields.io/badge/jetbrains-plugin_(marketplace_pending)-6e7590?style=flat&labelColor=1a1e35" alt="JetBrains plugin, built, marketplace submission pending"></a>
+</p>
 <!-- /gen:badges -->
+
+<p align="center">
+  <a href="#domain-map">Domain map</a> ·
+  <a href="#roles">Roles</a> ·
+  <a href="#how-a-role-works">How a role works</a> ·
+  <a href="#standards-discipline">Standards discipline</a> ·
+  <a href="#quality-gates">Quality gates</a> ·
+  <a href="#roadmap">Roadmap</a> ·
+  <a href="#faq">FAQ</a>
+</p>
 
 ---
 
@@ -252,6 +269,11 @@ Apache-2.0. See [LICENSE](LICENSE) · [NOTICE](NOTICE) ·
 
 Aero Agent Roles is built and maintained by Ashforde OÜ (Estonia).
 Copyright © 2026 Ashforde OÜ.
+
+## Related
+
+- [Aero Agent Skills](https://github.com/ashfordeOU/aero-agent-skills) - the knowledge substrate this role bank builds on
+- [Aero Agent Roles on the web](https://ashforde.org/aeroagentroles/)
 
 ---
 

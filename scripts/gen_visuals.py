@@ -694,7 +694,17 @@ def block_badges(m):
         b("format", "agentskills.io", "8b5cf6", "https://agentskills.io"),
         b("license", m["license"], "2ea043", "LICENSE", alt=m["license"]),
     ]
-    return "<p align=\"center\">\n" + "\n".join(row) + "\n</p>"
+    dist = [
+        b("npm", "aero-agent-roles", "0ea5e9", "https://www.npmjs.com/package/aero-agent-roles"),
+        b("cli", "aero-roles", "8b5cf6", "packages/aero-agent-roles/"),
+        b("mcp server", "claude_%C2%B7_cursor_%C2%B7_vscode", "ec4899", "packages/aero-agent-roles/lib/mcp.js",
+          alt="MCP server for Claude Desktop, Cursor, VS Code"),
+        b("claude code", "plugin", "f97316", ".claude-plugin/"),
+        b("jetbrains", "plugin_(marketplace_pending)", "6e7590", "packages/jetbrains-plugin/",
+          alt="JetBrains plugin, built, marketplace submission pending"),
+    ]
+    return ("<p align=\"center\">\n" + "\n".join(row) + "\n</p>\n"
+            + "<p align=\"center\">\n" + "\n".join(dist) + "\n</p>")
 
 
 def block_role_table(m):
