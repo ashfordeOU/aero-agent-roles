@@ -112,7 +112,7 @@ def main() -> int:
         },
         "role_ready_clusters": [
             # sub-cluster candidates = unbound leaves grouped by parent dir
-            l for l in sorted(unbound)[:80]
+            l for l in sorted(unbound)
         ],
     }
     if "--json" in sys.argv:
