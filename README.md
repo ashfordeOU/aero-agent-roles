@@ -181,12 +181,80 @@ docs/                # role anatomy standard, handover
 scripts/             # gates and role tooling
 ```
 
+## Roadmap
+
+**Shipped:** 22 professional roles binding 432 verified Aero Agent
+Skills leaves across 12 engineering domains, every role an executable
+worker (core engine + CLI + filled template + tests) gated by
+`make validate` (5/5) and the 100% audit — from DO-178C certification
+engineer and DO-254 hardware engineer to structures, avionics data
+bus, GNC guidance/state-estimation, flight test performance, NDT, and
+high-speed aerodynamics. Evidence protocol (`--bundle`) emits
+deliverable + model.json + gates.json + provenance.json for any
+harness; program profiles (`--profile`) tailor one engine to any
+customer's basis; npm CLI + MCP server packaged (`aero-agent-roles`).
+
+**Now:** role waves selected deterministically by the coverage planner
+(`scripts/wave-planner.py`) — closing the weakest families first
+(systems engineering & safety, manufacturing quality), every new role
+landing with its core engine, filled deliverable, bundle protocol, and
+dispatch cross-checks against the live skills library.
+
+**Later:** the full role-count release ladder (v1.1.0 @ 25, v1.2.0 @ 50
+roles) with npm publish from the public tree; role chains that
+orchestrate multi-role programs (cert engineer ← structures ← flight
+test); reference builds for airframers and suppliers; marketplace
+listings alongside Aero Agent Skills.
+
+## Contributing
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR: every role
+ships with its executable core + filled template + tests, every
+contributor certifies their submission contains no controlled data and
+no verbatim standards text, every merge must pass `make validate` (5/5)
+and `make growth`.
+
+## Security
+
+Roles are executable workers — review the core engine, `cli.py`, and any
+bound-skill logic before you run one, the same way you would review any
+code dependency. Report vulnerabilities privately per
+[SECURITY.md](SECURITY.md).
+
+## FAQ
+
+[docs/FAQ.md](docs/FAQ.md) covers license, certification status, export
+control, what verified means, roles-vs-skills, and affiliation. Short
+answers: Apache-2.0, not certified, not controlled as published,
+verified = replayable `make validate` 5/5 + the 100% audit on the commit
+you are looking at, roles = executable workers on the skills substrate,
+not affiliated with RTCA, SAE, EASA, FAA, or any government.
+
+## Compliance notice
+
+Aero Agent Roles is an open, unrestricted library of civil aerospace
+engineering methodology for AI agents, published by Ashforde OÜ
+(Estonia) under Apache-2.0. The content is educational: general
+engineering principles, processes, and tool-usage guidance. It is not
+ITAR/EAR-controlled technical data, and no proprietary standards text
+is reproduced. Standards are referenced and summarized only (see
+[STANDARDS.md](STANDARDS.md)). As published, this library falls within
+the EU dual-use "public domain" exclusion (Annex I General Technology
+Note, Regulation (EU) 2021/821). Users are solely responsible for their
+own compliance. Not affiliated with or endorsed by RTCA, EUROCAE, SAE
+International, IAQG, EASA, FAA, or any government.
+
 ## License
 
-Apache-2.0. Standards referenced within roles remain the property of
-their respective publishers; no proprietary content is reproduced.
+Apache-2.0. See [LICENSE](LICENSE) · [NOTICE](NOTICE) ·
+[SECURITY.md](SECURITY.md) · [CONTRIBUTING.md](CONTRIBUTING.md) ·
+[STANDARDS.md](STANDARDS.md) · [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 
-## Related
+Aero Agent Roles is built and maintained by Ashforde OÜ (Estonia).
+Copyright © 2026 Ashforde OÜ.
 
-- [Aero Agent Skills](https://github.com/ashfordeOU/aero-agent-skills) - the knowledge substrate this role bank builds on
-- [Aero Agent Roles on the web](https://ashforde.org/aeroagentroles/)
+### ⭐ Stars are our telemetry
+
+Every star steers the flight plan — it decides which engineering family
+gets the next role wave. If a role saved your team a certification
+cycle, send one back.

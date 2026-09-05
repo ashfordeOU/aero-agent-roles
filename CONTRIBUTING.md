@@ -1,7 +1,9 @@
 # Contributing to Aero Agent Roles
 
-Aero Agent Roles is an open library of professional aerospace engineering
-roles for AI agents, built on Aero Agent Skills, published by Ashforde OÜ (Estonia) under Apache-2.0.
+Aero Agent Roles is an open role layer for civil aerospace engineering
+agents, published by Ashforde OÜ (Estonia) under Apache-2.0. Roles bind
+verified [Aero Agent Skills](https://github.com/ashfordeOU/aero-agent-skills)
+leaves into end-to-end deliverables.
 
 ## Ground rules (AGENTS.md)
 
@@ -9,93 +11,58 @@ roles for AI agents, built on Aero Agent Skills, published by Ashforde OÜ (Esto
 - Every commit is complete: code + docs + tests + state together.
 - Clean at rest: zero uncommitted files.
 - Test-first: failing test → fix → passing test.
-- Evidence over claims: no finding ships without receipts.
+- Evidence over claims: no role ships without receipts.
+
+## What a role is
+
+A role is a WORKER, not a job description. Every role in `roles/<slug>/`
+must be an executable engine:
+
+```
+ROLE.md          contract: identity, deliverable, workflow, gates, boundaries
+SOURCES.md       standards referenced (summary only, never verbatim)
+templates/       FILLED generated deliverable (zero blanks)
+core/*_core.py   executable domain engine (stdlib only)
+cli.py           build / check / --bundle / --profile
+tests/           core tests + role tests + bundle/profile tests
+```
 
 ## Contribution workflow
 
-1. Read AGENTS.md and docs/harness-contract.md before starting.
+1. Read `docs/ROLE-STANDARD.md` and `docs/PROTOCOL.md` before starting.
 2. For non-trivial work, open an issue or discussion first so the change
    is scoped and agreed.
-3. Build the change with its tests. The harness gate suite is the
-   definition of done for any skill or tooling change:
+3. Build the change with its tests. The gate suite is the definition of
+   done for any role or tooling change:
 
-       make validate
-       make attest
-       bash ops/automation/test/run-tests.sh
+```bash
+make validate    # 5 real gates: role-lint, role-tests, no-verbatim, security, manifest
+make growth      # coverage matrix + release law + stale-stats guard
+make package-test  # npm/CLI/MCP smoke (when packaging touched)
+```
 
-4. Commit as ONE complete unit on main (see DCO below) and push.
-5. CI (`.github/workflows/attest.yml`) re-runs `make validate` and
-   `make attest` on every push.
+4. Regenerate derived artifacts and commit them together:
+   `python3 scripts/coverage-matrix.py`, `python3 scripts/update-role-ratings.py`,
+   `python3 scripts/gen_manifest.py`, `make visuals`.
+5. Push. Never force-push.
 
-## Contributor certification
+## The 100% bar
 
-By submitting a contribution, you certify that your submission:
+A role is only "done" when it runs STANDALONE
+(`AEROSKILLS_DEV=/nonexistent python3 cli.py build`) AND deeper with the
+skills library (bound-leaf dispatch cross-checks). Both modes gate-check.
+A template with blank fields is not done.
 
-(a) contains no ITAR/EAR/USML-controlled technical data (no specific
-    designs, dimensions, tolerances, materials, part numbers, or
-    performance parameters of USML/600-series defense articles);
-(b) contains no classified content of any jurisdiction;
-(c) contains no verbatim text from proprietary standards — including
-    DO-178C, DO-254, ARP4754A, ARP4761A, AS9100, and similar — and no
-    material from illegally hosted copies of those standards.
+## Content rules
 
-Standards are referenced and summarized, never reproduced. The
-summary-not-copy rule is defined in research/briefs/06-legal-export-control.md
-section 5.2 and enforced by the no-verbatim gate (docs/harness-contract.md
-gate 4). State this certification in your pull request description, or in
-the commit body for direct pushes.
+- Bind REAL Aero Agent Skills leaves; never invent domain rules.
+- Public-domain regulations (FAR/CS) are quotable with citation.
+- Never reproduce proprietary standard text (see STANDARDS.md discipline).
+- Every deliverable ends at the human sign-off — roles never approve,
+  certify, or clear.
 
-## Developer Certificate of Origin (DCO)
+## Certification
 
-Every commit must carry a sign-off trailer, which you add with:
-
-    git commit -s
-
-By signing off you attest to the Developer Certificate of Origin, version
-1.1:
-
-    Developer Certificate of Origin
-    Version 1.1
-
-    Copyright (C) 2004, 2006 The Linux Foundation and its contributors.
-
-    Everyone is permitted to copy and distribute verbatim copies of this
-    license document, but changing it is not allowed.
-
-    Developer's Certificate of Origin 1.1
-
-    By making a contribution to this project, I certify that:
-
-    (a) The contribution was created in whole or in part by me and I have
-        the right to submit it under the open source license indicated in
-        the file; or
-
-    (b) The contribution is based upon previous work that, to the best of
-        my knowledge, is covered under an appropriate open source license
-        and I have the right under that license to submit that work with
-        modifications, whether created in whole or in part by me, under
-        the same open source license (unless I am permitted to submit
-        under a different license), as indicated in the file; or
-
-    (c) The contribution was provided directly to me by some other person
-        who certified (a), (b) or (c) and I have not modified it.
-
-    (d) I understand and agree that this project and the contribution are
-        public and that a record of the contribution (including all
-        personal information I submit with it, including my sign-off) is
-        maintained indefinitely and may be redistributed consistent with
-        this project or the open source license(s) involved.
-
-The sign-off trailer looks like:
-
-    Signed-off-by: Your Name <you@example.com>
-
-`git commit -s` appends it automatically using your git user.name and
-user.email.
-
-## Review gate
-
-Contributions are reviewed by the project maintainers before merge; the
-review covers correctness, the harness gates, and the contributor
-certification above. Standards are referenced/summarized — never
-reproduced.
+Every contributor certifies their submission contains no controlled
+data and no verbatim standards text. By opening a pull request you
+accept the [Code of Conduct](CODE_OF_CONDUCT.md).
