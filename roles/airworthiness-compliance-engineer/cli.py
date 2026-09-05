@@ -2,8 +2,9 @@
 """cli.py - run the Airworthiness Compliance Engineer role.
 
 Usage:
-  python3 cli.py build --out <file.md>          # build the compliance matrix
-  python3 cli.py check --file <file.md>         # gate-check an existing matrix
+  python3 cli.py build --out <file.md> [--bundle]   # build the compliance matrix
+  python3 cli.py check --file <file.md>             # gate-check an existing matrix
+    # --bundle  also emit evidence/{model,gates,provenance}.json (PROTOCOL.md)
 
 The role ENGINE (core/airworthiness_core.py) does the work standalone;
 bound skills in Aero Agent Skills deepen individual stages when present.
@@ -15,7 +16,33 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "core"))
-import airworthiness_core as core
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "..", "..", "scripts"))
+import airworthiness_core as core  # noqa: E402
+import evidence  # noqa: E402
+
+ROLE_SLUG = "airworthiness-compliance-engineer"
+
+
+def _provenance():
+    """Provenance for the evidence bundle (PROTOCOL.md v1).
+
+    This role runs its core standalone: no bound skill logic is
+    dispatched, so skills is empty and cross_checked is False (the
+    role is still valid, just not cross-checked against a second
+    implementation).
+    """
+    return {
+        "role": ROLE_SLUG,
+        "core": {
+            "file": "core/airworthiness_core.py",
+            "functions": ["determine_applicability", "select_moc",
+                          "compliance_row", "build_matrix", "check_matrix"],
+        },
+        "skills": [],
+        "cross_checked": False,
+        "disclaimer": "DRAFT for human review. Not an approval document.",
+    }
 
 
 def cmd_build(args):
@@ -38,6 +65,15 @@ def cmd_build(args):
               % (model["certification_basis"], model["row_count"],
                  model["coverage"] * 100.0, args.out))
         print("gates: all_pass=%s %s" % (gates["all_pass"], gates))
+        if args.bundle:
+            prov = _provenance()
+            paths = evidence.write_bundle(
+                args.out, ROLE_SLUG,
+                "airworthiness compliance matrix", model, gates, prov)
+            print("bundle: model=%s" % paths["model"])
+            print("        gates=%s" % paths["gates"])
+            print("        provenance=%s" % paths["provenance"])
+            print("cross-check: not dispatched (role core runs standalone)")
     else:
         print(md)
     return 0 if gates["all_pass"] else 1
@@ -67,6 +103,8 @@ def main():
                    help="FAA (FAR-25 basis) or EASA (CS-25 basis)")
     b.add_argument("--aircraft", default="", help="aircraft type (default: transport)")
     b.add_argument("--path", default="", help="certification path (default: STC)")
+    b.add_argument("--bundle", action="store_true",
+                   help="emit evidence/{model,gates,provenance}.json")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

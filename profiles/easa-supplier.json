@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "customer": "EuroAero Supplier GmbH",
+  "program": "CS-25 landing gear actuation system",
+  "basis": "CS-25",
+  "authority": "EASA",
+  "der": "EASA-approved CVE for landing gear systems",
+  "standards": ["DO-178C", "ED-12C", "ARP4754A", "EU 748/2012 Annex I"],
+  "regs": ["CS 25.1309", "CS 25.301", "CS 25.729"],
+  "deliverable_format": "easa-compliance-matrix",
+  "sign_off_chain": ["System Engineering Lead", "EASA CVE"],
+  "document_prefix": "LG-COMP-MATRIX",
+  "revision": "Rev B",
+  "notes": "Supplier follows EASA AMC 20-115C for software; matrix must cite CS paragraphs and MoC codes (MC1-MC9)."
+}

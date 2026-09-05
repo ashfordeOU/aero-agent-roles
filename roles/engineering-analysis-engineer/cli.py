@@ -4,9 +4,11 @@
 Usage:
   python3 cli.py build [--out <file.md>] [--altitude 3000] [--pressure 70050]
                        [--pressure-unc 35] [--temperature 271]
-                       [--temperature-unc 1.2]
+                       [--temperature-unc 1.2] [--bundle]
                        # build the Analysis Verification Memo for the example
                        # measurement chain (overrides optional)
+                       # --bundle  also emit evidence/{model,gates,provenance}.json
+                       #           (docs/PROTOCOL.md v1)
   python3 cli.py check --file <file.md>   # gate-check an existing memo
 
 The role ENGINE (core/engineering_analysis_engineer_core.py) does the work
@@ -19,7 +21,12 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "core"))
-import engineering_analysis_engineer_core as core
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "..", "..", "scripts"))
+import engineering_analysis_engineer_core as core  # noqa: E402
+import evidence  # noqa: E402
+
+ROLE_SLUG = "engineering-analysis-engineer"
 
 
 def cmd_build(args):
@@ -44,6 +51,29 @@ def cmd_build(args):
         print(f"density {model['density_kgm3']:.6g} +/- "
               f"{model['expanded_U']:.6g} kg/m3; "
               f"gates: all_pass={gates['all_pass']}")
+        if args.bundle:
+            prov = {
+                "role": ROLE_SLUG,
+                "core": {
+                    "file": "core/engineering_analysis_engineer_core.py",
+                    "functions": ["isa_reference_values",
+                                  "combined_standard_uncertainty",
+                                  "confidence_interval_mean",
+                                  "rss_total", "convergence_verdict",
+                                  "density_altitude_m", "margin_of_safety"],
+                    "version": "0.1.0",
+                },
+                "skills": [],
+                "cross_checked": False,
+                "disclaimer": "DRAFT for human review. Not an approval "
+                              "document.",
+            }
+            paths = evidence.write_bundle(
+                args.out, ROLE_SLUG,
+                "Analysis Verification Memo", model, gates, prov)
+            print("bundle: model=%s" % paths["model"])
+            print("        gates=%s" % paths["gates"])
+            print("        provenance=%s" % paths["provenance"])
     else:
         print(md)
     return 0 if gates["all_pass"] else 1
@@ -79,6 +109,8 @@ def main():
                    help="measured temperature in K")
     b.add_argument("--temperature-unc", type=float, default=None,
                    help="temperature 1-sigma uncertainty in K")
+    b.add_argument("--bundle", action="store_true",
+                   help="emit evidence/{model,gates,provenance}.json")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

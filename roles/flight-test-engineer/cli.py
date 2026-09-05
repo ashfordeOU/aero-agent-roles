@@ -2,8 +2,10 @@
 """cli.py - run the Flight Test Engineer role.
 
 Usage:
-  python3 cli.py build --out <file.md>          # build plan + report for the
-                                                # worked-example aircraft
+  python3 cli.py build [--out <file.md>] [--bundle]   # build plan + report
+                                # for the worked-example aircraft
+                                # --bundle  also emit evidence/{model,gates,
+                                #           provenance}.json (PROTOCOL.md)
   python3 cli.py check --file <file.md>         # gate-check a deliverable
 
 The role ENGINE (core/flight_test_core.py) does the work standalone;
@@ -14,7 +16,34 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "core"))
-import flight_test_core as core
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "..", "..", "scripts"))
+import flight_test_core as core  # noqa: E402
+import evidence  # noqa: E402
+
+ROLE_SLUG = "flight-test-engineer"
+
+
+def _provenance(model):
+    """Where the deliverable numbers came from (PROTOCOL.md provenance).
+
+    The core is the sole computation engine for this role run; no bound
+    AeroSkills leaf logic is dispatched, so skills stays empty and the
+    deliverable is valid but not skill-cross-checked."""
+    return {
+        "role": ROLE_SLUG,
+        "core": {
+            "file": "core/flight_test_core.py",
+            "functions": ["v_speeds", "flutter_speed_from_damping",
+                          "damping_margin", "stall_warning_verdict",
+                          "mach_grid_row", "build_flight_test_deliverable",
+                          "check_flight_test_deliverable"],
+            "version": "0.1.0",
+        },
+        "skills": [],
+        "cross_checked": False,
+        "disclaimer": "DRAFT for human review. Not an approval document.",
+    }
 
 
 def cmd_build(args):
@@ -29,6 +58,14 @@ def cmd_build(args):
             f.write(md)
         print(f"built flight test plan + envelope report -> {args.out}")
         print(f"gates: all_pass={gates['all_pass']} {gates}")
+        if args.bundle:
+            paths = evidence.write_bundle(
+                args.out, ROLE_SLUG,
+                "flight test plan + envelope report", model, gates,
+                _provenance(model))
+            print(f"bundle: model={paths['model']}")
+            print(f"        gates={paths['gates']}")
+            print(f"        provenance={paths['provenance']}")
     else:
         print(md)
     return 0 if gates["all_pass"] else 1
@@ -53,6 +90,8 @@ def main():
 
     b = sub.add_parser("build")
     b.add_argument("--out", default="", help="output file (default: stdout)")
+    b.add_argument("--bundle", action="store_true",
+                   help="emit evidence/{model,gates,provenance}.json")
     b.add_argument("--aircraft-name", default="",
                    help="override the worked-example aircraft name")
     b.set_defaults(fn=cmd_build)

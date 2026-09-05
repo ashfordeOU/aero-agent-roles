@@ -3,7 +3,9 @@
 
 Usage:
   python3 cli.py build [--out <file.md>] [--pax N] [--range-nm R]
-                       [--cruise-mach M] [--design-ws N]
+                       [--cruise-mach M] [--design-ws N] [--bundle]
+    # build the concept design package
+    # --bundle      also emit evidence/{model,gates,provenance}.json (PROTOCOL.md)
   python3 cli.py check --file <file.md>
 
 The role ENGINE (core/aircraft_design_core.py) does the work standalone;
@@ -14,7 +16,12 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "core"))
-import aircraft_design_core as core
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "..", "..", "scripts"))
+import aircraft_design_core as core  # noqa: E402
+import evidence  # noqa: E402
+
+ROLE_SLUG = "aircraft-design-engineer"
 
 
 def cmd_build(args):
@@ -41,6 +48,24 @@ def cmd_build(args):
         with open(args.out, "w") as f:
             f.write(md)
         print(f"built concept package -> {args.out}")
+        if args.bundle:
+            prov = {
+                "role": ROLE_SLUG,
+                "core": {"file": "core/aircraft_design_core.py",
+                         "functions": ["select_design_point", "size_mtow",
+                                       "chain_mission", "engine_size_check",
+                                       "build_concept"],
+                         "version": "0.1.0"},
+                "skills": [],
+                "cross_checked": False,
+                "disclaimer": "DRAFT for human review. Not an approval document.",
+            }
+            paths = evidence.write_bundle(
+                args.out, ROLE_SLUG,
+                "concept design package", model, gates, prov)
+            print(f"bundle: model={paths['model']}")
+            print(f"        gates={paths['gates']}")
+            print(f"        provenance={paths['provenance']}")
     else:
         print(md)
     print(f"MTOW {s['mtow_lb']:,.0f} lb converged in {s['n_iterations']} "
@@ -81,6 +106,8 @@ def main():
                    help="takeoff field length, m")
     b.add_argument("--design-ws", type=float, default=None,
                    help="design wing loading, N/m^2 (default: example)")
+    b.add_argument("--bundle", action="store_true",
+                   help="emit evidence/{model,gates,provenance}.json")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

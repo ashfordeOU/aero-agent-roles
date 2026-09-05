@@ -23,6 +23,53 @@ def _utcnow() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def load_profile(path: str) -> dict | None:
+    """Load and validate a program profile JSON (docs/PROFILE-SCHEMA.md)."""
+    if not path or not os.path.exists(path):
+        return None
+    with open(path) as f:
+        p = json.load(f)
+    if not isinstance(p, dict) or not p.get("customer"):
+        raise ValueError("profile must be a JSON object with 'customer'")
+    return p
+
+
+def profile_header_block(profile: dict) -> str:
+    """Render a markdown header block for a program profile.
+
+    Returns "" when profile is None. NEVER an approval — always a DRAFT
+    context header for human review.
+    """
+    if not profile:
+        return ""
+    lines = [
+        "## Program context (profile)",
+        "",
+        f"- Customer: {profile.get('customer', '')}",
+        f"- Program: {profile.get('program', '')}",
+        f"- Basis: {profile.get('basis', '')}  ·  "
+        f"Authority: {profile.get('authority', '')}",
+    ]
+    if profile.get("der"):
+        lines.append(f"- DER/CVE: {profile['der']}")
+    if profile.get("document_prefix"):
+        rev = profile.get("revision", "")
+        lines.append(f"- Document: {profile['document_prefix']}"
+                     + (f" {rev}" if rev else ""))
+    if profile.get("standards"):
+        lines.append("- Standards: " + ", ".join(profile["standards"]))
+    if profile.get("notes"):
+        lines.append(f"- Notes: {profile['notes']}")
+    lines += [
+        "",
+        "> This document is a DRAFT for human review within the program "
+        "sign-off chain. It is not an approval and carries no regulatory "
+        "authority.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def write_json(path: str, obj: dict) -> None:
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:

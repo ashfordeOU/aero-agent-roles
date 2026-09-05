@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "customer": "Example Airframers Ltd",
+  "program": "FGS-2000 flight guidance system certification",
+  "basis": "FAR-25",
+  "authority": "FAA",
+  "der": "ACME DER, delegated for systems and equipment (FAA)",
+  "standards": ["DO-178C", "DO-330", "ARP4754A", "DO-254"],
+  "regs": ["25.1309", "25.671", "25.1329"],
+  "deliverable_format": "customer-psac",
+  "sign_off_chain": ["Lead Software Engineer", "DER"],
+  "document_prefix": "FGS-SW-PSAC",
+  "revision": "Rev A",
+  "notes": "Customer requires the FAA Order 8110.49 style PSAC with a tool-qualification summary section; DER reviews drafts before submission."
+}

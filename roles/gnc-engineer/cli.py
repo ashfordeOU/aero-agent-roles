@@ -3,7 +3,9 @@
 
 Usage:
   python3 cli.py build [--out <file.md>] [--bandwidth <rad/s>] \
-      [--phase-margin <deg>] [--gain-margin <dB>]   # build the GNC report
+      [--phase-margin <deg>] [--gain-margin <dB>] [--bundle]
+    # build the GNC design report
+    # --bundle      also emit evidence/{model,gates,provenance}.json (PROTOCOL.md)
   python3 cli.py check --file <file.md>             # gate-check a report
 
 The role ENGINE (core/gnc_core.py) does the work standalone; bound
@@ -15,7 +17,12 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "core"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "..", "..", "scripts"))
 import gnc_core as core  # noqa: E402
+import evidence  # noqa: E402
+
+ROLE_SLUG = "gnc-engineer"
 
 
 def cmd_build(args):
@@ -38,6 +45,28 @@ def cmd_build(args):
         print("built GNC design report (%s) -> %s"
               % (model["vehicle"], args.out))
         print("gates: all_pass=%s %s" % (gates["all_pass"], gates))
+        if args.bundle:
+            prov = {
+                "role": ROLE_SLUG,
+                "core": {
+                    "file": "core/gnc_core.py",
+                    "functions": ["pid_gains_second_order", "loop_margins",
+                                  "type1_margins", "riccati_solution",
+                                  "kalman_steady_state", "observer_gain_2state",
+                                  "pn_acceleration", "sample_rate_rule",
+                                  "monte_carlo_outer_margins",
+                                  "build_gnc_report"],
+                    "version": "0.1.0",
+                },
+                "skills": [],
+                "cross_checked": False,
+                "disclaimer": "DRAFT for human review. Not an approval document.",
+            }
+            paths = evidence.write_bundle(
+                args.out, ROLE_SLUG, "GNC design report", model, gates, prov)
+            print("bundle: model=%s" % paths["model"])
+            print("        gates=%s" % paths["gates"])
+            print("        provenance=%s" % paths["provenance"])
     else:
         print(md)
     return 0 if gates["all_pass"] else 1
@@ -69,6 +98,8 @@ def main():
                    help="phase margin requirement (deg)")
     b.add_argument("--gain-margin", default="",
                    help="gain margin requirement (dB)")
+    b.add_argument("--bundle", action="store_true",
+                   help="emit evidence/{model,gates,provenance}.json")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

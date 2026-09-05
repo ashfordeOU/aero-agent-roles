@@ -3,6 +3,7 @@
 
 Usage:
   python3 cli.py build --out <file.md>          # build the findings report for the example audit
+  python3 cli.py build --out <file.md> --bundle # + evidence/{model,gates,provenance}.json
   python3 cli.py check --file <file.md>         # gate-check an existing findings report
 
 The role ENGINE (core/as9100_core.py) does the work standalone; bound
@@ -13,7 +14,29 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "core"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "..", "..", "scripts"))
 import as9100_core as core
+import evidence  # noqa: E402
+
+ROLE_SLUG = "as9100-quality-auditor"
+
+
+def _provenance():
+    """Provenance for the evidence bundle: role core functions used."""
+    return {
+        "role": ROLE_SLUG,
+        "core": {
+            "file": "core/as9100_core.py",
+            "functions": ["classify_nc", "corrective_action_status",
+                          "audit_sample_size", "audit_due_date",
+                          "audit_findings", "check_findings"],
+            "version": "0.1.0",
+        },
+        "skills": [],
+        "cross_checked": False,
+        "disclaimer": "DRAFT for human review. Not an approval document.",
+    }
 
 
 def cmd_build(args):
@@ -32,6 +55,14 @@ def cmd_build(args):
                                                       args.out))
         print("counts: %s" % model["counts"])
         print("gates: all_pass=%s %s" % (gates["all_pass"], gates))
+        if args.bundle:
+            paths = evidence.write_bundle(
+                args.out, ROLE_SLUG,
+                "AS9100 internal audit findings report", model, gates,
+                _provenance())
+            print("bundle: model=%s" % paths["model"])
+            print("        gates=%s" % paths["gates"])
+            print("        provenance=%s" % paths["provenance"])
     else:
         print(md)
     return 0 if gates["all_pass"] else 1
@@ -59,6 +90,8 @@ def main():
     b.add_argument("--risk-category", default="",
                    help="low/medium/high process risk")
     b.add_argument("--audit-date", default="", help="audit date ISO YYYY-MM-DD")
+    b.add_argument("--bundle", action="store_true",
+                   help="emit evidence/{model,gates,provenance}.json")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

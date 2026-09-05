@@ -5,6 +5,10 @@ Usage:
   python3 cli.py build --out <file.md>              # build the mission +
                                                     # subsystem design report
   python3 cli.py build --out alt.md --altitude 500  # variant orbit
+  python3 cli.py build --out r.md --bundle          # also write
+                                                    # evidence/{model,gates,
+                                                    # provenance}.json
+                                                    # (docs/PROTOCOL.md v1)
   python3 cli.py check --file <file.md>             # gate-check a report
 
 The role ENGINE (core/space_systems_core.py) does the work standalone;
@@ -16,7 +20,12 @@ import os
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "core"))
-import space_systems_core as core
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "..", "..", "scripts"))
+import space_systems_core as core  # noqa: E402
+import evidence  # noqa: E402
+
+ROLE_SLUG = "space-systems-engineer"
 
 
 def cmd_build(args):
@@ -52,9 +61,39 @@ def cmd_build(args):
               f"link down {model['comms']['downlink']['margin_db']:.1f} dB / "
               f"up {model['comms']['uplink']['margin_db']:.1f} dB")
         print(f"  gates: all_pass={gates['all_pass']}")
+        if args.bundle:
+            paths = evidence.write_bundle(
+                args.out, ROLE_SLUG,
+                "Spacecraft Mission and Subsystem Design Report",
+                model, gates, _provenance())
+            print(f"  bundle: model={paths['model']}")
+            print(f"          gates={paths['gates']}")
+            print(f"          provenance={paths['provenance']}")
     else:
         print(md)
     return 0 if gates["all_pass"] else 1
+
+
+def _provenance():
+    """PROTOCOL.md v1 provenance row.
+
+    The role core computed every number in the model standalone; no
+    bound-skill logic file was dispatched, so skills is honestly empty
+    and cross_checked is False.
+    """
+    return {
+        "role": ROLE_SLUG,
+        "core": {
+            "file": "core/space_systems_core.py",
+            "functions": ["build_report", "mission_delta_v_budget",
+                          "power_and_thermal", "reaction_wheel_sizing",
+                          "comms_link_budget", "check_report"],
+            "version": "0.1.0",
+        },
+        "skills": [],
+        "cross_checked": False,
+        "disclaimer": "DRAFT for human review. Not an approval document.",
+    }
 
 
 def cmd_check(args):
@@ -85,6 +124,9 @@ def main():
                    help="propulsion specific impulse in s (default 220)")
     b.add_argument("--dv-margin", type=float, default=0.0,
                    help="delta-v margin fraction (default 0.15)")
+    b.add_argument("--bundle", action="store_true",
+                   help="also write evidence/{model,gates,provenance}.json "
+                        "(docs/PROTOCOL.md v1)")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")
