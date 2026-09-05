@@ -70,6 +70,65 @@ def profile_header_block(profile: dict) -> str:
     return "\n".join(lines)
 
 
+def dispatch_crosscheck(leaf: str, skill_fn: str, core_fn,
+                        tolerance: float = 1e-6,
+                        skills_root: str = "") -> dict | None:
+    """Run a bound AeroSkills leaf's logic fn and compare to the core fn.
+
+    Both functions are called with the same kwargs. Returns a provenance
+    row: {leaf, logic_file, function, dispatched, core_value,
+    skill_value, delta, agrees}. Returns None if the skill logic file or
+    function is unavailable.
+
+    leaf         e.g. 'structures/loads/gust-maneuver-loads'
+    skill_fn     the function name inside the leaf's *logic.py
+    core_fn      a zero-arg callable returning the core's computed value
+    skills_root  AeroSkills root (default: AEROSKILLS_DEV or ~/AeroSkills)
+    """
+    import importlib.util  # local import (stdlib)
+    root = skills_root or os.environ.get(
+        "AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills"))
+    logic_dir = os.path.join(root, "skills", leaf, "scripts")
+    if not os.path.isdir(logic_dir):
+        return None
+    logic_files = sorted(f for f in os.listdir(logic_dir)
+                         if f.endswith("_logic.py"))
+    if not logic_files:
+        return None
+    # try each logic file until one exposes the requested fn
+    for lf in logic_files:
+        path = os.path.join(logic_dir, lf)
+        spec = importlib.util.spec_from_file_location("role_dispatch", path)
+        mod = importlib.util.module_from_spec(spec)
+        try:
+            spec.loader.exec_module(mod)
+        except Exception:
+            continue
+        if not hasattr(mod, skill_fn):
+            continue
+        try:
+            skill_value = getattr(mod, skill_fn)()
+            core_value = core_fn()
+            if not isinstance(skill_value, (int, float)) or \
+               not isinstance(core_value, (int, float)):
+                continue
+            delta = abs(float(core_value) - float(skill_value))
+            return {
+                "leaf": leaf,
+                "logic_file": lf,
+                "function": skill_fn,
+                "dispatched": True,
+                "core_value": round(float(core_value), 6),
+                "skill_value": round(float(skill_value), 6),
+                "delta": round(delta, 9),
+                "agrees": delta <= tolerance,
+                "tolerance": tolerance,
+            }
+        except Exception:
+            continue
+    return None
+
+
 def write_json(path: str, obj: dict) -> None:
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:

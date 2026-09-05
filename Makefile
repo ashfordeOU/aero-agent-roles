@@ -4,9 +4,15 @@
 #   gate 3 no-verbatim   templates/SOURCES never reproduce proprietary text
 #   gate 4 security      no local info / creds / machine paths (tripwire)
 #   gate 5 manifest      manifest.json matches tree (no hand-carried drift)
+# growth gates (wave doctrine)
+#   coverage-check       COVERAGE-MATRIX.md up to date (numbers-via-script)
+#   release-law          reports milestone / due release (non-blocking)
 
 validate: role-lint role-tests no-verbatim security manifest
 	@echo "Aero Agent Roles validate: PASS (5/5 REAL gates)"
+
+growth: coverage-check release-law
+	@echo "Aero Agent Roles growth: coverage + release law checked"
 
 role-lint:
 	@python3 scripts/role-lint.py
@@ -23,7 +29,13 @@ security:
 manifest:
 	@python3 scripts/gen_manifest.py --check
 
+coverage-check:
+	@python3 scripts/coverage-matrix.py --check
+
+release-law:
+	@python3 scripts/release-law.py
+
 visuals-check:
 	@echo "roles repo: no visuals yet (site sync later)"
 
-.PHONY: validate role-lint role-tests no-verbatim security manifest visuals-check
+.PHONY: validate growth role-lint role-tests no-verbatim security manifest coverage-check release-law visuals-check
