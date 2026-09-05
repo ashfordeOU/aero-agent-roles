@@ -21,6 +21,16 @@ echo "===== $(date -u +%FT%TZ) roles-hourly-publish starting ====="
 echo "--- roles public repo sync ---"
 if ! bash "$SCRIPT_DIR/publish-public.sh"; then
   echo "!!! roles public sync FAILED — nothing published to ashfordeOU/aero-agent-roles"
+else
+  echo "--- roles public About sync ---"
+  # refresh About on the PUBLIC repo from the mirror (whose origin IS the
+  # public repo) so description/topics/homepage never drift stale
+  MIRROR="$HOME/Code/.aero-agent-roles-public-mirror"
+  if [ -d "$MIRROR/.git" ] && [ -f "$SCRIPT_DIR/update-about.sh" ]; then
+    cp "$SCRIPT_DIR/update-about.sh" "$MIRROR/ops/automation/" 2>/dev/null || true
+    (cd "$MIRROR" && bash ops/automation/update-about.sh 2>&1) \
+      || echo "!!! roles public About sync FAILED"
+  fi
 fi
 
 echo "--- roles landing page sync ---"
