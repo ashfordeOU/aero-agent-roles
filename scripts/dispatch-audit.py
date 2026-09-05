@@ -44,7 +44,7 @@ def load_skill_logic(leaf: str, fn_name: str):
     if not os.path.isdir(logic_dir):
         return None
     for lf in sorted(os.listdir(logic_dir)):
-        if lf.endswith("_logic.py"):
+        if lf.endswith(".py") and not lf.startswith("test_"):
             spec = importlib.util.spec_from_file_location(
                 "skill_logic", os.path.join(logic_dir, lf))
             mod = importlib.util.module_from_spec(spec)
@@ -132,6 +132,103 @@ DISPATCH_MAP = {
             "skill_fn": "effective_sample_size",
             "core_fn": "effective_sample_size",
             "kwargs": {"weights": [0.25, 0.25, 0.25, 0.25]},
+            "skill_param_map": {},
+        },
+    ],
+    "ndt-engineer": [
+        {
+            "leaf": "manufacturing-quality/ndt/ndt-method-selection",
+            "skill_fn": "sensitivity_rank",
+            "core_fn": "sensitivity_rank",
+            "kwargs": {"method": "UT"},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/eddy-current-inspection",
+            "skill_fn": "standard_depth_of_penetration",
+            "core_fn": "standard_depth_of_penetration",
+            "kwargs": {"frequency": 1e5, "conductivity": 5.8e7},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/eddy-current-inspection",
+            "skill_fn": "select_frequency_for_flaw",
+            "core_fn": "select_frequency_for_flaw",
+            "kwargs": {"flaw_depth": 1e-3, "conductivity": 1.74e7,
+                       "penetration_factor": 2.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/liquid-penetrant-inspection",
+            "skill_fn": "capillary_pressure",
+            "core_fn": "capillary_pressure",
+            "kwargs": {"surface_tension": 0.032, "contact_angle_deg": 5.0,
+                       "radius": 1e-6},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/liquid-penetrant-inspection",
+            "skill_fn": "dwell_time_for_depth",
+            "core_fn": "dwell_time_for_depth",
+            "kwargs": {"depth": 1e-3, "surface_tension": 0.032,
+                       "contact_angle_deg": 5.0, "viscosity": 0.008,
+                       "radius": 1e-6},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/radiographic-inspection",
+            "skill_fn": "geometric_unsharpness",
+            "core_fn": "geometric_unsharpness",
+            "kwargs": {"focal_spot_mm": 3.0, "sod_mm": 500.0, "odd_mm": 30.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/radiographic-inspection",
+            "skill_fn": "iqi_sensitivity_percent",
+            "core_fn": "iqi_sensitivity_percent",
+            "kwargs": {"visible_thickness_mm": 0.6, "part_thickness_mm": 30.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/computed-tomography",
+            "skill_fn": "tube_energy_kv",
+            "core_fn": "tube_energy_kv",
+            "kwargs": {"material": "aluminum", "thickness_mm": 50.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/computed-tomography",
+            "skill_fn": "void_diameter",
+            "core_fn": "void_diameter",
+            "kwargs": {"void_voxels": 64000, "voxel_size_m": 1e-4},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/magnetic-particle-inspection",
+            "skill_fn": "head_shot_current",
+            "core_fn": "head_shot_current",
+            "kwargs": {"diameter_in": 2.0, "amperes_per_inch": 800.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/leak-testing",
+            "skill_fn": "pressure_decay_rate",
+            "core_fn": "pressure_decay_rate",
+            "kwargs": {"volume_L": 5.0, "dP_bar": 0.02, "time_s": 600.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/shearography-inspection",
+            "skill_fn": "strain_from_phase",
+            "core_fn": "strain_from_phase",
+            "kwargs": {"phase_rad": 0.5, "shear_mm": 5.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/ndt/acoustic-emission-inspection",
+            "skill_fn": "felicity_ratio",
+            "core_fn": "felicity_ratio",
+            "kwargs": {"resume_load": 0.85, "previous_max_load": 1.0},
             "skill_param_map": {},
         },
     ],

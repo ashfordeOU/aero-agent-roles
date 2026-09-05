@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 21,
+ "count": 22,
  "roles": [
   {
    "slug": "aerodynamics-engineer",
@@ -189,6 +189,18 @@
     "naca-tr-824"
    ],
    "skills_bound": 19
+  },
+  {
+   "slug": "ndt-engineer",
+   "title": "NDT Engineer",
+   "domain": "manufacturing-quality",
+   "deliverable_type": "nondestructive test plan + method selection report",
+   "status": "draft",
+   "standards": [
+    "as9100",
+    "nas-410"
+   ],
+   "skills_bound": 10
   },
   {
    "slug": "numerical-analysis-engineer",

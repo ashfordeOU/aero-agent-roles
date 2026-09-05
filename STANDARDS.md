@@ -32,6 +32,7 @@ or accessed through the publishers' official channels.
 | do-330 | RTCA DO-330, Software Tool Qualification | RTCA | do178c-cert-engineer | true |
 | arp4754a | SAE ARP4754A, Development of Civil Aircraft and Systems | SAE | do178c, airworthiness | true |
 | as9100 | AS9100D, Aerospace QMS Requirements | SAE/IAQG | as9100-quality-auditor | true |
+| nas-410 | NAS 410, Certification and Qualification of Nondestructive Test Personnel | AIA/SAE | ndt-engineer | true |
 | as9102 | AS9102, First Article Inspection | SAE/IAQG | as9100-quality-auditor | true |
 | iso-19011 | ISO 19011, Auditing Management Systems | ISO | as9100-quality-auditor | true |
 | iso-9001 | ISO 9001:2015, QMS Requirements | ISO | as9100-quality-auditor | true |
