@@ -9,6 +9,11 @@ Usage:
                                                     # evidence/{model,gates,
                                                     # provenance}.json
                                                     # (docs/PROTOCOL.md v1)
+  python3 cli.py build --out r.md --bundle \
+      --profile profiles/example-airframer.json     # program profile context
+                                                    # header (customer
+                                                    # tailoring, docs/
+                                                    # PROFILE-SCHEMA.md)
   python3 cli.py check --file <file.md>             # gate-check a report
 
 The role ENGINE (core/space_systems_core.py) does the work standalone;
@@ -42,12 +47,35 @@ def cmd_build(args):
         mission.dv_margin_fraction = args.dv_margin
     model = core.build_report(mission)
     md = core.render_report_markdown(model)
+
+    # program profile (customer tailoring): load + apply context header
+    profile = None
+    try:
+        profile = evidence.load_profile(args.profile)
+    except ValueError as e:
+        print(f"error: bad profile: {e}")
+        return 1
+    if profile:
+        model["profile"] = {
+            "customer": profile.get("customer"),
+            "program": profile.get("program"),
+            "basis": profile.get("basis"),
+            "authority": profile.get("authority"),
+            "der": profile.get("der"),
+            "document_prefix": profile.get("document_prefix"),
+            "revision": profile.get("revision"),
+        }
+        md = evidence.profile_header_block(profile) + md
+
     gates = core.check_report(model)
     if args.out:
         with open(args.out, "w") as f:
             f.write(md)
         dv = model["delta_v"]
         print(f"built report -> {args.out}")
+        if profile:
+            print(f"profile: {profile.get('customer')} / "
+                  f"{profile.get('program')}")
         print(f"  orbit: {mission.altitude_km:.0f} km circular, "
               f"period {model['power']['eclipse']['period_min']:.1f} min")
         print(f"  delta-v: {dv['nominal_dv_m_s']:.1f} m/s nominal / "
@@ -127,6 +155,9 @@ def main():
     b.add_argument("--bundle", action="store_true",
                    help="also write evidence/{model,gates,provenance}.json "
                         "(docs/PROTOCOL.md v1)")
+    b.add_argument("--profile", default="",
+                   help="program profile JSON (customer tailoring, "
+                        "docs/PROFILE-SCHEMA.md)")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

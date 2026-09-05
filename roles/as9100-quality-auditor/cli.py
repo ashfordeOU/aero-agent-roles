@@ -4,6 +4,9 @@
 Usage:
   python3 cli.py build --out <file.md>          # build the findings report for the example audit
   python3 cli.py build --out <file.md> --bundle # + evidence/{model,gates,provenance}.json
+  python3 cli.py build --out <file.md> --bundle --profile <profile.json>
+                                                # + program profile (audited supplier context,
+                                                #   docs/PROFILE-SCHEMA.md)
   python3 cli.py check --file <file.md>         # gate-check an existing findings report
 
 The role ENGINE (core/as9100_core.py) does the work standalone; bound
@@ -47,12 +50,35 @@ def cmd_build(args):
         item.audit_date = args.audit_date
     model = core.audit_findings(item)
     md = core.render_findings_markdown(model)
+
+    # program profile (audited supplier context): load + apply context header
+    profile = None
+    try:
+        profile = evidence.load_profile(args.profile)
+    except ValueError as e:
+        print(f"error: bad profile: {e}")
+        return 1
+    if profile:
+        model["profile"] = {
+            "customer": profile.get("customer"),
+            "program": profile.get("program"),
+            "basis": profile.get("basis"),
+            "authority": profile.get("authority"),
+            "der": profile.get("der"),
+            "document_prefix": profile.get("document_prefix"),
+            "revision": profile.get("revision"),
+        }
+        md = evidence.profile_header_block(profile) + md
+
     gates = core.check_findings(model)
     if args.out:
         with open(args.out, "w") as f:
             f.write(md)
         print("built findings report for %s -> %s" % (model["supplier"],
                                                       args.out))
+        if profile:
+            print("profile: %s / %s" % (profile.get("customer"),
+                                        profile.get("program")))
         print("counts: %s" % model["counts"])
         print("gates: all_pass=%s %s" % (gates["all_pass"], gates))
         if args.bundle:
@@ -92,6 +118,9 @@ def main():
     b.add_argument("--audit-date", default="", help="audit date ISO YYYY-MM-DD")
     b.add_argument("--bundle", action="store_true",
                    help="emit evidence/{model,gates,provenance}.json")
+    b.add_argument("--profile", default="",
+                   help="program profile JSON (audited supplier context, "
+                        "docs/PROFILE-SCHEMA.md)")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

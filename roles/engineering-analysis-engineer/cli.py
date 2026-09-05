@@ -43,6 +43,26 @@ def cmd_build(args):
         chain.temperature_unc_k = args.temperature_unc
     model = core.build_memo(chain)
     md = core.render_memo_markdown(model)
+
+    # program profile (customer tailoring): load + apply context header
+    profile = None
+    try:
+        profile = evidence.load_profile(args.profile)
+    except ValueError as e:
+        print(f"error: bad profile: {e}")
+        return 1
+    if profile:
+        model["profile"] = {
+            "customer": profile.get("customer"),
+            "program": profile.get("program"),
+            "basis": profile.get("basis"),
+            "authority": profile.get("authority"),
+            "der": profile.get("der"),
+            "document_prefix": profile.get("document_prefix"),
+            "revision": profile.get("revision"),
+        }
+        md = evidence.profile_header_block(profile) + md
+
     gates = core.check_memo(model)
     if args.out:
         with open(args.out, "w") as f:
@@ -51,6 +71,9 @@ def cmd_build(args):
         print(f"density {model['density_kgm3']:.6g} +/- "
               f"{model['expanded_U']:.6g} kg/m3; "
               f"gates: all_pass={gates['all_pass']}")
+        if profile:
+            print(f"profile: {profile.get('customer')} / "
+                  f"{profile.get('program')}")
         if args.bundle:
             prov = {
                 "role": ROLE_SLUG,
@@ -111,6 +134,9 @@ def main():
                    help="temperature 1-sigma uncertainty in K")
     b.add_argument("--bundle", action="store_true",
                    help="emit evidence/{model,gates,provenance}.json")
+    b.add_argument("--profile", default="",
+                   help="program profile JSON (customer tailoring, "
+                        "docs/PROFILE-SCHEMA.md)")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

@@ -43,12 +43,35 @@ def cmd_build(args):
         item.w_cruise = args.ws * item.s_ref
     model = core.build_report(item)
     md = core.render_report_markdown(model)
+
+    # program profile (customer tailoring): load + apply context header
+    profile = None
+    try:
+        profile = evidence.load_profile(args.profile)
+    except ValueError as e:
+        print("error: bad profile: %s" % e)
+        return 1
+    if profile:
+        model["profile"] = {
+            "customer": profile.get("customer"),
+            "program": profile.get("program"),
+            "basis": profile.get("basis"),
+            "authority": profile.get("authority"),
+            "der": profile.get("der"),
+            "document_prefix": profile.get("document_prefix"),
+            "revision": profile.get("revision"),
+        }
+        md = evidence.profile_header_block(profile) + md
+
     gates = core.check_report(model)
     if args.out:
         with open(args.out, "w") as f:
             f.write(md)
         print("built aerodynamic design report for %s -> %s"
               % (model["aircraft"], args.out))
+        if profile:
+            print("profile: %s / %s" % (profile.get("customer"),
+                                        profile.get("program")))
         print("CL_cruise=%.3f  CD0=%.5f  L/D=%.2f  M_DD=%.3f  "
               "flutter_margin=%.2f"
               % (model["cl_cruise"], model["cd0"], model["ld_cruise"],
@@ -102,6 +125,9 @@ def main():
                         "(cruise weight = ws * S_ref)")
     b.add_argument("--bundle", action="store_true",
                    help="emit evidence/{model,gates,provenance}.json")
+    b.add_argument("--profile", default="",
+                   help="program profile JSON (customer tailoring, "
+                        "docs/PROFILE-SCHEMA.md)")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

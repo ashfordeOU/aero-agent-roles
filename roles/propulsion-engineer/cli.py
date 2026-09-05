@@ -6,12 +6,16 @@ Usage:
   python3 cli.py build --engine rocket --out r.md     # rocket option report
   python3 cli.py build --engine turbofan --bpr 6 --opr 25  # parameter sweep
   python3 cli.py build --out <file.md> --bundle       # + evidence/{model,gates,provenance}.json
+  python3 cli.py build --out <file.md> --profile profiles/example-airframer.json --bundle
   python3 cli.py check --file <file.md>               # gate-check a report
 
 The role ENGINE (core/propulsion_core.py) does the work standalone; bound
 skills in Aero Agent Skills deepen individual stages when present. With
 --bundle the CLI also writes the PROTOCOL.md v1 evidence bundle
-(evidence/{model,gates,provenance}.json) next to the deliverable.
+(evidence/{model,gates,provenance}.json) next to the deliverable. With
+--profile <profile.json> the program context header
+(docs/PROFILE-SCHEMA.md) is prepended to the report and profile.* is
+recorded in the bundle model.
 """
 import argparse
 import os
@@ -73,12 +77,35 @@ def cmd_build(args):
     item = _apply_overrides(item, args)
     model = core.build_report(item)
     md = core.render_report_markdown(model)
+
+    # program profile (customer tailoring): load + apply context header
+    profile = None
+    try:
+        profile = evidence.load_profile(args.profile)
+    except ValueError as e:
+        print(f"error: bad profile: {e}")
+        return 1
+    if profile:
+        model["profile"] = {
+            "customer": profile.get("customer"),
+            "program": profile.get("program"),
+            "basis": profile.get("basis"),
+            "authority": profile.get("authority"),
+            "der": profile.get("der"),
+            "document_prefix": profile.get("document_prefix"),
+            "revision": profile.get("revision"),
+        }
+        md = evidence.profile_header_block(profile) + md
+
     gates = core.check_report(model)
     if args.out:
         with open(args.out, "w") as f:
             f.write(md)
         kind = model["engine_kind"]
         print(f"built {kind} design report -> {args.out}")
+        if profile:
+            print(f"profile: {profile.get('customer')} / "
+                  f"{profile.get('program')}")
         print(f"gates: all_pass={gates['all_pass']} {gates}")
         if args.bundle:
             prov = _provenance(model)
@@ -124,6 +151,9 @@ def main():
     b.add_argument("--bundle", action="store_true",
                    help="emit evidence/{model,gates,provenance}.json "
                         "(PROTOCOL.md v1, requires --out)")
+    b.add_argument("--profile", default="",
+                   help="program profile JSON (customer tailoring, "
+                        "docs/PROFILE-SCHEMA.md)")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

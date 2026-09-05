@@ -4,8 +4,11 @@
 Usage:
   python3 cli.py build [--out <file.md>] [--pax N] [--range-nm R]
                        [--cruise-mach M] [--design-ws N] [--bundle]
+                       [--profile <profile.json>]
     # build the concept design package
     # --bundle      also emit evidence/{model,gates,provenance}.json (PROTOCOL.md)
+    # --profile     program profile JSON (customer tailoring,
+    #               docs/PROFILE-SCHEMA.md)
   python3 cli.py check --file <file.md>
 
 The role ENGINE (core/aircraft_design_core.py) does the work standalone;
@@ -41,6 +44,26 @@ def cmd_build(args):
         item.design_ws_nm2 = args.design_ws
     model = core.build_concept(item)
     md = core.render_concept_markdown(model)
+
+    # program profile (customer tailoring): load + apply context header
+    profile = None
+    try:
+        profile = evidence.load_profile(args.profile)
+    except ValueError as e:
+        print(f"error: bad profile: {e}")
+        return 1
+    if profile:
+        model["profile"] = {
+            "customer": profile.get("customer"),
+            "program": profile.get("program"),
+            "basis": profile.get("basis"),
+            "authority": profile.get("authority"),
+            "der": profile.get("der"),
+            "document_prefix": profile.get("document_prefix"),
+            "revision": profile.get("revision"),
+        }
+        md = evidence.profile_header_block(profile) + md
+
     gates = core.check_concept(model)
     s = model["sizing"]
     dp = model["design_point"]
@@ -48,6 +71,9 @@ def cmd_build(args):
         with open(args.out, "w") as f:
             f.write(md)
         print(f"built concept package -> {args.out}")
+        if profile:
+            print(f"profile: {profile.get('customer')} / "
+                  f"{profile.get('program')}")
         if args.bundle:
             prov = {
                 "role": ROLE_SLUG,
@@ -108,6 +134,9 @@ def main():
                    help="design wing loading, N/m^2 (default: example)")
     b.add_argument("--bundle", action="store_true",
                    help="emit evidence/{model,gates,provenance}.json")
+    b.add_argument("--profile", default="",
+                   help="program profile JSON (customer tailoring, "
+                        "docs/PROFILE-SCHEMA.md)")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

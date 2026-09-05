@@ -52,11 +52,34 @@ def cmd_build(args):
         ac.name = args.aircraft_name
     model = core.build_flight_test_deliverable(ac)
     md = core.render_flight_test_markdown(model)
+
+    # program profile (customer tailoring): load + apply context header
+    profile = None
+    try:
+        profile = evidence.load_profile(args.profile)
+    except ValueError as e:
+        print(f"error: bad profile: {e}")
+        return 1
+    if profile:
+        model["profile"] = {
+            "customer": profile.get("customer"),
+            "program": profile.get("program"),
+            "basis": profile.get("basis"),
+            "authority": profile.get("authority"),
+            "der": profile.get("der"),
+            "document_prefix": profile.get("document_prefix"),
+            "revision": profile.get("revision"),
+        }
+        md = evidence.profile_header_block(profile) + md
+
     gates = core.check_flight_test_deliverable(model)
     if args.out:
         with open(args.out, "w") as f:
             f.write(md)
         print(f"built flight test plan + envelope report -> {args.out}")
+        if profile:
+            print(f"profile: {profile.get('customer')} / "
+                  f"{profile.get('program')}")
         print(f"gates: all_pass={gates['all_pass']} {gates}")
         if args.bundle:
             paths = evidence.write_bundle(
@@ -94,6 +117,9 @@ def main():
                    help="emit evidence/{model,gates,provenance}.json")
     b.add_argument("--aircraft-name", default="",
                    help="override the worked-example aircraft name")
+    b.add_argument("--profile", default="",
+                   help="program profile JSON (customer tailoring, "
+                        "docs/PROFILE-SCHEMA.md)")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

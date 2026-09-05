@@ -2,9 +2,11 @@
 """cli.py - run the Flight Mechanics Engineer role.
 
 Usage:
-  python3 cli.py build [--out <file.md>] [--bundle]
+  python3 cli.py build [--out <file.md>] [--bundle] [--profile <file.json>]
     # build the Performance + S&C report for the example transport
-    # --bundle  also emit evidence/{model,gates,provenance}.json (PROTOCOL.md)
+    # --bundle   also emit evidence/{model,gates,provenance}.json (PROTOCOL.md)
+    # --profile  program profile JSON for customer tailoring
+    #            (docs/PROFILE-SCHEMA.md) -> prepended context header
   python3 cli.py check --file <file.md>    # gate-check an existing report
 
 The role ENGINE (core/flight_mechanics_core.py) does the work standalone
@@ -63,12 +65,35 @@ def cmd_build(args):
     results = core.analyze_vehicle(core.example_vehicle())
     model = core.build_report(core.example_vehicle(), results)
     md = core.render_report_markdown(model)
+
+    # program profile (customer tailoring): load + apply context header
+    profile = None
+    try:
+        profile = evidence.load_profile(args.profile)
+    except ValueError as e:
+        print(f"error: bad profile: {e}")
+        return 1
+    if profile:
+        model["profile"] = {
+            "customer": profile.get("customer"),
+            "program": profile.get("program"),
+            "basis": profile.get("basis"),
+            "authority": profile.get("authority"),
+            "der": profile.get("der"),
+            "document_prefix": profile.get("document_prefix"),
+            "revision": profile.get("revision"),
+        }
+        md = evidence.profile_header_block(profile) + md
+
     gates = core.check_report(results)
     if args.out:
         with open(args.out, "w") as f:
             f.write(md)
         print(f"built Performance + S&C report for {model['aircraft']} "
               f"-> {args.out}")
+        if profile:
+            print(f"profile: {profile.get('customer')} / "
+                  f"{profile.get('program')}")
         print(f"gates: all_pass={gates['all_pass']} {gates}")
         if args.bundle:
             paths = evidence.write_bundle(
@@ -106,6 +131,9 @@ def main():
                    help="output file (default: stdout)")
     b.add_argument("--bundle", action="store_true",
                    help="emit evidence/{model,gates,provenance}.json")
+    b.add_argument("--profile", default="",
+                   help="program profile JSON (customer tailoring, "
+                        "docs/PROFILE-SCHEMA.md)")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")

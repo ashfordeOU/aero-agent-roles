@@ -38,12 +38,35 @@ def cmd_build(args):
         proj.req_gain_margin_db = float(args.gain_margin)
     model = core.build_gnc_report(proj)
     md = core.render_gnc_report_markdown(model)
+
+    # program profile (customer tailoring): load + apply context header
+    profile = None
+    try:
+        profile = evidence.load_profile(args.profile)
+    except ValueError as e:
+        print("error: bad profile: %s" % e)
+        return 1
+    if profile:
+        model["profile"] = {
+            "customer": profile.get("customer"),
+            "program": profile.get("program"),
+            "basis": profile.get("basis"),
+            "authority": profile.get("authority"),
+            "der": profile.get("der"),
+            "document_prefix": profile.get("document_prefix"),
+            "revision": profile.get("revision"),
+        }
+        md = evidence.profile_header_block(profile) + md
+
     gates = core.check_gnc_report(model)
     if args.out:
         with open(args.out, "w") as f:
             f.write(md)
         print("built GNC design report (%s) -> %s"
               % (model["vehicle"], args.out))
+        if profile:
+            print("profile: %s / %s" % (profile.get("customer"),
+                                        profile.get("program")))
         print("gates: all_pass=%s %s" % (gates["all_pass"], gates))
         if args.bundle:
             prov = {
@@ -100,6 +123,9 @@ def main():
                    help="gain margin requirement (dB)")
     b.add_argument("--bundle", action="store_true",
                    help="emit evidence/{model,gates,provenance}.json")
+    b.add_argument("--profile", default="",
+                   help="program profile JSON (customer tailoring, "
+                        "docs/PROFILE-SCHEMA.md)")
     b.set_defaults(fn=cmd_build)
 
     c = sub.add_parser("check")
