@@ -11,10 +11,10 @@ standards_bound:
     reference-only: true
   - id: far-25
     tier: TIER-1
-    reference-only: true
+    reference-only: false
   - id: cs-25
     tier: TIER-1
-    reference-only: true
+    reference-only: false
 skills_bound:
   - gnc-autonomy/guidance/proportional-navigation
   - gnc-autonomy/guidance/augmented-proportional-navigation

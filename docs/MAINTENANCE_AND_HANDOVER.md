@@ -7,7 +7,7 @@ What a new maintainer (human or agent) needs to operate this repo cold.
 Aero Agent Roles — the roles bank on Aero Agent Skills. Each role is an
 EXECUTABLE WORKER: a domain core engine + CLI that builds a real
 deliverable, gate-checks it, emits an evidence bundle, and tailors to a
-customer program profile. 12 roles today, growing in role waves
+customer program profile. 22 roles today, growing in role waves
 (docs/WAVE-BRIEF.md).
 
 ## Repo layout
@@ -120,5 +120,5 @@ Never invent reg numbers. Never commit local paths or secrets.
    aero-*). Push veda too if you added records.
 
 A fresh pickup means: clone/pull roles repo, run the checklist above,
-and the 12 roles + evidence protocol + growth system are fully
+and the roles + evidence protocol + growth system are fully
 operable — no tribal knowledge required.

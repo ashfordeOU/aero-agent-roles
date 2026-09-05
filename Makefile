@@ -35,7 +35,10 @@ coverage-check:
 release-law:
 	@python3 scripts/release-law.py
 
-visuals-check:
-	@echo "roles repo: no visuals yet (site sync later)"
+visuals:
+	@python3 scripts/gen_visuals.py
 
-.PHONY: validate growth role-lint role-tests no-verbatim security manifest coverage-check release-law visuals-check
+visuals-check:
+	@python3 scripts/gen_visuals.py --check
+
+.PHONY: validate growth role-lint role-tests no-verbatim security manifest coverage-check release-law visuals visuals-check
