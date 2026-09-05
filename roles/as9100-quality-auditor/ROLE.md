@@ -90,9 +90,37 @@ certification body's role).
 
 ## Verification
 
-- tests/test_role_as9100.py (offline): bound skills resolve; workflow
-  deterministic; synthetic audit produces a complete findings report
-  with the required NC fields.
+The role runs STANDALONE: `core/as9100_core.py` is an executable engine
+that classifies each nonconformity on the finding ladder (major/minor/
+observation with systemic and detection/containment escalation),
+scores corrective-action records on the closure chain (containment ->
+root cause -> corrective action -> effectiveness), sizes the record
+sample, computes the next audit due date from the process risk
+category, BUILDS the findings report, and gate-checks deliverables. No
+AeroSkills checkout required.
+
+Run the role:
+```bash
+python3 cli.py build --out findings.md              # example supplier audit
+python3 cli.py build --risk-category low --out f.md # low-risk variant
+python3 cli.py check --file findings.md             # gate-check a report
+```
+
+Tests:
+- tests/test_as9100_core.py (22 tests): classification ladder +
+  corrective-action chain + audit program numbers + findings builder +
+  gates + no-blanks render + standalone (no skills repo)
+- tests/test_role_as9100.py: bound-skill resolution (skips if the
+  skills repo is absent) + workflow + filled template fields +
+  boundaries
+
+`templates/findings-report-template.md` is the FILLED, generated
+deliverable for the example audit (2 major, 2 minor, 1 observation,
+zero blanks) — produced by `cli.py build --out`.
+
+Bound skills in Aero Agent Skills deepen individual stages when the
+library is present (audit scheduling, disposition, calibration,
+corrective action); the core engine does not depend on them.
 
 ## Compliance
 

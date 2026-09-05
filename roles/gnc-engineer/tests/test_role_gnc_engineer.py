@@ -2,6 +2,7 @@
 """Role test: gnc-engineer."""
 import os
 import re
+import sys
 import unittest
 
 ROLES_REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
@@ -10,6 +11,10 @@ AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills")
 HAS_SKILLS = os.path.isdir(os.path.join(AEROSKILLS, "skills"))
 ROLE_DIR = os.path.join(ROLES_REPO, "roles", "gnc-engineer")
 TEMPLATE = os.path.join(ROLE_DIR, "templates", "gnc-report-template.md")
+CORE_DIR = os.path.join(ROLE_DIR, "core")
+
+sys.path.insert(0, CORE_DIR)
+import gnc_core  # noqa: E402
 
 EXPECTED_BOUND = [
     "gnc-autonomy/control/pid-control-design",
@@ -53,7 +58,10 @@ STAGES = [
 
 def role_text():
     p = os.path.join(ROLE_DIR, "ROLE.md")
-    return open(p).read() if os.path.exists(p) else None
+    if not os.path.exists(p):
+        return None
+    with open(p) as f:
+        return f.read()
 
 
 class TestGncEngineerRole(unittest.TestCase):
@@ -76,6 +84,48 @@ class TestGncEngineerRole(unittest.TestCase):
 
     def test_template_present(self):
         self.assertTrue(os.path.exists(TEMPLATE), "deliverable template missing")
+
+    def test_template_is_filled_deliverable(self):
+        """100% standard: template is the FILLED worked example - all 9
+        numbered sections + appendix, zero blank fields, draft markers."""
+        self.assertTrue(os.path.exists(TEMPLATE))
+        with open(TEMPLATE) as f:
+            text = f.read()
+        for n in range(1, 10):
+            self.assertTrue(
+                re.search(rf"^## {n}\. ", text, re.M),
+                f"report section {n} missing")
+        self.assertIn("Appendix A", text)
+        self.assertNotIn("___", text)
+        low = text.lower()
+        self.assertIn("draft", low)
+        self.assertIn("not an approval", low)
+        self.assertIn("not flight software release", low)
+
+    def test_template_passes_core_gates(self):
+        """The shipped template must pass the engine's own markdown
+        evidence gates (standalone core, no skills repo needed)."""
+        with open(TEMPLATE) as f:
+            text = f.read()
+        gates = gnc_core.check_gnc_report_markdown(text)
+        self.assertTrue(gates["all_pass"], gates)
+
+    def test_core_and_cli_present(self):
+        self.assertTrue(os.path.exists(os.path.join(CORE_DIR,
+                                                    "gnc_core.py")),
+                        "core/gnc_core.py missing (100% standard)")
+        self.assertTrue(os.path.exists(os.path.join(ROLE_DIR, "cli.py")),
+                        "cli.py missing (100% standard)")
+
+    def test_core_standalone_example_gates(self):
+        """Core produces a correct, gate-passing report with no skills."""
+        os.environ["AEROSKILLS_DEV"] = "/nonexistent"
+        model = gnc_core.build_gnc_report(gnc_core.example_project())
+        gates = gnc_core.check_gnc_report(model)
+        self.assertTrue(gates["all_pass"], gates)
+        md = gnc_core.example_report_markdown()
+        mgates = gnc_core.check_gnc_report_markdown(md)
+        self.assertTrue(mgates["all_pass"], mgates)
 
     def test_boundaries(self):
         role = role_text()

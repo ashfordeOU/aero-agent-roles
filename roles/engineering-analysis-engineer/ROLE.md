@@ -118,8 +118,35 @@ domain-specific design (use the domain roles).
 
 ## Verification
 
-- tests/test_role_analysis.py (offline): bound skills resolve; workflow
-  deterministic; memo template complete; boundaries present.
+The role runs STANDALONE: `core/engineering_analysis_engineer_core.py` is an
+executable engine that computes ISA atmosphere reference values, propagates
+measurement uncertainty (GUM first-order law), builds Student t confidence
+intervals, runs worst-case + RSS tolerance stack-ups, verifies numerical
+convergence (Richardson extrapolation + GCI), states margins per the
+engineering-margins convention, BUILDS the Analysis Verification Memo, and
+gate-checks deliverables. No AeroSkills checkout required
+(`AEROSKILLS_DEV=/nonexistent` still builds correctly).
+
+Run the role:
+```bash
+python3 cli.py build --out memo.md                              # example chain
+python3 cli.py build --altitude 6000 --out memo.md              # other test point
+python3 cli.py build --pressure 70100 --temperature 270.5       # override inputs
+python3 cli.py check --file memo.md                             # gate-check a memo
+```
+
+Tests:
+- tests/test_engineering_analysis_engineer_core.py (36 tests): ISA model,
+  uncertainty propagation, t confidence intervals, tolerance stack-up,
+  convergence verification, margins, memo builder, gates, standalone
+  (no skills repo), and the filled template byte-matches the core example.
+- tests/test_role_engineering_analysis_engineer.py: bound-skill resolution
+  (skips if the skills repo is absent) + workflow + template present +
+  boundaries.
+
+Bound skills in Aero Agent Skills deepen individual stages when the library
+is present (atmosphere leaves, uncertainty/statistics leaves, tolerance and
+numerics leaves); the core engine does not depend on them.
 
 ## Compliance
 

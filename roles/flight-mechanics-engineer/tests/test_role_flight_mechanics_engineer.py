@@ -68,7 +68,10 @@ STAGES = [
 
 def role_text():
     p = os.path.join(ROLE_DIR, "ROLE.md")
-    return open(p).read() if os.path.exists(p) else None
+    if not os.path.exists(p):
+        return None
+    with open(p) as f:
+        return f.read()
 
 
 class TestFlightMechanicsEngineerRole(unittest.TestCase):
@@ -91,6 +94,37 @@ class TestFlightMechanicsEngineerRole(unittest.TestCase):
 
     def test_template_present(self):
         self.assertTrue(os.path.exists(TEMPLATE), "deliverable template missing")
+
+    def test_template_is_filled_deliverable(self):
+        """100% standard: the template IS a complete worked example report
+        (zero blank ___, all sections, gate markers)."""
+        with open(TEMPLATE) as f:
+            text = f.read()
+        self.assertNotIn("___", text)
+        for n in range(1, 10):
+            self.assertTrue(
+                re.search(rf"^## {n}\. ", text, re.M),
+                f"report section {n} missing")
+        low = text.lower()
+        self.assertIn("draft", low)
+        self.assertIn("not an approval", low)
+        self.assertIn("aeroline at-78", low)
+        # key computed numbers present (range, ROC, static margin, damping)
+        self.assertRegex(text, r"\d[\d,]*\s*km")
+        self.assertRegex(text, r"static margin[^\n]*\d+\.\d+%")
+        self.assertRegex(text, r"zeta\s*=\s*\d+\.\d+")
+
+    def test_core_engine_exists(self):
+        """100% standard: every role ships an executable core + cli."""
+        for f in ["core", "cli.py"]:
+            self.assertTrue(os.path.exists(os.path.join(ROLE_DIR, f)),
+                            f"{f} missing - role is not executable")
+
+    def test_core_test_file_exists(self):
+        core_test = os.path.join(ROLE_DIR, "tests",
+                                 "test_flight_mechanics_core.py")
+        self.assertTrue(os.path.exists(core_test),
+                        "core test file missing")
 
     def test_boundaries(self):
         role = role_text()

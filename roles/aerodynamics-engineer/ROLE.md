@@ -113,8 +113,38 @@ structures role), control law design (see GNC role), or engine work.
 
 ## Verification
 
-- tests/test_role_aerodynamics.py (offline): bound skills resolve;
-  workflow deterministic; report template complete; boundaries present.
+The role runs STANDALONE: `core/aerodynamics_core.py` is an executable
+engine that computes the aerodynamic design numbers with the real domain
+formulas of the bound AeroSkills leaves (parasite-drag buildup, parabolic
+drag polar, lifting-line/sweep/compressibility lift-curve slope,
+high-lift CL_max and stall speed, Korn drag-divergence Mach, flutter and
+divergence margins, discrete-gust screening, CFD validation metrics),
+BUILDS the aerodynamic design report, and gate-checks deliverables. No
+AeroSkills checkout required.
+
+Run the role:
+```bash
+python3 cli.py build --out report.md              # example transport (M 0.78)
+python3 cli.py build --mach 0.80 --altitude 10668 # condition override
+python3 cli.py build --ws 5500                    # cruise W/S override
+python3 cli.py check --file report.md             # gate-check a report
+```
+
+Tests:
+- tests/test_aerodynamics_core.py (12 tests): formula correctness vs
+  known leaf values (Reynolds, skin friction, form factors, polar, lift
+  slope, flutter/divergence margins, high lift, Korn rule, Richardson),
+  ISA atmosphere, report builder + gates + markdown completeness +
+  STANDALONE (no skills repo)
+- tests/test_role_aerodynamics.py: bound-skill resolution (skips if the
+  skills repo is absent) + workflow + template + boundaries
+
+Templates: templates/aero-design-report-template.md is the FILLED
+generated report for the reference transport (zero blank fields) -
+exactly what `cli.py build` produces.
+
+Bound skills in Aero Agent Skills deepen individual stages when the
+library is present; the core engine does not depend on them.
 
 ## Compliance
 

@@ -87,9 +87,33 @@ use for design engineering, or when no cert basis exists.
 
 ## Verification
 
-- tests/test_role_airworthiness.py (offline): bound skills resolve;
-  workflow deterministic; synthetic project produces a complete
-  compliance matrix skeleton with the required columns.
+The role runs STANDALONE: `core/airworthiness_core.py` is an executable
+engine that determines regulation applicability (aircraft type + change
+scope), selects the means of compliance per regulation (real MOC
+vocabulary: analysis, test, inspection, safety assessment, similarity),
+computes severity/DAL context, BUILDS the compliance matrix, and
+gate-checks deliverables. No AeroSkills checkout required.
+
+Run the role:
+```bash
+python3 cli.py build --out matrix.md                    # example item (FAR-25 STC)
+python3 cli.py build --out matrix-cs.md --jurisdiction EASA   # CS-25 basis variant
+python3 cli.py check --file matrix.md                   # gate-check a matrix
+```
+
+Tests:
+- tests/test_airworthiness_core.py (20 tests): domain rules (severity →
+  DAL, 25.1309 safety assessment applicability, MOC suitability),
+  applicability logic (transport vs other categories, change-scope
+  screening), MOC selection (FAR-25 vocabulary + CS-25 MOC scheme),
+  matrix builder completeness (real regs, no blank fields), gates
+  pass/fail, and standalone (AEROSKILLS_DEV=/nonexistent).
+- tests/test_role_airworthiness.py: bound-skill resolution (skips if the
+  skills repo is absent) + workflow + template present + boundaries.
+
+Bound skills in Aero Agent Skills deepen individual stages when the
+library is present (certification basis, means of compliance, ELOS,
+airworthiness mapping); the core engine does not depend on them.
 
 ## Compliance
 

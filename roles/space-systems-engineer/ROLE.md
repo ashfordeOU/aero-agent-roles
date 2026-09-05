@@ -124,8 +124,36 @@ budgets. Do NOT use for aircraft certification or airframe roles.
 
 ## Verification
 
-- tests/test_role_space_systems.py (offline): bound skills resolve;
-  workflow deterministic; report template complete; boundaries present.
+The role runs STANDALONE: `core/space_systems_core.py` is an executable
+engine that computes the orbit elements, delta-v budget (Hohmann and
+disposal legs), propellant mass (rocket equation), reaction wheel sizing
+(h = J*omega), pointing error budget, battery and solar array sizing,
+radiator area, and the comms link budget, then BUILDS the mission +
+subsystem design report and gate-checks deliverables. No AeroSkills
+checkout required.
+
+Run the role:
+```bash
+python3 cli.py build --out report.md                     # example mission
+python3 cli.py build --out leo550.md --altitude 550      # variant orbit
+python3 cli.py build --out heavy.md --dry-mass 400 --isp 250
+python3 cli.py check --file report.md                    # gate-check a report
+```
+
+Tests:
+- tests/test_space_systems_engineer_core.py (28 tests): domain rules
+  with AeroSkills leaf anchor values + report builder + gates +
+  standalone (no skills repo).
+- tests/test_role_space_systems_engineer.py: bound-skill resolution
+  (skips if the skills repo is absent) + workflow + template present +
+  boundaries.
+
+Bound skills in Aero Skills deepen individual stages when the library
+is present (kepler propagation, transfer trade-offs, pointing error
+refinement, detailed tank design); the core engine does not depend on
+them. The worked example in `templates/space-systems-template.md` is the
+generated output of the core for the example mission - REAL numbers, no
+blanks.
 
 ## Compliance
 

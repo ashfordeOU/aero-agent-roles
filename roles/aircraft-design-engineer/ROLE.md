@@ -115,8 +115,22 @@ refinement (aero role), or certification workflow (cert roles).
 
 ## Verification
 
-- tests/test_role_aircraft_design.py (offline): bound skills resolve;
-  workflow deterministic; package template complete; boundaries present.
+- Engine suite `tests/test_aircraft_design_core.py` (stdlib unittest,
+  offline, standalone): constraint T/W formulas match the bound
+  constraint-analysis/ws-tw-trade leaves; segment fuel fractions match
+  the sizing-mission-profile models (Breguet cruise + endurance holds,
+  weight chaining); class-I empty-weight fraction fit sits inside the
+  transport band; the MTOW loop genuinely iterates and converges within
+  0.5%; the concept package model is complete and its mass statement
+  balances; core + markdown evidence gates all pass with zero blanks.
+- Run: `python3 -m unittest tests.test_aircraft_design_core -v`
+- CLI contract: `python3 cli.py build --out package.md` (exit 0, gates
+  all_pass) and `python3 cli.py check --file package.md` (prints PASS).
+- Standalone proof: `AEROSKILLS_DEV=/nonexistent python3 cli.py build`
+  produces a converged concept package - no AeroSkills checkout needed.
+- tests/test_role_aircraft_design_engineer.py (offline): bound skills
+  resolve; workflow deterministic; package template complete (filled
+  generated deliverable, zero blanks); boundaries present.
 
 ## Compliance
 

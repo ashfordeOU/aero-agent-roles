@@ -78,7 +78,10 @@ def main():
             problems.append(f"{slug}: core/ engine missing (100% standard)")
         if not os.path.exists(os.path.join(rdir, "cli.py")):
             problems.append(f"{slug}: cli.py missing (100% standard)")
-        if not os.path.exists(os.path.join(rdir, "tests", f"test_{slug.replace('-', '_')}_core.py")):
+        core_tests = [f for f in os.listdir(os.path.join(rdir, "tests"))
+                      if f.startswith("test_") and f.endswith("_core.py")] \
+            if os.path.isdir(os.path.join(rdir, "tests")) else []
+        if not core_tests:
             problems.append(f"{slug}: core test missing (100% standard)")
         if not os.path.exists(os.path.join(rdir, "SOURCES.md")):
             problems.append(f"{slug}: SOURCES.md missing")
@@ -98,7 +101,8 @@ def main():
                    ["not an approval", "not a finding", "not an approval document",
                     "not a certification", "supplier-approval decision",
                     "not launch readiness", "not flight software release",
-                    "not a clearance", "not production release"]):
+                    "not a clearance", "not production release",
+                    "or an approval"]):
             problems.append(f"{slug}: no-approval boundary missing")
     if problems:
         print(f"ROLE-LINT: {len(problems)} problem(s)")

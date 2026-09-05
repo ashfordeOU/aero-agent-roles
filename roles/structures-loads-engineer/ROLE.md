@@ -116,11 +116,41 @@ for aerodynamic shape (aero role) or certification plan workflow.
 - Allowables: use MMPDS values with citation or a stated test basis;
   never invent allowables.
 - FEM results are as-good-as-the-model; state idealizations.
+- Output is a DRAFT for human stress-lead review - mark it draft; the
+  report is not an approval document and never claims certification
+  approval or a compliance finding.
 
 ## Verification
 
-- tests/test_role_structures.py (offline): bound skills resolve;
-  workflow deterministic; report template complete; boundaries present.
+The role runs STANDALONE: `core/structures_loads_core.py` is an
+executable engine that derives the FAR 25 gust + maneuver envelope
+(FAR 25.341/25.337), converts the design limit condition to ultimate
+loads (FAR 25.303), resolves root internal loads, computes margins of
+safety per critical component from real allowables, runs the fatigue
+screening (S-N basis + Miner sum) and the first-bending-frequency
+check, BUILDS the loads + strength report, and gate-checks
+deliverables. No AeroSkills checkout required.
+
+Run the role:
+```bash
+python3 cli.py build --out report.md                  # example wing report
+python3 cli.py build --category commuter --weight 18000  # other wing classes
+python3 cli.py check --file report.md                 # gate-check a report
+```
+
+Tests:
+- tests/test_structures_loads_core.py (24 tests): domain rules (gust
+  alleviation, maneuver limits, Euler/plate/lug/fatigue anchors),
+  report builder, evidence gates, standalone (no skills repo).
+- tests/test_role_structures_loads_engineer.py: bound-skill
+  resolution (skips if the skills repo is absent), workflow order,
+  filled template present, boundaries.
+
+Bound skills in Aero Agent Skills deepen individual stages when the
+library is present (FEM runs, spectra counting, detail joints); the
+core engine does not depend on them. The filled deliverable template
+(templates/loads-strength-report-template.md) is the generated worked
+example for the example wing - zero blanks.
 
 ## Compliance
 

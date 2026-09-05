@@ -81,9 +81,15 @@ envelope. Do NOT use for control LAW design (GNC role), aero shape
 
 1. **Performance + S&C report** - mission performance numbers, stability
    derivatives, mode characteristics, handling qualities assessment,
-   trim conditions, and trajectory results.
+   trim conditions, and trajectory results. The worked example
+   (templates/perf-sc-report-template.md) is the complete generated
+   deliverable for the example transport: range, endurance, ROC,
+   takeoff/landing field, static margin, and short-period/phugoid/Dutch
+   roll mode numbers all computed from real domain rules with their
+   input basis stated.
 2. **Analysis evidence set** - the calculations, derivative builds, and
-   simulation runs behind the results.
+   simulation runs behind the results (per-section equations and input
+   basis in the report; open items name the deeper bound-skill stages).
 
 ## Workflow (stages -> bound skills)
 
@@ -105,7 +111,10 @@ envelope. Do NOT use for control LAW design (GNC role), aero shape
 - Stage 1 done = range/endurance with the Breguet assumptions stated.
 - Stage 6 done = short-period/phugoid damping within MIL-STD/FAR
   context or with a stated rationale.
-- FINAL = every result has a stated input basis (mass, CG, altitude).
+- FINAL = every result has a stated input basis (mass, CG, altitude);
+  the computed numbers are present (range, ROC, takeoff field, static
+  margin, mode damping) and the document is marked draft, not approval.
+  The core `check_*` functions verify all of this on the deliverable.
 
 ## Boundary / forbidden
 
@@ -114,13 +123,40 @@ envelope. Do NOT use for control LAW design (GNC role), aero shape
   certification findings.
 - Derivatives come from AVL or stated data; never invent stability data
   without a source.
+- The rendered deliverable ALWAYS carries the DRAFT + human-review +
+  not-an-approval marker (enforced by the core renderer and gate checks).
 
 ## Verification
 
-- tests/test_role_flight_mechanics.py (offline): bound skills resolve;
-  workflow deterministic; report template complete; boundaries present.
+The role runs STANDALONE: `core/flight_mechanics_core.py` is an
+executable engine that encodes the domain rules from the bound
+flight-mechanics leaves (Breguet range/endurance, specific range,
+ROC/time-to-climb, takeoff/landing field estimates, static margin and
+neutral point, short period / phugoid / Dutch roll / spiral / roll
+modes, MIL-STD-1797A summary level bands), computes the example
+transport numbers, BUILDS the report, and gate-checks deliverables.
+No AeroSkills checkout required (`AEROSKILLS_DEV=/nonexistent` works).
+
+Run the role:
+```bash
+python3 cli.py build --out perf-sc-report.md   # build the example report
+python3 cli.py check --file perf-sc-report.md  # gate-check a report
+```
+
+Tests:
+- tests/test_flight_mechanics_core.py (34 tests): domain rules +
+  builder + gates + standalone (no skills repo)
+- tests/test_role_flight_mechanics_engineer.py: bound-skill resolution
+  (skips if the skills repo is absent) + workflow + filled template +
+  boundaries + core/cli presence
+
+Bound skills in Aero Agent Skills deepen individual stages when the
+library is present (per the workflow table); the core engine does not
+depend on them.
 
 ## Compliance
 
-- far-25 + mil-std-1797a TIER-1 context (quotable with citation).
-- SOURCES.md records standards referenced.
+- far-25 + mil-std-1797a TIER-1 context (quotable with citation);
+  standards-map summary only, no verbatim regulation text.
+- SOURCES.md records the standards and the bound leaves whose rules the
+  core encodes.

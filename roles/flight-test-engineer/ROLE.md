@@ -44,7 +44,7 @@ sign_off_required: true
 license: Apache-2.0
 compatibility: "agentskills.io ROLE.md; any SKILL.md host"
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   author: Aero Agent Roles
   skills_release: "v1.3.0+"
 ---
@@ -98,14 +98,38 @@ analysis (aero/structures), or control law design.
 - NEVER clear an envelope, declare airworthiness, or authorize flight.
   The flight test CONDUCTOR / authority does that.
 - Reports state "data supports expanding to X pending human sign-off",
-  never "envelope cleared".
+  never "envelope cleared". Every deliverable carries the explicit
+  "not a clearance" marker.
 - Icing/spin results are test-specific; never generalize beyond the
   tested configuration.
 
 ## Verification
 
-- tests/test_role_flight_test.py (offline): bound skills resolve;
-  workflow deterministic; plan/report templates complete; boundaries.
+The role runs STANDALONE: `core/flight_test_core.py` is an executable
+engine that computes V-speeds (vref = 1.3*vs0, v2 = 1.2*vs1, vr =
+1.1*vs1), the maneuvering speed VA = VS*sqrt(n_max), stall warning and
+recovery checks, the flutter build-up with the 0.03 minimum damping and
+1.2 x V_D margin, the altitude/Mach grid, the load factor envelope,
+climb gradient check, and the safety/go-no-go register; BUILDS the
+flight test plan + envelope expansion report; and gate-checks the
+deliverable. No AeroSkills checkout required.
+
+Run the role:
+```bash
+python3 cli.py build --out plan.md                     # worked-example aircraft
+python3 cli.py check --file plan.md                    # gate-check a plan/report
+```
+
+Tests:
+- tests/test_flight_test_engineer_core.py (24 tests): domain rules +
+  builder + gates + standalone (no skills repo)
+- tests/test_role_flight_test_engineer.py: bound-skill resolution
+  (skips if the skills repo is absent) + workflow + template filled +
+  executable core + boundaries
+
+Bound skills in Aero Agent Skills deepen individual stages when the
+library is present (safety, envelope expansion, flutter, stall,
+performance methodology); the core engine does not depend on them.
 
 ## Compliance
 
