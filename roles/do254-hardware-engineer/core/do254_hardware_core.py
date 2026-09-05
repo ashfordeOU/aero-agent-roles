@@ -23,6 +23,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain tables (public process knowledge)
 # ---------------------------------------------------------------------------
@@ -462,7 +467,7 @@ def build_phac(item: HardwareItem) -> dict:
         "pds_origin_standard": item.pds_origin_standard,
         "objectives": VERIFICATION_FAMILIES[dal],
         "traceability": traceability_summary(item.requirements or []),
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 

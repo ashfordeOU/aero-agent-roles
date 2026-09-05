@@ -813,8 +813,9 @@ def _findings(int_check, root_check, solve_check, conv) -> list:
 
 
 def _today() -> str:
+    import os
     from datetime import date
-    return date.today().isoformat()
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
 
 
 # ---------------------------------------------------------------------------

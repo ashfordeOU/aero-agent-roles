@@ -27,6 +27,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain tables (mirror the bound AeroSkills leaves; summary reference data)
 # ---------------------------------------------------------------------------
@@ -884,7 +889,7 @@ def build_qualification_report(item: EquipmentItem) -> dict:
             "ce102_verdict": ce102_v,
         },
         "verdicts": verdicts,
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 

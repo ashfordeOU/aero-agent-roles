@@ -43,6 +43,11 @@ import math
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Physical / unit constants (SI base where noted)
 # ---------------------------------------------------------------------------
@@ -1162,7 +1167,7 @@ def build_report(route: Route) -> dict:
         "navaid": nav,
         "findings": findings,
         "n_findings": len([f for f in findings if f["severity"] == "finding"]),
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
     return model
 

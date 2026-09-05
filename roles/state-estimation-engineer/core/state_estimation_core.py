@@ -42,6 +42,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain anchors (from the bound estimation-filtering leaves)
 # ---------------------------------------------------------------------------
@@ -680,7 +685,7 @@ def build_report(item: NavEstimatorItem) -> dict:
             "rts": "fixed-interval smoothing for offline trajectory "
                    "reconstruction",
         },
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 

@@ -33,6 +33,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain constants (FAR 25.341 / 25.337 / 25.303, public regulation)
 # ---------------------------------------------------------------------------
@@ -782,7 +787,7 @@ def build_report(item: ExampleWing) -> dict:
                     "n_gag": n_gag, "gust_blocks": fatigue_gust["blocks"],
                     "A_ksi": fatigue_gust["A_ksi"], "b": fatigue_gust["b"],
                     "sig_m_gust_ksi": sig_m_gust},
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 

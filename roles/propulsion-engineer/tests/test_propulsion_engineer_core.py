@@ -26,6 +26,10 @@ from propulsion_core import (  # noqa: E402
     turbine_exit_temperature, turbine_power,
 )
 
+# Deterministic across midnight: pin fresh renders to the date the
+# committed template carries (CI override wins).
+os.environ.setdefault("ROLE_GEN_DATE", "2026-09-05")
+
 
 class TestCoreDomainRules(unittest.TestCase):
     """Public-standard anchors mirrored from the bound AeroSkills leaves."""

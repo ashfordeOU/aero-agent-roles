@@ -27,6 +27,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain tables (public practice / FAR-25 & CS-25 context, summary-only)
 # ---------------------------------------------------------------------------
@@ -510,7 +515,7 @@ def build_flight_test_deliverable(ac: TestAircraft, data: dict | None = None) ->
         "aircraft": ac.name,
         "aircraft_description": ac.description,
         "certification_basis": ac.certification_basis,
-        "generated": date.today().isoformat(),
+        "generated": _today(),
         "objectives": objectives,
         "v_speeds": speeds,
         "n_max": ac.n_max,

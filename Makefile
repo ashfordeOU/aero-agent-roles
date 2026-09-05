@@ -11,8 +11,8 @@
 validate: role-lint role-tests no-verbatim security manifest
 	@echo "Aero Agent Roles validate: PASS (5/5 REAL gates)"
 
-growth: coverage-check release-law
-	@echo "Aero Agent Roles growth: coverage + release law checked"
+growth: coverage-check release-law stale-guard
+	@echo "Aero Agent Roles growth: coverage + release law + stale stats checked"
 
 role-lint:
 	@python3 scripts/role-lint.py
@@ -49,4 +49,7 @@ package-test:
 about:
 	@bash ops/automation/update-about.sh
 
-.PHONY: validate growth role-lint role-tests no-verbatim security manifest coverage-check release-law visuals visuals-check package-test about
+stale-guard:
+	@bash scripts/roles-stale-guard.sh
+
+.PHONY: validate growth role-lint role-tests no-verbatim security manifest coverage-check release-law visuals visuals-check package-test about stale-guard

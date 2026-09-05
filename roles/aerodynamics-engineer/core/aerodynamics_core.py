@@ -62,6 +62,11 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import Dict, List, Optional
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Physical / ISA constants (public domain)
 # ---------------------------------------------------------------------------
@@ -826,7 +831,7 @@ def build_report(item: AircraftItem) -> Dict:
     model = {
         "document_type": "Aerodynamic Design Report",
         "status": "draft-for-review",
-        "generated": item.generated or date.today().isoformat(),
+        "generated": item.generated or _today(),
         "aircraft": item.name,
         "description": item.description,
         # ---- configuration / geometry

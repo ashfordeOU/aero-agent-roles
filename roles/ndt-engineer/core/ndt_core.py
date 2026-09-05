@@ -33,6 +33,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain tables (mirrored from the bound ndt-method-selection leaf logic)
 # ---------------------------------------------------------------------------
@@ -980,7 +985,7 @@ class InspectionItem:
     certification_basis: str = "AS9100D special-process control (internal)"
 
     def _today(self):
-        return date.today().isoformat()
+        return _today()
 
 
 def build_report(item: InspectionItem) -> dict:
@@ -1024,7 +1029,7 @@ def build_report(item: InspectionItem) -> dict:
 
     # personnel: record dates are held relative to today so the plan never
     # goes stale; due dates computed by the leaf's month-add/clamp rules.
-    today = date.today()
+    today = date.fromisoformat(_today())
     record = dict(item.personnel_record)
     record.setdefault("cert_date_iso",
                       add_months_clamped(today.isoformat(), -24))

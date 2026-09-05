@@ -29,6 +29,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Constants and small unit helpers
 # ---------------------------------------------------------------------------
@@ -1092,7 +1097,7 @@ def build_report(vehicle: ExampleTransport | None = None,
     """Build the complete Performance + S&C report content model."""
     a = vehicle or example_vehicle()
     r = results or analyze_vehicle(a)
-    today = date.today().isoformat()
+    today = _today()
     return {"document_type": "Performance and S&C Analysis Report",
             "status": "draft-for-review",
             "aircraft": a.name,

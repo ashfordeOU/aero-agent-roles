@@ -20,6 +20,9 @@ ROLES_REPO = os.path.dirname(os.path.dirname(os.path.dirname(
 sys.path.insert(0, os.path.join(ROLES_REPO, "roles",
                                 "flight-test-performance-engineer", "core"))
 import flight_test_performance_core as core  # noqa: E402
+# Deterministic across midnight: pin fresh renders to the date the
+# committed template carries (CI override wins).
+os.environ.setdefault("ROLE_GEN_DATE", "2026-09-05")
 AEROSKILLS = os.environ.get("AEROSKILLS_DEV",
                             os.path.expanduser("~/AeroSkills"))
 HAS_SKILLS = os.path.isdir(os.path.join(AEROSKILLS, "skills"))

@@ -27,6 +27,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date, datetime
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain tables (paraphrased leaf rules, summary-not-copy)
 # ---------------------------------------------------------------------------
@@ -410,7 +415,7 @@ def audit_findings(item: AuditItem) -> dict:
             "PROPOSED - the QA manager signs audit closure; NC-01/02 "
             "effectiveness verification at the follow-up audit is "
             "required before any closure is recorded"),
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 

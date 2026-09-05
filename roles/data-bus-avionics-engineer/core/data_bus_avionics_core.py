@@ -39,6 +39,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain constants (grounded in the bound data-bus leaves)
 # ---------------------------------------------------------------------------
@@ -742,7 +747,7 @@ def build_assessment(item: DataBusItem, results: dict) -> dict:
         "afdx": afdx,
         "conformance": results["conformance"],
         "observations": observations,
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 

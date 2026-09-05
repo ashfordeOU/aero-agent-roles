@@ -103,6 +103,11 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import Dict, List, Optional
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Physical / ISA constants (public domain)
 # ---------------------------------------------------------------------------
@@ -1179,7 +1184,7 @@ def build_memo(item: HighSpeedItem) -> Dict:
     model = {
         "document_type": "High-Speed Aerodynamic Analysis Memo",
         "status": "draft-for-review",
-        "generated": item.generated or date.today().isoformat(),
+        "generated": item.generated or _today(),
         "vehicle": item.name,
         "description": item.description,
         # ---- item facts echoed into the memo (single source of truth)

@@ -19,6 +19,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain tables (public process knowledge)
 # ---------------------------------------------------------------------------
@@ -239,7 +244,7 @@ def build_psac(item: SoftwareItem) -> dict:
         "previously_developed": item.previously_developed,
         "pds_origin_standard": item.pds_origin_standard,
         "objectives": VERIFICATION_FAMILIES[dal],
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 

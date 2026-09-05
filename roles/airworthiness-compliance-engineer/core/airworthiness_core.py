@@ -27,6 +27,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain tables (public-domain FAR-25 / CS-25 structure and practice)
 # ---------------------------------------------------------------------------
@@ -669,7 +674,7 @@ def build_matrix(item: AirworthinessItem) -> dict:
         "row_count": len(rows),
         "coverage": coverage,
         "issues": issues,
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 

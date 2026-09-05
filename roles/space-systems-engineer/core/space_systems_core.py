@@ -28,6 +28,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Physical constants (public knowledge, as used across the AeroSkills leaves)
 # ---------------------------------------------------------------------------
@@ -654,7 +659,7 @@ def build_report(mission: SpacecraftMission) -> dict:
         "comms": comm,
         "mass": mass,
         "verdicts": verdicts,
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
     return model
 

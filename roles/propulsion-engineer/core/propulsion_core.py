@@ -25,6 +25,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Physical constants (SI). Cold stream: air gamma=1.4 (R=287 => cp~1004.5).
 # Hot stream (combustion products): gamma=1.33 per the propelling-nozzle leaf.
@@ -877,7 +882,7 @@ def build_turbofan_report(item: PropulsionItem) -> dict:
         "bpr_trade": trade_rows,
         "spool_note": "fan (LP) + core compressor (HP) driven by the turbine "
                       "through the closed-form power balance",
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 
@@ -912,7 +917,7 @@ def build_rocket_report(item: PropulsionItem) -> dict:
         "nozzle": nozzle,
         "isp_ideal": isp_ideal,
         "alternatives": alternatives,
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 

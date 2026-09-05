@@ -27,6 +27,10 @@ from engineering_analysis_engineer_core import (  # noqa: E402
     build_memo, trapezoid_hydrostatic_pressure,
 )
 
+# Deterministic across midnight: pin fresh renders to the date the
+# committed template carries (CI override wins).
+os.environ.setdefault("ROLE_GEN_DATE", "2026-09-05")
+
 ROLE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE = os.path.join(ROLE_DIR, "templates", "analysis-memo-template.md")
 

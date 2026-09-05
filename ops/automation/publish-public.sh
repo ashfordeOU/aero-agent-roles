@@ -97,3 +97,15 @@ if ! git push origin main 2>&1; then
   exit 1
 fi
 log "public sync complete: $(git rev-parse --short HEAD)"
+
+# About sidebar refresh on the public repo (best-effort; the About set
+# on the dev repo covers private; this keeps the PUBLIC repo's About in
+# step without a separate manual act). Never blocks the sync result.
+if command -v curl >/dev/null 2>&1 && [ -n "${TOKEN:-}" ]; then
+  curl -s -X PATCH -H "Authorization: Bearer $TOKEN" \
+       -H "Accept: application/vnd.github+json" \
+       "https://api.github.com/repos/ashfordeOU/aero-agent-roles" \
+       -d '{"homepage":"https://ashforde.org/aeroagentroles/"}' >/dev/null 2>&1 \
+    && log "public about: homepage synced" \
+    || log "public about: homepage sync skipped (network/token)"
+fi

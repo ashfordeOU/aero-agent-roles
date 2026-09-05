@@ -37,6 +37,11 @@ import math
 from dataclasses import dataclass
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Physical constants and unit conversions (public standard values)
 # ---------------------------------------------------------------------------
@@ -880,7 +885,7 @@ def build_concept(item):
     return {
         "document_type": "Concept Design Package",
         "status": "draft-for-review",
-        "generated": date.today().isoformat(),
+        "generated": _today(),
         "item": item.name,
         "category": item.category,
         "requirement": {

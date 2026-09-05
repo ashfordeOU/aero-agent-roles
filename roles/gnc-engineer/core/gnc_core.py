@@ -51,6 +51,11 @@ import random
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Domain rules (textbook formulas carried by the bound leaves)
 # ---------------------------------------------------------------------------
@@ -602,7 +607,7 @@ def build_gnc_report(p: GncProject) -> dict:
         "vehicle": p.vehicle,
         "mission": p.mission,
         "condition": p.condition,
-        "generated": date.today().isoformat(),
+        "generated": _today(),
         # plant
         "plant": {
             "wn_sp": p.short_period_wn_rad_s,

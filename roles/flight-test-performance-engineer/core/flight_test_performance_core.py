@@ -30,6 +30,11 @@ import math
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 # ---------------------------------------------------------------------------
 # Physical constants (public ISA atmosphere physics, SI)
 # ---------------------------------------------------------------------------
@@ -1059,7 +1064,7 @@ def build_report(item: PerformanceTestItem,
             "runway_m": item.runway_m,
         },
         "results": results,
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 

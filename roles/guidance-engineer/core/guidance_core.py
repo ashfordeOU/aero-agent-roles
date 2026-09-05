@@ -43,6 +43,11 @@ import re
 from dataclasses import dataclass, field
 from datetime import date
 
+def _today() -> str:
+    import os
+    from datetime import date
+    return os.environ.get("ROLE_GEN_DATE", date.today().isoformat())
+
 G0 = 9.80665  # standard gravity, m/s^2 (leaf constant)
 
 # ---------------------------------------------------------------------------
@@ -568,7 +573,7 @@ def build_report(p: GuidanceProject) -> dict:
             "Autopilot lag and airframe response in the homing loop.",
             "Target maneuver beyond the 20 m/s^2 sizing estimate.",
         ],
-        "generated": date.today().isoformat(),
+        "generated": _today(),
     }
 
 
