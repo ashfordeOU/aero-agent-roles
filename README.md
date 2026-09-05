@@ -253,8 +253,15 @@ Apache-2.0. See [LICENSE](LICENSE) · [NOTICE](NOTICE) ·
 Aero Agent Roles is built and maintained by Ashforde OÜ (Estonia).
 Copyright © 2026 Ashforde OÜ.
 
+---
+
+<div align="center">
+
 ### ⭐ Stars are our telemetry
 
-Every star steers the flight plan — it decides which engineering family
-gets the next role wave. If a role saved your team a certification
-cycle, send one back.
+**Every star steers the flight plan — it decides which engineering family gets the next role wave.**<br>
+**If a role saved your team a certification cycle, send one back.**
+
+<a href="https://github.com/ashfordeOU/aero-agent-roles/stargazers"><img src="https://img.shields.io/github/stars/ashfordeOU/aero-agent-roles?style=for-the-badge&logo=github&labelColor=1a1e35&color=f97316" alt="Star Aero Agent Roles on GitHub"></a>
+
+</div>
