@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 12,
+ "count": 17,
  "roles": [
   {
    "slug": "aerodynamics-engineer",
@@ -49,6 +49,30 @@
    "skills_bound": 15
   },
   {
+   "slug": "data-bus-avionics-engineer",
+   "title": "Data Bus / Avionics Network Engineer",
+   "domain": "avionics",
+   "deliverable_type": "avionics data bus loading + protocol assessment",
+   "status": "draft",
+   "standards": [
+    "arinc-429",
+    "arinc-664",
+    "mil-std-1553"
+   ],
+   "skills_bound": 5
+  },
+  {
+   "slug": "do160-environmental-engineer",
+   "title": "DO-160G Environmental Qualification Engineer",
+   "domain": "avionics",
+   "deliverable_type": "equipment environmental qualification plan/report",
+   "status": "draft",
+   "standards": [
+    "do-160"
+   ],
+   "skills_bound": 6
+  },
+  {
    "slug": "do178c-cert-engineer",
    "title": "DO-178C Software Certification Engineer",
    "domain": "avionics",
@@ -60,6 +84,18 @@
    "skills_bound": 9
   },
   {
+   "slug": "do254-hardware-engineer",
+   "title": "DO-254 Airborne Electronic Hardware Engineer",
+   "domain": "avionics",
+   "deliverable_type": "Plan for Hardware Aspects of Certification (PHAC) + design assurance evidence set",
+   "status": "draft",
+   "standards": [
+    "do-254",
+    "arp4754a"
+   ],
+   "skills_bound": 4
+  },
+  {
    "slug": "engineering-analysis-engineer",
    "title": "Engineering Analysis and Data Engineer",
    "domain": "cross-cutting",
@@ -69,6 +105,19 @@
     "asme-y14-5"
    ],
    "skills_bound": 42
+  },
+  {
+   "slug": "flight-management-engineer",
+   "title": "Flight Management Engineer",
+   "domain": "avionics",
+   "deliverable_type": "flight plan and RNAV/RNP route assessment",
+   "status": "draft",
+   "standards": [
+    "do-236c",
+    "do-283a",
+    "ac-90-105a"
+   ],
+   "skills_bound": 11
   },
   {
    "slug": "flight-mechanics-engineer",
@@ -104,6 +153,17 @@
     "mil-std-1797a"
    ],
    "skills_bound": 23
+  },
+  {
+   "slug": "high-speed-aerodynamics-engineer",
+   "title": "High-Speed Aerodynamics Engineer",
+   "domain": "aerodynamics",
+   "deliverable_type": "High-Speed Aerodynamic Analysis Memo",
+   "status": "draft",
+   "standards": [
+    "naca-tr-824"
+   ],
+   "skills_bound": 19
   },
   {
    "slug": "propulsion-engineer",

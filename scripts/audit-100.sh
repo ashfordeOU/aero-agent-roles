@@ -4,6 +4,7 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 PASS=0; FAIL=0; FAILURES=""
 
+TOTAL=$(ls -d roles/*/ 2>/dev/null | wc -l | tr -d ' ')
 echo "════════ ROLE 100% AUDIT ════════"
 for role in roles/*/; do
   slug=$(basename "$role")
@@ -38,4 +39,4 @@ done
 echo "════════════════════════════════"
 echo "RESULT: $PASS pass, $FAIL fail"
 [ -n "$FAILURES" ] && echo "FAILING:$FAILURES"
-[ "$FAIL" = "0" ] && echo "ALL 12 ROLES ARE 100% EXECUTABLE WORKERS" || exit 1
+[ "$FAIL" = "0" ] && echo "ALL $TOTAL ROLES ARE 100% EXECUTABLE WORKERS" || exit 1

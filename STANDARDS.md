@@ -27,6 +27,8 @@ or accessed through the publishers' official channels.
 | id | Standard | Publisher | Roles | Gated |
 |---|---|---|---|---|
 | do-178c | RTCA DO-178C / EUROCAE ED-12C, Software Considerations | RTCA/EUROCAE | do178c-cert-engineer | true |
+| do-160 | RTCA DO-160G / EUROCAE ED-14G, Environmental Conditions and Test Procedures for Airborne Equipment | RTCA/EUROCAE | do160-environmental-engineer | true |
+| iec-61000-4-2 | IEC 61000-4-2, EMC - ESD immunity (HBM generator model) | IEC | do160-environmental-engineer | true |
 | do-330 | RTCA DO-330, Software Tool Qualification | RTCA | do178c-cert-engineer | true |
 | arp4754a | SAE ARP4754A, Development of Civil Aircraft and Systems | SAE | do178c, airworthiness | true |
 | as9100 | AS9100D, Aerospace QMS Requirements | SAE/IAQG | as9100-quality-auditor | true |
@@ -38,6 +40,9 @@ or accessed through the publishers' official channels.
 | cs-25 | EASA CS-25, Certification Specifications | EASA | airworthiness-compliance-engineer | false |
 | amc-20-115 | EASA AMC 20-115C, Airborne Software | EASA | do178c-cert-engineer | false |
 | ac-20-115 | FAA AC 20-115D, Airborne Software Assurance | FAA | do178c-cert-engineer | false |
+| do-236c | RTCA DO-236C, Minimum Aviation System Performance Standards: RNP for Area Navigation | RTCA | flight-management-engineer | true |
+| do-283a | RTCA DO-283A, MOPS for RNP Area Navigation (RNP AR) | RTCA | flight-management-engineer | true |
+| ac-90-105a | FAA AC 90-105A, Approval Guidance for RNP Operations and Baro-VNAV | FAA | flight-management-engineer | false |
 
 ## Purchase links
 
