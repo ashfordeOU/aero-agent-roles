@@ -1,6 +1,6 @@
 {
   "name": "aero-agent-roles",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "The role layer for aerospace engineering agents: professional roles that bind verified Aero Agent Skills into end-to-end deliverables, with evidence gates and a human sign-off. A CLI and an MCP server. By Ashforde OU.",
   "license": "Apache-2.0",
   "author": "Ashforde OU <contact@ashforde.org> (https://ashforde.org)",
@@ -9,7 +9,6 @@
     "type": "git",
     "url": "git+https://github.com/ashfordeOU/aero-agent-roles.git"
   },
-  "private": true,
   "bin": {
     "aero-agent-roles": "bin/aero-agent-roles.js",
     "aero-roles": "bin/aero-agent-roles.js"

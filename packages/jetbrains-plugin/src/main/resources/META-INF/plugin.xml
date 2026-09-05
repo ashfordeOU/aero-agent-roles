@@ -1,0 +1,49 @@
+<idea-plugin>
+    <id>com.ashforde.aeroroles</id>
+    <name>Aero Agent Roles</name>
+    <vendor email="contact@ashforde.org" url="https://ashforde.org">Ashforde OÜ</vendor>
+
+    <description><![CDATA[
+        <p><b>Aero Agent Roles</b> — the role layer for aerospace engineering agents.</p>
+        <p>A skill does one task correctly. A role binds the right verified skills from
+        Aero Agent Skills into a certification workflow, in order, with evidence gates and
+        a human sign-off line. 22+ roles across aerodynamics, avionics, flight mechanics,
+        GNC/autonomy, propulsion, structures, space systems, and more.</p>
+        <ul>
+            <li>Role catalog browser (search any role in the IDE)</li>
+            <li>One-click MCP registration for JetBrains AI Assistant / Junie</li>
+            <li>Aero Agent Roles external-registry link (browse roles in the AI Assistant)</li>
+        </ul>
+        <p>Apache-2.0 · <a href="https://github.com/ashfordeOU/aero-agent-roles">github.com/ashfordeOU/aero-agent-roles</a></p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Aero Agent Roles"
+                    anchor="right"
+                    icon="/icons/aero-toolwindow.svg"
+                    factoryClass="com.ashforde.aeroroles.AeroRolesToolWindowFactory"/>
+    </extensions>
+
+    <actions>
+        <action id="aeroroles.copyMcpConfig"
+                class="com.ashforde.aeroroles.CopyMcpConfigAction"
+                text="Copy MCP Server Config (AI Assistant / Junie)"
+                description="Copies the MCP registration JSON for JetBrains AI Assistant or Junie">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="aeroroles.copyRegistryUrl"
+                class="com.ashforde.aeroroles.CopyRegistryUrlAction"
+                text="Copy Aero Agent Roles Registry URL"
+                description="Copies the GitHub registry URL to add in Settings | AI Assistant">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="aeroroles.openDocs"
+                class="com.ashforde.aeroroles.OpenDocsAction"
+                text="Aero Agent Roles Docs"
+                description="Opens the Aero Agent Roles landing page in your browser">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>

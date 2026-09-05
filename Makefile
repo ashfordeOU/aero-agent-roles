@@ -38,10 +38,12 @@ release-law:
 visuals:
 	@python3 scripts/gen_visuals.py
 	@python3 scripts/gen_npm_manifest.py
+	@python3 scripts/gen_jetbrains_catalog.py
 
 visuals-check:
 	@python3 scripts/gen_visuals.py --check
 	@python3 scripts/gen_npm_manifest.py --check
+	@python3 scripts/gen_jetbrains_catalog.py --check
 
 package-test:
 	@node packages/aero-agent-roles/test/smoke.mjs

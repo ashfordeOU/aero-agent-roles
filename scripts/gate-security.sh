@@ -10,11 +10,16 @@ fail=0
 
 # 1. Secret-like strings anywhere in tracked content (exclude this script
 # and the publish machinery, which may reference token FILE PATHS — never
-# values; the pattern still catches real secrets everywhere else)
+# values; the pattern still catches real secrets everywhere else). A
+# line containing GitHub Actions' ${{ secrets.X }} expression references
+# a secret by NAME only (the value lives in GitHub's encrypted store, never
+# in the repo), so those specific lines are excluded too — anything else
+# secret-shaped in a workflow file still fails the gate.
 if grep -rniE "(^|[^a-z])sk-[a-z0-9]{10,}|api[_-]?key[[:space:]]*[:=][[:space:]]*[\"']|BEGIN (RSA |EC |OPENSSH )?PRIVATE|bearer [a-z0-9]{10,}|gh_pat|\\.tmp token|password[[:space:]]*[:=][[:space:]]*[^[:space:]]" \
     --include="*.md" --include="*.py" --include="*.sh" --include="*.yaml" --include="*.yml" . 2>/dev/null \
     | grep -v ".git/" | grep -v "scripts/gate-security.sh" \
-    | grep -v "ops/automation/publish-public.sh"; then
+    | grep -v "ops/automation/publish-public.sh" \
+    | grep -vE '\$\{\{[[:space:]]*secrets\.[A-Za-z_]+[[:space:]]*\}\}'; then
   echo "FAIL: secret-like string found (above)"; fail=1
 fi
 
