@@ -13,6 +13,7 @@ Usage: gen_npm_manifest.py [--check]
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -21,6 +22,26 @@ import gen_visuals as gv  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "packages" / "aero-agent-roles" / "manifest.json"
+
+STAGE_TABLE_RE = re.compile(r"\| Stage.*?\n\|[-|\s]*?\n((?:\|.*\n)+)", re.S)
+
+
+def stage_preview(slug):
+    """Short workflow-arrow preview (first bound-skill cell of each
+    workflow stage row) — this is the ONLY consumer outside gen_visuals.py
+    of a role's raw ROLE.md body, so it re-reads the file directly rather
+    than growing gen_visuals.py's own role dict for a field only the
+    public manifest (and, downstream, the website) needs."""
+    text = (ROOT / "roles" / slug / "ROLE.md").read_text(encoding="utf-8")
+    m = STAGE_TABLE_RE.search(text)
+    if not m:
+        return ""
+    stages = []
+    for line in m.group(1).splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) >= 2 and cells[0] not in ("", "Stage"):
+            stages.append(cells[1].split(" / ")[0][:34])
+    return " -> ".join(stages[:5])
 
 
 def build():
@@ -36,6 +57,7 @@ def build():
             "standards": [rid for rid, _gated in r["standards"]],
             "skills_bound": r["skills_bound"],
             "tests": r["tests"],
+            "stage_preview": stage_preview(r["slug"]),
         })
     standards = []
     for sid in sorted(m["per_standard"]):

@@ -18,7 +18,8 @@
     "far-25"
    ],
    "skills_bound": 28,
-   "tests": 17
+   "tests": 17,
+   "stage_preview": "xfoil-analysis + airfoil-geometry  -> airfoil-optimization -> wing-planform-design -> high-lift-systems -> drag-polar + parasite-drag + lift-"
   },
   {
    "slug": "aircraft-design-engineer",
@@ -30,7 +31,8 @@
     "far-25"
    ],
    "skills_bound": 34,
-   "tests": 27
+   "tests": 27,
+   "stage_preview": "constraint-analysis -> sizing-mission-profile -> openvsp-geometry -> ws-tw-trade -> weight-estimation + tow-estimation"
   },
   {
    "slug": "airworthiness-compliance-engineer",
@@ -43,7 +45,8 @@
     "cs-25"
    ],
    "skills_bound": 9,
-   "tests": 25
+   "tests": 25,
+   "stage_preview": "certification/certification-basis -> far-cs25/special-conditions -> certification/equivalent-level-of- -> certification/means-of-compliance -> far-cs25/airworthiness"
   },
   {
    "slug": "as9100-quality-auditor",
@@ -55,7 +58,8 @@
     "as9100"
    ],
    "skills_bound": 15,
-   "tests": 32
+   "tests": 32,
+   "stage_preview": "as9100/internal-quality-audit -> as9100/document-control -> as9100/management-review -> as9100/risk-management + quality -> as9100/nonconformance-control + co"
   },
   {
    "slug": "data-bus-avionics-engineer",
@@ -69,7 +73,8 @@
     "mil-std-1553"
    ],
    "skills_bound": 5,
-   "tests": 42
+   "tests": 42,
+   "stage_preview": "data-bus/arinc429-protocol, data-b -> data-bus/arinc429-protocol -> data-bus/arinc429-bus-loading -> data-bus/mil-std-1553 -> data-bus/mil-std-1553-bus-loading"
   },
   {
    "slug": "do160-environmental-engineer",
@@ -81,7 +86,8 @@
     "do-160"
    ],
    "skills_bound": 6,
-   "tests": 49
+   "tests": 49,
+   "stage_preview": "avionics/do160/environmental-quali -> avionics/do160/lightning-protectio -> avionics/do160/electrostatic-disch -> avionics/do160/power-input -> avionics/do160/radio-frequency-sus"
   },
   {
    "slug": "do178c-cert-engineer",
@@ -93,7 +99,8 @@
     "do-178c"
    ],
    "skills_bound": 9,
-   "tests": 18
+   "tests": 18,
+   "stage_preview": "do178c/planning -> do178c/development -> do178c/verification -> do178c/software-testing -> do178c/configuration-management"
   },
   {
    "slug": "do254-hardware-engineer",
@@ -106,7 +113,8 @@
     "arp4754a"
    ],
    "skills_bound": 4,
-   "tests": 38
+   "tests": 38,
+   "stage_preview": "do254/hardware-planning -> do254/requirements-capture -> do254/verification -> do254/configuration-management -> core engine"
   },
   {
    "slug": "engineering-analysis-engineer",
@@ -118,7 +126,8 @@
     "asme-y14-5"
    ],
    "skills_bound": 42,
-   "tests": 41
+   "tests": 41,
+   "stage_preview": "isa-atmosphere + density-altitude  -> finite-difference-derivatives + nu -> least-squares-regression + optimiz -> eigenvalue-decomposition + singula -> fast-fourier-transform + fir-filte"
   },
   {
    "slug": "flight-management-engineer",
@@ -132,7 +141,8 @@
     "ac-90-105a"
    ],
    "skills_bound": 11,
-   "tests": 59
+   "tests": 59,
+   "stage_preview": "avionics/flight-management/flight- -> avionics/flight-management/lateral -> avionics/flight-management/radius- -> avionics/flight-management/rhumb-l -> avionics/flight-management/rnp-anp"
   },
   {
    "slug": "flight-mechanics-engineer",
@@ -145,7 +155,8 @@
     "mil-std-1797a"
    ],
    "skills_bound": 38,
-   "tests": 42
+   "tests": 42,
+   "stage_preview": "breguet-range + breguet-endurance  -> climb-performance + descent-perfor -> oei-climb-gradient + energy-height -> rotorcraft-hover-performance + rot -> longitudinal-stability + lateral-d"
   },
   {
    "slug": "flight-test-engineer",
@@ -158,7 +169,8 @@
     "mil-std-1797a"
    ],
    "skills_bound": 21,
-   "tests": 32
+   "tests": 32,
+   "stage_preview": "flight-test-safety -> ground-vibration-testing -> flight-vibration-survey + flutter- -> v-speeds + vmc-determination -> envelope-expansion + load-factor-e"
   },
   {
    "slug": "flight-test-performance-engineer",
@@ -171,7 +183,8 @@
     "cs-25"
    ],
    "skills_bound": 15,
-   "tests": 45
+   "tests": 45,
+   "stage_preview": "flight-test-data-reduction -> (ISA physics, climb leaf method) -> takeoff-distance-determination + e -> landing-distance-determination -> level-acceleration-test + engine-f"
   },
   {
    "slug": "gnc-engineer",
@@ -183,7 +196,8 @@
     "mil-std-1797a"
    ],
    "skills_bound": 23,
-   "tests": 29
+   "tests": 29,
+   "stage_preview": "navigation-frames + space/attitude -> kalman-filter-design + inertial-na -> pid-control-design + lead-lag-comp -> digital-control-design -> observer-design"
   },
   {
    "slug": "guidance-engineer",
@@ -197,7 +211,8 @@
     "cs-25"
    ],
    "skills_bound": 9,
-   "tests": 41
+   "tests": 41,
+   "stage_preview": "guidance/collision-course-guidance -> guidance/proportional-navigation,  -> guidance/proportional-navigation,  -> guidance/proportional-navigation,  -> guidance/midcourse-guidance"
   },
   {
    "slug": "high-speed-aerodynamics-engineer",
@@ -209,7 +224,8 @@
     "naca-tr-824"
    ],
    "skills_bound": 19,
-   "tests": 35
+   "tests": 35,
+   "stage_preview": "(ISA, offline) -> isentropic-flow-relations -> transonic-similarity + swept-wing- -> normal-shock + oblique-shock + reg -> prandtl-meyer"
   },
   {
    "slug": "ndt-engineer",
@@ -222,7 +238,8 @@
     "nas-410"
    ],
    "skills_bound": 10,
-   "tests": 62
+   "tests": 62,
+   "stage_preview": "ndt/ndt-method-selection -> ndt/eddy-current-inspection -> ndt/liquid-penetrant-inspection -> ndt/radiographic-inspection -> ndt/computed-tomography"
   },
   {
    "slug": "numerical-analysis-engineer",
@@ -234,7 +251,8 @@
     "asme-vv-20"
    ],
    "skills_bound": 10,
-   "tests": 52
+   "tests": 52,
+   "stage_preview": "numerics/numerical-integration -> numerics/root-finding -> numerics/finite-difference-derivat -> numerics/ode-solvers -> numerics/interpolation"
   },
   {
    "slug": "propulsion-engineer",
@@ -246,7 +264,8 @@
     "far-33"
    ],
    "skills_bound": 34,
-   "tests": 31
+   "tests": 31,
+   "stage_preview": "gas-turbine-cycle + real-cycle-eff -> bypass-ratio-trade + regenerative- -> turbofan-off-design -> compressor-map + multi-stage-compr -> turbine-blade-cooling"
   },
   {
    "slug": "space-systems-engineer",
@@ -258,7 +277,8 @@
     "ecss"
    ],
    "skills_bound": 45,
-   "tests": 33
+   "tests": 33,
+   "stage_preview": "mission-delta-v-budget + keplerian -> hohmann-transfer + bi-elliptic-tra -> launch-window-analysis + c3-depart -> satellite-coverage + walker-delta- -> eclipse-time + orbital-perturbatio"
   },
   {
    "slug": "state-estimation-engineer",
@@ -270,7 +290,8 @@
     "arp4754a"
    ],
    "skills_bound": 7,
-   "tests": 42
+   "tests": 42,
+   "stage_preview": "(all estimation-filtering leaves) -> complementary-filter -> rts-smoother + interacting-multipl -> alpha-beta-filter -> extended-kalman-filter + unscented"
   },
   {
    "slug": "structures-loads-engineer",
@@ -283,7 +304,8 @@
     "mmpsd"
    ],
    "skills_bound": 38,
-   "tests": 37
+   "tests": 37,
+   "stage_preview": "gust-maneuver-loads + landing-grou -> beam-frame-analysis + truss-analys -> calculix-nonlinear + buckling-anal -> lug-joint-analysis + contact-analy -> modal-analysis + beam-vibration"
   }
  ],
  "standards": [
