@@ -58,31 +58,37 @@ each stage must produce, and the hard boundary where a human signs.
 
 ## Quick start
 
-**Browse and pick a role — one command:**
+**Every package Aero Agent Roles ships — pick the one that fits your host:**
+
+| Package / channel | What it gives you | Get it |
+|---|---|---|
+| **npm CLI** `aero-agent-roles` | `list` · `search` · `show` · `install` · `mcp` · `where` — one zero-dependency binary | `npm i -g aero-agent-roles` (aliases: `aero-roles`, `npx aero-roles`) |
+| **MCP server** (same package) | `search_roles` / `get_role` tools for any MCP host — Claude Desktop, VS Code, Cursor, Windsurf, Gemini CLI, JetBrains AI Assistant | add the JSON block below to your MCP config |
+| **JetBrains plugin** | role catalog tool window + **Copy MCP Config** / **Copy Registry URL** / **Docs** actions inside the IDE | [Marketplace plugin 34121](https://plugins.jetbrains.com/plugin/34121-aero-agent-roles) → Settings → Plugins → `Aero Agent Roles` |
+| **Claude Code plugin** | role routers on demand via the agent-skills marketplace | `claude plugin marketplace add ashfordeOU/aero-agent-roles` |
+| **GitHub repo** | full source: every role, cores, tests, docs | `git clone https://github.com/ashfordeOU/aero-agent-roles` |
+| **Role folders (any host)** | copy any role's folder into your harness — roles are files | `npx aero-roles install <role> --dest <dir>` or clone + `cp -r` |
+
+**1 · Browse without installing (npm CLI, no setup):**
 
 ```bash
-npx -y aero-roles list
+npx -y aero-roles list                       # browse domains + roles
 npx -y aero-roles search "DO-178C certification plan"
-npx -y aero-roles show do178c-cert-engineer
+npx -y aero-roles show do178c-cert-engineer  # print one ROLE.md
 ```
 
-**Or install the npm CLI** — list, search, show, install, and the MCP server in one zero-dependency binary:
+**2 · Install the CLI + run a role's executable engine:**
 
 ```bash
-npm i -g aero-agent-roles            # or: npx aero-agent-roles <command>
+npm i -g aero-agent-roles
 aero-roles list
 aero-roles search "ARP4754A integration plan"
+# install a role folder into a working directory, then build its deliverable:
+aero-roles install do178c-cert-engineer --dest ./my-program
+python3 ./my-program/do178c-cert-engineer/cli.py build --out plan.md
 ```
 
-Package: **[aero-agent-roles on npm](https://www.npmjs.com/package/aero-agent-roles)** (published by Ashforde OÜ, Apache-2.0).
-
-**Or install the JetBrains IDE plugin** (AI Assistant / Junie integration in the IDE):
-
-- Marketplace: **[Aero Agent Roles on the JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34121-aero-agent-roles)**
-- In the IDE: **Settings → Plugins → Marketplace** → search `Aero Agent Roles` → Install
-- The plugin adds a tool window with the role catalog, a **Copy MCP Server Config** action (one-click registration for AI Assistant / Junie), a **Copy Registry URL** action for the skills router, and a **Docs** action to the landing page
-
-**Or as an MCP server** — Claude Desktop, Cursor, VS Code, Windsurf, or any Model Context Protocol host:
+**3 · Connect over MCP** — Claude Desktop, VS Code, Cursor, Windsurf, Gemini CLI, or any Model Context Protocol host:
 
 ```json
 {
@@ -92,14 +98,27 @@ Package: **[aero-agent-roles on npm](https://www.npmjs.com/package/aero-agent-ro
 }
 ```
 
-**Or as a Claude Code plugin** — the role routers load on demand and pull the bound skills:
+**4 · Install the JetBrains IDE plugin** (AI Assistant / Junie integration, role catalog in the IDE):
+
+- Marketplace: **[Aero Agent Roles on the JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34121-aero-agent-roles)**
+- In the IDE: **Settings → Plugins → Marketplace** → search `Aero Agent Roles` → Install
+- The plugin adds a tool window with the role catalog, a **Copy MCP Server Config** action (one-click registration for AI Assistant / Junie), a **Copy Registry URL** action, and a **Docs** action to the landing page
+
+**5 · Or as a Claude Code plugin** — role routers load on demand and pull the bound skills:
 
 ```bash
 claude plugin marketplace add ashfordeOU/aero-agent-roles
 claude plugin install aero-agent-roles@aero-agent-roles
 ```
 
-Every role ships as an executable worker: core engine + CLI + filled template + tests, gated by `make validate` (5/5) and the 100% audit.
+**6 · Or copy a folder** — roles are just files:
+
+```bash
+git clone https://github.com/ashfordeOU/aero-agent-roles
+cp -r aero-agent-roles/roles/do178c-cert-engineer ~/your-workspace/
+```
+
+Every role ships as an executable worker: core engine + CLI + filled template + tests, gated by `make validate` (5/5) and the 100% audit. Publisher: **[aero-agent-roles on npm](https://www.npmjs.com/package/aero-agent-roles)** by Ashforde OÜ, Apache-2.0.
 
 ## Domain map
 

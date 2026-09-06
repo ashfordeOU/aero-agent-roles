@@ -45,7 +45,7 @@ be purchased or accessed through the publishers' official channels.
 | do-236c | RTCA DO-236C, MASPS: RNP for Area Navigation | RTCA | flight-management-engineer | True |
 | do-254 | RTCA DO-254 / EUROCAE ED-80, Design Assurance for Airborne Electronic Hardware | RTCA/EUROCAE | do254-hardware-engineer | True |
 | do-283a | RTCA DO-283A, MOPS for RNP Area Navigation (RNP AR) | RTCA | flight-management-engineer | True |
-| ecss | ECSS engineering + product-assurance standards (E-ST-10/32/33/40, Q-ST-80) | ECSS | space-systems-engineer | True |
+| ecss | ECSS engineering + product-assurance standards (E-ST-10/32/33/40, Q-ST-80) | ECSS | adcs-engineer, rocket-propulsion-engineer, space-systems-engineer | True |
 | far-25 | 14 CFR Part 25, Airworthiness Standards: Transport Category Airplanes | FAA | aerodynamics-engineer, aircraft-design-engineer, aircraft-performance-engineer, aircraft-systems-sizing-engineer, airworthiness-compliance-engineer, composites-structures-engineer, fem-analysis-engineer, flight-mechanics-engineer, flight-test-engineer, flight-test-performance-engineer, flight-test-planning-engineer, guidance-engineer, safety-assessment-engineer, stability-control-flight-test-engineer, structures-loads-engineer | True |
 | far-29 | far-29 | unknown — add to STANDARD_META | aircraft-performance-engineer | True |
 | far-33 | 14 CFR Part 33, Airworthiness Standards: Aircraft Engines | FAA | propulsion-engineer | False |
