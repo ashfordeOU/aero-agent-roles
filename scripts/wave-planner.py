@@ -119,6 +119,29 @@ CLUSTER_ROLE_MAP = {
                               "Modeling and Simulation V&V Plan"),
     "flight-mechanics/performance": ("aircraft-performance-engineer",
                                      "Aircraft Performance Analysis Report"),
+    # wave R7+ targets (ledger 2026-09-06 — families with zero roles yet)
+    "vehicle-design/sizing": ("aircraft-systems-sizing-engineer",
+                              "Aircraft System Sizing Report"),
+    "manufacturing-quality/as9100": (
+        "quality-management-engineer",
+        "AS9100 Quality Management System Audit Report"),
+    "structures/composites": ("composites-structures-engineer",
+                              "Composite Structure Analysis and Certification Report"),
+    "structures/fem": ("fem-analysis-engineer",
+                       "Finite Element Analysis Report"),
+    "propulsion/rocket": ("rocket-propulsion-engineer",
+                          "Rocket Propulsion System Design Report"),
+    "space-systems/adcs": ("adcs-engineer",
+                           "Attitude Determination and Control Subsystem Report"),
+    "manufacturing-quality/assembly": (
+        "assembly-integration-engineer",
+        "Assembly and Installation Quality Plan"),
+    "propulsion/gas-turbine-cycle": (
+        "gas-turbine-cycle-engineer",
+        "Gas Turbine Cycle Analysis Report"),
+    "space-systems/mission-design": (
+        "mission-design-engineer",
+        "Space Mission Design Report"),
 }
 
 
