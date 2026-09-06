@@ -1,13 +1,26 @@
 {
  "schema": "aero-agent-roles/manifest@1",
  "counts": {
-  "roles": 33,
+  "roles": 35,
   "domains": 12,
-  "skills_bound": 534,
-  "tests": 1335,
+  "skills_bound": 562,
+  "tests": 1419,
   "standards": 24
  },
  "roles": [
+  {
+   "slug": "adcs-engineer",
+   "title": "ADCS Engineer",
+   "domain": "space-systems",
+   "deliverable_type": "Attitude Determination and Control Subsystem Report",
+   "status": "draft",
+   "standards": [
+    "ecss"
+   ],
+   "skills_bound": 14,
+   "tests": 46,
+   "stage_preview": "adcs/pointing-error-budget -> adcs/environmental-disturbance-tor -> adcs/gravity-gradient-stabilizatio -> adcs/star-tracker -> adcs/magnetometer-calibration"
+  },
   {
    "slug": "aerodynamics-engineer",
    "title": "Aerodynamics Engineer",
@@ -379,6 +392,19 @@
    "stage_preview": "manufacturing-quality/as9100/gage- -> manufacturing-quality/as9100/gage- -> manufacturing-quality/as9100/attri -> manufacturing-quality/as9100/stati -> manufacturing-quality/as9100/indiv"
   },
   {
+   "slug": "rocket-propulsion-engineer",
+   "title": "Rocket Propulsion Engineer",
+   "domain": "propulsion",
+   "deliverable_type": "rocket propulsion system design report",
+   "status": "draft",
+   "standards": [
+    "ecss"
+   ],
+   "skills_bound": 14,
+   "tests": 38,
+   "stage_preview": "propulsion/rocket/propellant-selec -> propulsion/rocket/rocket-sizing, r -> propulsion/rocket/rocket-gravity-l -> propulsion/rocket/rocket-engine-cy -> propulsion/rocket/combustion-chamb"
+  },
+  {
    "slug": "safety-assessment-engineer",
    "title": "Safety Assessment Engineer (ARP4761A)",
    "domain": "systems-engineering-safety",
@@ -622,6 +648,8 @@
    "publisher": "ECSS",
    "gated": true,
    "roles": [
+    "adcs-engineer",
+    "rocket-propulsion-engineer",
     "space-systems-engineer"
    ]
   },

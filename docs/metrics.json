@@ -2,8 +2,8 @@
   "domains": 12,
   "gates": 5,
   "license": "Apache-2.0",
-  "roles": 33,
-  "skills_bound": 534,
+  "roles": 35,
+  "skills_bound": 562,
   "standards": 24,
-  "tests": 1335
+  "tests": 1419
 }

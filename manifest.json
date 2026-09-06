@@ -1,8 +1,19 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 33,
+ "count": 35,
  "roles": [
+  {
+   "slug": "adcs-engineer",
+   "title": "ADCS Engineer",
+   "domain": "space-systems",
+   "deliverable_type": "Attitude Determination and Control Subsystem Report",
+   "status": "draft",
+   "standards": [
+    "ecss"
+   ],
+   "skills_bound": 14
+  },
   {
    "slug": "aerodynamics-engineer",
    "title": "Aerodynamics Engineer",
@@ -318,6 +329,17 @@
     "as9100"
    ],
    "skills_bound": 10
+  },
+  {
+   "slug": "rocket-propulsion-engineer",
+   "title": "Rocket Propulsion Engineer",
+   "domain": "propulsion",
+   "deliverable_type": "rocket propulsion system design report",
+   "status": "draft",
+   "standards": [
+    "ecss"
+   ],
+   "skills_bound": 14
   },
   {
    "slug": "safety-assessment-engineer",
