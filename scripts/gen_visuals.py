@@ -701,8 +701,8 @@ def block_badges(m):
         b("mcp server", "claude_%C2%B7_cursor_%C2%B7_vscode", "ec4899", "packages/aero-agent-roles/lib/mcp.js",
           alt="MCP server for Claude Desktop, Cursor, VS Code"),
         b("claude code", "plugin", "f97316", ".claude-plugin/"),
-        b("jetbrains", "plugin_(marketplace_pending)", "6e7590", "packages/jetbrains-plugin/",
-          alt="JetBrains plugin, built, marketplace submission pending"),
+        b("jetbrains", "plugin_34121", "a78bfa", "packages/jetbrains-plugin/",
+          alt="JetBrains plugin, live on the Marketplace (com.ashforde.aeroroles, review pending)"),
     ]
     return ("<p align=\"center\">\n" + "\n".join(row) + "\n</p>\n"
             + "<p align=\"center\">\n" + "\n".join(dist) + "\n</p>")
