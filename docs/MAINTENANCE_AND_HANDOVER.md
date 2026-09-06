@@ -7,7 +7,7 @@ What a new maintainer (human or agent) needs to operate this repo cold.
 Aero Agent Roles — the roles bank on Aero Agent Skills. Each role is an
 EXECUTABLE WORKER: a domain core engine + CLI that builds a real
 deliverable, gate-checks it, emits an evidence bundle, and tailors to a
-customer program profile. 29 roles today, growing in role waves
+customer program profile. 33 roles today, growing in role waves
 (docs/WAVE-BRIEF.md).
 
 ## Repo layout

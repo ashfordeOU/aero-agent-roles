@@ -13,15 +13,15 @@
 
 <!-- gen:statline -->
 <p align="center">
-  <img src="docs/statline-dark.png" alt="33 roles · 534 skills bound · 1335 offline tests · 24 standards · 5/5 gates · Apache-2.0" width="100%">
+  <img src="docs/statline-dark.png" alt="34 roles · 548 skills bound · 1381 offline tests · 24 standards · 5/5 gates · Apache-2.0" width="100%">
 </p>
 <!-- /gen:statline -->
 
 <!-- gen:badges -->
 <p align="center">
-  <a href="roles/"><img src="https://img.shields.io/badge/roles-33-a78bfa?style=flat&labelColor=1a1e35" alt="roles 33"></a>
-  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-534-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 534"></a>
-  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-1335-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 1335"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/roles-34-a78bfa?style=flat&labelColor=1a1e35" alt="roles 34"></a>
+  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-548-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 548"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-1381-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 1381"></a>
   <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-24-f97316?style=flat&labelColor=1a1e35" alt="standards 24"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/format-agentskills.io-8b5cf6?style=flat&labelColor=1a1e35" alt="format agentskills.io"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2ea043?style=flat&labelColor=1a1e35" alt="Apache-2.0"></a>
@@ -104,7 +104,7 @@ Every role ships as an executable worker: core engine + CLI + filled template + 
 ## Domain map
 
 <!-- gen:overview -->
-**33 roles** across **12 domains**, binding **534 skills** from Aero Agent Skills and verified by **1335 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
+**34 roles** across **12 domains**, binding **548 skills** from Aero Agent Skills and verified by **1381 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
 <!-- /gen:overview -->
 
 <p align="center">
@@ -130,6 +130,7 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 <!-- gen:role-table -->
 | Role | Deliverable | Skills bound |
 |---|---|---|
+| [ADCS Engineer](roles/adcs-engineer/ROLE.md) | Attitude Determination and Control Subsystem Report | 14 |
 | [AS9100 Quality / Internal Auditor](roles/as9100-quality-auditor/ROLE.md) | audit plan + findings report + corrective-action follow-up | 15 |
 | [AS9100 Quality Management Engineer](roles/quality-management-engineer/ROLE.md) | AS9100 quality management system audit report | 10 |
 | [Aerodynamics Engineer](roles/aerodynamics-engineer/ROLE.md) | aerodynamic design + analysis report | 28 |
@@ -256,14 +257,15 @@ scripts/             # gates and role tooling
 
 ## Roadmap
 
-**Shipped:** 29 professional roles binding 490 verified Aero Agent
+**Shipped:** 33 professional roles binding 534 verified Aero Agent
 Skills leaves across 12 engineering domains, every role an executable
 worker (core engine + CLI + filled template + tests) gated by
 `make validate` (5/5) and the 100% audit — from DO-178C certification
-engineer and DO-254 hardware engineer to structures, avionics data
-bus, GNC guidance/state-estimation, flight test performance, safety
-assessment (ARP4761A), systems integration (ARP4754A), MBSE, NDT, and
-high-speed aerodynamics. Evidence protocol (`--bundle`) emits
+engineer and DO-254 hardware engineer to structures, composites,
+FEA, avionics data bus, GNC guidance/state-estimation, flight test
+performance, safety assessment (ARP4761A), systems integration
+(ARP4754A), MBSE, quality management (AS9100), NDT, and high-speed
+aerodynamics. Evidence protocol (`--bundle`) emits
 deliverable + model.json + gates.json + provenance.json for any
 harness; program profiles (`--profile`) tailor one engine to any
 customer's basis; npm CLI + MCP server packaged
@@ -273,10 +275,10 @@ all shipped from the public tree with zero human action.
 
 **Now:** role waves selected deterministically by the coverage planner
 (`scripts/wave-planner.py`) and dispatched autonomously (30-min tick,
-monitor-gated) — closing the weakest families first (manufacturing
-quality, vehicle design), every new role landing with its core
-engine, filled deliverable, bundle protocol, and dispatch cross-checks
-against the live skills library.
+monitor-gated) — expanding into every engineering family (propulsion,
+space systems, structures, quality), every new role landing with its
+core engine, filled deliverable, bundle protocol, and dispatch
+cross-checks against the live skills library.
 
 **Later:** the role-count release ladder continues (v1.2.0 @ 50
 roles) with npm publish from the public tree; role chains that

@@ -246,13 +246,23 @@ class TestBuilderAndGates(unittest.TestCase):
         self.assertIn("n_x_cr", low)
 
     def test_standalone_no_skills_repo(self):
-        # Core must work with no AeroSkills present.
+        # Core must work with no AeroSkills present. Restore the env var
+        # afterwards so later tests in the same pytest process (which
+        # import cli.py and re-read AEROSKILLS_DEV at import time) still
+        # see the real skills checkout.
+        old = os.environ.get("AEROSKILLS_DEV")
         os.environ["AEROSKILLS_DEV"] = "/nonexistent"
-        model = core.build_report(core.example_item())
-        gates = core.check_report(model)
-        self.assertTrue(gates["all_pass"], gates)
-        md = core.render_report_markdown(model)
-        self.assertGreater(len(md), 3000)
+        try:
+            model = core.build_report(core.example_item())
+            gates = core.check_report(model)
+            self.assertTrue(gates["all_pass"], gates)
+            md = core.render_report_markdown(model)
+            self.assertGreater(len(md), 3000)
+        finally:
+            if old is None:
+                os.environ.pop("AEROSKILLS_DEV", None)
+            else:
+                os.environ["AEROSKILLS_DEV"] = old
 
 
 if __name__ == "__main__":
