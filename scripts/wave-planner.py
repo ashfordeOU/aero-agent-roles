@@ -104,6 +104,21 @@ CLUSTER_ROLE_MAP = {
         "Optimal Control Design Report"),
     "vehicle-design/landing-gear": ("landing-gear-engineer",
                                     "Landing Gear System Design Report"),
+    # wave R6+ targets (coverage matrix 2026-09-06)
+    "avionics/fsw": ("flight-software-engineer",
+                     "Flight Software Design and Verification Plan"),
+    "avionics/surveillance": ("surveillance-systems-engineer",
+                              "Surveillance System Compliance Report"),
+    "flight-test-operations/planning": (
+        "flight-test-planning-engineer",
+        "Flight Test Plan and Requirements Traceability"),
+    "flight-test-operations/stability": (
+        "stability-control-flight-test-engineer",
+        "Stability and Control Flight Test Report"),
+    "cross-cutting/sep2640": ("modeling-simulation-engineer",
+                              "Modeling and Simulation V&V Plan"),
+    "flight-mechanics/performance": ("aircraft-performance-engineer",
+                                     "Aircraft Performance Analysis Report"),
 }
 
 
