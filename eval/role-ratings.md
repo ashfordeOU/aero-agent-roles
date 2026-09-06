@@ -9,7 +9,7 @@ pipeline: generated
 
 # Role ratings
 
-Audit: CEO, Ashforde OÜ - regenerated 2026-09-06 00:50 UTC · mechanical evidence only (tests, blanks, audit-100, bound skills).
+Audit: CEO, Ashforde OÜ - regenerated 2026-09-06 01:13 UTC · mechanical evidence only (tests, blanks, audit-100, bound skills).
 
 | Role | Rating | Evidence |
 |---|---|---|
@@ -33,6 +33,7 @@ Audit: CEO, Ashforde OÜ - regenerated 2026-09-06 00:50 UTC · mechanical eviden
 | ndt-engineer | 10.0 | all checks pass |
 | numerical-analysis-engineer | 10.0 | all checks pass |
 | propulsion-engineer | 10.0 | all checks pass |
+| safety-assessment-engineer | 10.0 | all checks pass |
 | space-systems-engineer | 10.0 | all checks pass |
 | state-estimation-engineer | 10.0 | all checks pass |
 | structures-loads-engineer | 10.0 | all checks pass |

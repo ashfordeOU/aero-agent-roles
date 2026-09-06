@@ -167,6 +167,7 @@ STANDARD_META = {
     "arinc-429": ("ARINC 429 (Mark 33 DITS)", "ARINC / Aeronautical Radio Inc"),
     "arinc-664": ("ARINC 664 Part 7 (AFDX)", "ARINC / Aeronautical Radio Inc"),
     "arp4754a": ("SAE ARP4754A, Development of Civil Aircraft and Systems", "SAE"),
+    "arp4761a": ("SAE ARP4761A, Guidelines and Methods for Conducting the Safety Assessment Process on Civil Airborne Systems and Equipment", "SAE"),
     "as9100": ("AS9100D, Aerospace QMS Requirements", "SAE / IAQG"),
     "asme-vv-20": ("ASME V&V 20-2009, Verification and Validation in CFD and Heat Transfer", "ASME"),
     "asme-y14-5": ("ASME Y14.5, Dimensioning and Tolerancing", "ASME"),

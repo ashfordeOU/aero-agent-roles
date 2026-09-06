@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 24,
+ "count": 25,
  "roles": [
   {
    "slug": "aerodynamics-engineer",
@@ -235,6 +235,20 @@
     "far-33"
    ],
    "skills_bound": 34
+  },
+  {
+   "slug": "safety-assessment-engineer",
+   "title": "Safety Assessment Engineer (ARP4761A)",
+   "domain": "systems-engineering-safety",
+   "deliverable_type": "Aircraft/System Safety Assessment Report (ARP4761A)",
+   "status": "draft",
+   "standards": [
+    "arp4761a",
+    "arp4754a",
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 20
   },
   {
    "slug": "space-systems-engineer",

@@ -13,15 +13,15 @@
 
 <!-- gen:statline -->
 <p align="center">
-  <img src="docs/statline-dark.png" alt="24 roles · 446 skills bound · 919 offline tests · 22 standards · 5/5 gates · Apache-2.0" width="100%">
+  <img src="docs/statline-dark.png" alt="25 roles · 466 skills bound · 966 offline tests · 22 standards · 5/5 gates · Apache-2.0" width="100%">
 </p>
 <!-- /gen:statline -->
 
 <!-- gen:badges -->
 <p align="center">
-  <a href="roles/"><img src="https://img.shields.io/badge/roles-24-a78bfa?style=flat&labelColor=1a1e35" alt="roles 24"></a>
-  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-446-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 446"></a>
-  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-919-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 919"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/roles-25-a78bfa?style=flat&labelColor=1a1e35" alt="roles 25"></a>
+  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-466-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 466"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-966-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 966"></a>
   <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-22-f97316?style=flat&labelColor=1a1e35" alt="standards 22"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/format-agentskills.io-8b5cf6?style=flat&labelColor=1a1e35" alt="format agentskills.io"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2ea043?style=flat&labelColor=1a1e35" alt="Apache-2.0"></a>
@@ -59,7 +59,7 @@ each stage must produce, and the hard boundary where a human signs.
 ## Domain map
 
 <!-- gen:overview -->
-**24 roles** across **12 domains**, binding **446 skills** from Aero Agent Skills and verified by **919 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
+**25 roles** across **12 domains**, binding **466 skills** from Aero Agent Skills and verified by **966 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
 <!-- /gen:overview -->
 
 <p align="center">
@@ -105,6 +105,7 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 | [NDT Engineer](roles/ndt-engineer/ROLE.md) | nondestructive test plan + method selection report | 10 |
 | [Numerical Analysis Engineer](roles/numerical-analysis-engineer/ROLE.md) | numerical methods verification memo | 10 |
 | [Propulsion Engineer](roles/propulsion-engineer/ROLE.md) | propulsion system design + cycle analysis report | 34 |
+| [Safety Assessment Engineer (ARP4761A)](roles/safety-assessment-engineer/ROLE.md) | Aircraft/System Safety Assessment Report (ARP4761A) | 20 |
 | [Space Systems Engineer](roles/space-systems-engineer/ROLE.md) | spacecraft mission + subsystem design report | 45 |
 | [State Estimation Engineer](roles/state-estimation-engineer/ROLE.md) | navigation state estimator design report | 7 |
 | [Structures and Loads Engineer](roles/structures-loads-engineer/ROLE.md) | loads + strength/stability analysis report | 38 |

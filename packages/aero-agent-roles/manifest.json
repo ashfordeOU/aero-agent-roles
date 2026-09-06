@@ -1,10 +1,10 @@
 {
  "schema": "aero-agent-roles/manifest@1",
  "counts": {
-  "roles": 24,
+  "roles": 25,
   "domains": 12,
-  "skills_bound": 446,
-  "tests": 919,
+  "skills_bound": 466,
+  "tests": 966,
   "standards": 22
  },
  "roles": [
@@ -282,6 +282,22 @@
    "stage_preview": "gas-turbine-cycle + real-cycle-eff -> bypass-ratio-trade + regenerative- -> turbofan-off-design -> compressor-map + multi-stage-compr -> turbine-blade-cooling"
   },
   {
+   "slug": "safety-assessment-engineer",
+   "title": "Safety Assessment Engineer (ARP4761A)",
+   "domain": "systems-engineering-safety",
+   "deliverable_type": "Aircraft/System Safety Assessment Report (ARP4761A)",
+   "status": "draft",
+   "standards": [
+    "arp4761a",
+    "arp4754a",
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 20,
+   "tests": 47,
+   "stage_preview": "arp4761a/safety-assessment -> arp4761a/functional-hazard-assessm -> arp4761a/preliminary-system-safety -> arp4761a/fta-fmea -> arp4761a/fault-tree-importance-mea"
+  },
+  {
    "slug": "space-systems-engineer",
    "title": "Space Systems Engineer",
    "domain": "space-systems",
@@ -373,17 +389,19 @@
     "do254-hardware-engineer",
     "guidance-engineer",
     "mbse-modeling-engineer",
+    "safety-assessment-engineer",
     "state-estimation-engineer",
     "systems-integration-engineer"
    ]
   },
   {
    "id": "arp4761a",
-   "name": "arp4761a",
-   "publisher": "unknown",
+   "name": "SAE ARP4761A, Guidelines and Methods for Conducting the Safety Assessment Process on Civil Airborne Systems and Equipment",
+   "publisher": "SAE",
    "gated": true,
    "roles": [
     "mbse-modeling-engineer",
+    "safety-assessment-engineer",
     "systems-integration-engineer"
    ]
   },
@@ -419,11 +437,12 @@
    "id": "cs-25",
    "name": "EASA CS-25, Certification Specifications",
    "publisher": "EASA",
-   "gated": false,
+   "gated": true,
    "roles": [
     "airworthiness-compliance-engineer",
     "flight-test-performance-engineer",
-    "guidance-engineer"
+    "guidance-engineer",
+    "safety-assessment-engineer"
    ]
   },
   {
@@ -484,7 +503,7 @@
    "id": "far-25",
    "name": "14 CFR Part 25, Airworthiness Standards: Transport Category Airplanes",
    "publisher": "FAA",
-   "gated": false,
+   "gated": true,
    "roles": [
     "aerodynamics-engineer",
     "aircraft-design-engineer",
@@ -493,6 +512,7 @@
     "flight-test-engineer",
     "flight-test-performance-engineer",
     "guidance-engineer",
+    "safety-assessment-engineer",
     "structures-loads-engineer"
    ]
   },

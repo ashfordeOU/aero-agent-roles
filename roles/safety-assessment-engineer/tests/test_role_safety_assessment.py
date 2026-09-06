@@ -1,0 +1,137 @@
+#!/usr/bin/env python3
+"""Role test: Safety Assessment Engineer (ARP4761A).
+
+Verifies (offline, no network):
+1. Every skill bound in ROLE.md frontmatter RESOLVES to a real leaf in
+   the aero-agent-skills repo (the pinned skills_release band).
+2. The workflow stage order is deterministic and complete.
+3. Evidence-gate smoke: the worked example (flight control system
+   function) produces a complete safety assessment report with no blank
+   sections and honest draft markers.
+"""
+import os
+import re
+import sys
+import unittest
+
+ROLES_REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__)))))          # repo root (4 up from tests/)
+# Bound-skill resolution requires the Aero Agent Skills checkout. It is a
+# cross-repo dev check: when the skills repo is absent (fresh public clone),
+# skip resolution rather than fail - the role's bound list is verified in CI.
+AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills"))
+HAS_SKILLS = os.path.isdir(os.path.join(AEROSKILLS, "skills"))
+ROLE_DIR = os.path.join(ROLES_REPO, "roles", "safety-assessment-engineer")
+TEMPLATE = os.path.join(ROLE_DIR, "templates", "ssa-report-template.md")
+
+EXPECTED_BOUND = [
+    "systems-engineering-safety/arp4761a/beta-factor-analysis",
+    "systems-engineering-safety/arp4761a/common-cause-analysis",
+    "systems-engineering-safety/arp4761a/event-tree-analysis",
+    "systems-engineering-safety/arp4761a/failure-mode-criticality",
+    "systems-engineering-safety/arp4761a/failure-rate-estimation",
+    "systems-engineering-safety/arp4761a/fault-tree-importance-measures",
+    "systems-engineering-safety/arp4761a/fault-tree-uncertainty-analysis",
+    "systems-engineering-safety/arp4761a/fmes-coverage-analysis",
+    "systems-engineering-safety/arp4761a/fta-fmea",
+    "systems-engineering-safety/arp4761a/functional-hazard-assessment",
+    "systems-engineering-safety/arp4761a/maintainability-prediction",
+    "systems-engineering-safety/arp4761a/markov-analysis",
+    "systems-engineering-safety/arp4761a/operating-support-hazard-analysis",
+    "systems-engineering-safety/arp4761a/particular-risk-analysis",
+    "systems-engineering-safety/arp4761a/preliminary-system-safety-assessment",
+    "systems-engineering-safety/arp4761a/reliability-block-diagram",
+    "systems-engineering-safety/arp4761a/reliability-growth-analysis",
+    "systems-engineering-safety/arp4761a/safety-assessment",
+    "systems-engineering-safety/arp4761a/ssa-closure",
+    "systems-engineering-safety/arp4761a/zonal-safety-analysis",
+]
+
+EXPECTED_STAGES = [
+    "Assessment plan + basis", "FHA", "PSSA allocation", "FTA",
+    "FTA quantification", "FTA uncertainty", "FMEA/FMECA",
+    "Failure-rate data", "Event tree", "CCA", "Dynamic + support models",
+    "Support hazards", "SSA closure",
+]
+
+
+def read_role_md():
+    p = os.path.join(ROLE_DIR, "ROLE.md")
+    if not os.path.exists(p):
+        return None
+    return open(p).read()
+
+
+class TestSafetyAssessmentRole(unittest.TestCase):
+
+    def test_bound_skills_resolve_in_aeroskills(self):
+        if not HAS_SKILLS:
+            self.skipTest("Aero Agent Skills checkout not present (cross-repo dev check)")
+        for leaf in EXPECTED_BOUND:
+            sk = os.path.join(AEROSKILLS, "skills", leaf, "SKILL.md")
+            self.assertTrue(
+                os.path.exists(sk),
+                f"bound skill not found in aero-agent-skills: {leaf}")
+            logic = os.path.join(AEROSKILLS, "skills", leaf, "scripts")
+            logic_files = [f for f in os.listdir(logic)
+                           if f.endswith("_logic.py")] \
+                if os.path.isdir(logic) else []
+            self.assertTrue(logic_files,
+                            f"bound leaf ships no logic file: {leaf}")
+
+    def test_bound_skills_listed_in_frontmatter(self):
+        role = read_role_md()
+        self.assertIsNotNone(role)
+        for leaf in EXPECTED_BOUND:
+            self.assertIn(leaf, role, f"missing in ROLE.md skills_bound: {leaf}")
+
+    def test_workflow_stages_deterministic(self):
+        role = read_role_md()
+        # Parse the workflow stage column from the markdown table under
+        # "## Workflow": rows like "| 1. Assessment plan + basis | ..."
+        wf = role.split("## Workflow", 1)[1]
+        wf = wf.split("## Evidence gates", 1)[0]
+        stage_rows = re.findall(r"^\|\s*(\d+)\.\s+([^|]+?)\s*\|", wf, re.M)
+        self.assertGreaterEqual(len(stage_rows), len(EXPECTED_STAGES),
+                                "workflow table has too few rows")
+        parsed = [name.strip() for _, name in stage_rows]
+        numbers = [int(n) for n, _ in stage_rows]
+        self.assertEqual(numbers, sorted(numbers),
+                         "workflow stage numbers not ascending")
+        self.assertEqual(parsed[:len(EXPECTED_STAGES)], EXPECTED_STAGES,
+                         "workflow stage order/names mismatch")
+
+    def test_deliverable_template_complete(self):
+        if not os.path.exists(TEMPLATE):
+            self.fail("ssa-report-template.md missing")
+        text = open(TEMPLATE).read()
+        # all 9 numbered sections present
+        for n in range(1, 10):
+            self.assertTrue(
+                re.search(rf"^## {n}\. ", text, re.M),
+                f"section {n} missing")
+        self.assertEqual(text.count("___"), 0, "template has blank fields")
+        self.assertIn("DRAFT", text)
+        low = text.lower()
+        self.assertIn("not an approval", low)
+        self.assertIn("document", low)
+
+    def test_forbidden_lines_present(self):
+        role = read_role_md()
+        for phrase in ["issue certification approval", "regulatory sign-off",
+                       "reproduce proprietary", "sign_off_required: true"]:
+            self.assertIn(phrase, role, f"missing boundary: {phrase}")
+
+    def test_sources_register_exists(self):
+        p = os.path.join(ROLE_DIR, "SOURCES.md")
+        self.assertTrue(os.path.exists(p), "SOURCES.md missing for role")
+
+    def test_core_engine_exists(self):
+        """100% standard: every role ships an executable core + cli."""
+        for f in ["core", "cli.py"]:
+            self.assertTrue(os.path.exists(os.path.join(ROLE_DIR, f)),
+                            f"{f} missing - role is not executable")
+
+
+if __name__ == "__main__":
+    unittest.main()

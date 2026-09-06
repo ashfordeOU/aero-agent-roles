@@ -266,6 +266,52 @@ DISPATCH_MAP = {
             "skill_param_map": {},
         },
     ],
+    "safety-assessment-engineer": [
+        {
+            "leaf": "systems-engineering-safety/arp4761a/fta-fmea",
+            "skill_fn": "cut_set_probability",
+            "core_fn": "fta_cut_set_probability",
+            "kwargs": {"cut_set": frozenset({"E_CH_A", "E_CH_B"}),
+                       "probs": {"E_CH_A": 1e-5, "E_CH_B": 1e-5,
+                                 "E_CCF": 2e-10}},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "systems-engineering-safety/arp4761a/fault-tree-importance-measures",
+            "skill_fn": "top_event_probability",
+            "core_fn": "fta_top_probability",
+            "kwargs": {"cut_sets": [{"E_CH_A", "E_CH_B"}, {"E_CCF"}],
+                       "probs": {"E_CH_A": 1e-5, "E_CH_B": 1e-5,
+                                 "E_CCF": 2e-10}},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "systems-engineering-safety/arp4761a/failure-mode-criticality",
+            "skill_fn": "item_criticality",
+            "core_fn": "fmea_item_criticality",
+            "kwargs": {
+                "modes": [{"id": "M1", "alpha": 0.5, "beta": 1.0},
+                          {"id": "M2", "alpha": 0.3, "beta": 1.0},
+                          {"id": "M3", "alpha": 0.2, "beta": 0.5}],
+                "item_failure_rate": 1e-5, "operating_time": 1.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "systems-engineering-safety/arp4761a/functional-hazard-assessment",
+            "skill_fn": "target_met",
+            "core_fn": "target_met",
+            "kwargs": {"severity": "Catastrophic",
+                       "probability_per_fh": 5e-10},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "systems-engineering-safety/arp4761a/ssa-closure",
+            "skill_fn": "severity_target",
+            "core_fn": "severity_target",
+            "kwargs": {"severity": "catastrophic"},
+            "skill_param_map": {},
+        },
+    ],
 }
 
 
