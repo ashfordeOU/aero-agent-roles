@@ -78,34 +78,43 @@ cp -R "$EXPORT"/. "$MIRROR"/
 cd "$MIRROR"
 HEAD_BEFORE=$(git rev-parse HEAD 2>/dev/null || echo none)
 
-# 4. no-op if nothing changed
+# 4. no-op if nothing changed — but still refresh About (metrics may
+#    have moved while content did not)
+NOOP=0
 if git diff --quiet HEAD -- . 2>/dev/null && [ -z "$(git status --porcelain)" ]; then
-  log "no changes — no-op"
-  exit 0
+  log "no content changes — no-op sync (About refresh still runs)"
+  NOOP=1
 fi
 
-git add -A
-if ! git diff --cached --quiet; then
-  git -c user.name="ashfordeOU" -c user.email="contact@ashforde.org" \
-      commit -m "sync: roles repo state $(date -u +%Y-%m-%d)" >/dev/null
-  log "committed in mirror"
+if [ "$NOOP" = "0" ]; then
+  git add -A
+  if ! git diff --cached --quiet; then
+    git -c user.name="ashfordeOU" -c user.email="contact@ashforde.org" \
+        commit -m "sync: roles repo state $(date -u +%Y-%m-%d)" >/dev/null
+    log "committed in mirror"
+  fi
+
+  log "pushing to public"
+  if ! git push origin main 2>&1; then
+    log "PUSH REJECTED — someone pushed out of band; stop, do not force"
+    exit 1
+  fi
+  log "public sync complete: $(git rev-parse --short HEAD)"
 fi
 
-log "pushing to public"
-if ! git push origin main 2>&1; then
-  log "PUSH REJECTED — someone pushed out of band; stop, do not force"
-  exit 1
-fi
-log "public sync complete: $(git rev-parse --short HEAD)"
-
-# About sidebar refresh on the public repo (best-effort; the About set
-# on the dev repo covers private; this keeps the PUBLIC repo's About in
-# step without a separate manual act). Never blocks the sync result.
-if command -v curl >/dev/null 2>&1 && [ -n "${TOKEN:-}" ]; then
-  curl -s -X PATCH -H "Authorization: Bearer $TOKEN" \
-       -H "Accept: application/vnd.github+json" \
-       "https://api.github.com/repos/ashfordeOU/aero-agent-roles" \
-       -d '{"homepage":"https://ashforde.org/aeroagentroles/"}' >/dev/null 2>&1 \
-    && log "public about: homepage synced" \
-    || log "public about: homepage sync skipped (network/token)"
+# About refresh on the PUBLIC repo — runs even on no-op syncs so the
+# About never drifts stale when content is unchanged but metrics moved
+# (mirror of skills step 7: post-push, from the mirror whose origin IS
+# the public repo, non-fatal on failure). Refreshes description +
+# homepage + topics from the tree.
+ABOUT_REFRESH=1
+# Always attempt the About refresh (even when the sync above no-op'd).
+cd "$MIRROR"
+if [ -f "ops/automation/update-about.sh" ]; then
+  log "refreshing public About (description + topics + homepage)…"
+  bash ops/automation/update-about.sh \
+    && log "public About refreshed" \
+    || log "public About refresh FAILED (non-fatal)"
+else
+  log "WARN: update-about.sh missing in mirror — About not refreshed"
 fi
