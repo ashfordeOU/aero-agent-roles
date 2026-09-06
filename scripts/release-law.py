@@ -42,7 +42,7 @@ def latest_tag() -> str:
     r = subprocess.run(["git", "-C", ROOT, "tag", "--sort=-v:refname"],
                        capture_output=True, text=True)
     tags = [t.strip() for t in r.stdout.splitlines()
-            if t.strip().startswith("roles-v")]
+            if t.strip().startswith(("roles-v", "v"))]
     return tags[0] if tags else "none"
 
 

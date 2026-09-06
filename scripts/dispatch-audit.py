@@ -62,6 +62,52 @@ def load_skill_logic(leaf: str, fn_name: str):
 # kwargs (values), skill_param_map (core kwarg -> skill kwarg when names
 # differ), tolerance. Only pairs verified to exist in BOTH modules.
 DISPATCH_MAP = {
+    "aircraft-systems-sizing-engineer": [
+        {
+            "leaf": "vehicle-design/sizing/aircraft-electrical-load-analysis",
+            "skill_fn": "load_fraction",
+            "core_fn": "load_fraction",
+            "kwargs": {"continuous_kva": 54.35, "installed_kva": 180.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "vehicle-design/sizing/air-cycle-machine-sizing",
+            "skill_fn": "required_bleed_flow",
+            "core_fn": "required_bleed_flow",
+            "kwargs": {"q_load": 7133.611867836247, "t4_effective": 280.0,
+                       "target_t": 288.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "vehicle-design/sizing/fuel-jettison-sizing",
+            "skill_fn": "required_jettison_rate",
+            "core_fn": "required_jettison_rate",
+            "kwargs": {"mtow_kg": 79000.0, "mlw_kg": 66000.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "vehicle-design/sizing/tire-sizing",
+            "skill_fn": "tire_diameter_inches",
+            "core_fn": "tire_diameter_inches",
+            "kwargs": {"load_lb": 39187.0},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "vehicle-design/sizing/window-aperture-sizing",
+            "skill_fn": "pane_thickness",
+            "core_fn": "pane_thickness",
+            "kwargs": {"pressure_pa": 73907.0, "radius_m": 0.145,
+                       "allowable_stress_pa": 40e6},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "vehicle-design/sizing/landing-gear-layout",
+            "skill_fn": "tipback_angle",
+            "core_fn": "tipback_angle",
+            "kwargs": {"h_cg": 1.8, "x_mg": 15.0, "x_cg_aft": 14.3},
+            "skill_param_map": {},
+        },
+    ],
     "flight-mechanics-engineer": [
         {
             "leaf": "flight-mechanics/performance/breguet-range",
@@ -229,6 +275,58 @@ DISPATCH_MAP = {
             "skill_fn": "felicity_ratio",
             "core_fn": "felicity_ratio",
             "kwargs": {"resume_load": 0.85, "previous_max_load": 1.0},
+            "skill_param_map": {},
+        },
+    ],
+    "quality-management-engineer": [
+        {
+            "leaf": "manufacturing-quality/as9100/measurement-systems-analysis",
+            "skill_fn": "number_distinct_categories",
+            "core_fn": "number_distinct_categories",
+            "kwargs": {"pv": 0.04677, "grr": 0.0052},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/as9100/gage-linearity-bias-study",
+            "skill_fn": "mean_bias",
+            "core_fn": "mean_bias",
+            "kwargs": {"biases": [0.004, 0.012, 0.021, 0.030, 0.042]},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/as9100/attribute-agreement-analysis",
+            "skill_fn": "percent_agreement",
+            "core_fn": "percent_agreement",
+            "kwargs": {"table": [[23, 4], [2, 1]]},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/as9100/statistical-process-control",
+            "skill_fn": "process_sigma",
+            "core_fn": "process_sigma",
+            "kwargs": {"rbar": 0.00875, "n": 5},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/as9100/individuals-and-moving-range-chart",
+            "skill_fn": "mean",
+            "core_fn": "mean",
+            "kwargs": {"values": [119.6, 120.8, 121.3, 119.9, 120.5,
+                                  121.1, 120.2, 119.8, 120.9, 121.0]},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/as9100/acceptance-sampling",
+            "skill_fn": "oc_acceptance_probability",
+            "core_fn": "oc_acceptance_probability",
+            "kwargs": {"n": 80, "ac": 2, "p": 0.01},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "manufacturing-quality/as9100/variables-acceptance-sampling",
+            "skill_fn": "form_q_upper",
+            "core_fn": "form_q_upper",
+            "kwargs": {"usl": 25.150, "xbar": 25.102, "s": 0.0098},
             "skill_param_map": {},
         },
     ],

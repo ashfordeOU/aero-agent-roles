@@ -13,16 +13,16 @@
 
 <!-- gen:statline -->
 <p align="center">
-  <img src="docs/statline-dark.png" alt="29 roles · 490 skills bound · 1200 offline tests · 23 standards · 5/5 gates · Apache-2.0" width="100%">
+  <img src="docs/statline-dark.png" alt="33 roles · 534 skills bound · 1335 offline tests · 24 standards · 5/5 gates · Apache-2.0" width="100%">
 </p>
 <!-- /gen:statline -->
 
 <!-- gen:badges -->
 <p align="center">
-  <a href="roles/"><img src="https://img.shields.io/badge/roles-29-a78bfa?style=flat&labelColor=1a1e35" alt="roles 29"></a>
-  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-490-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 490"></a>
-  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-1200-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 1200"></a>
-  <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-23-f97316?style=flat&labelColor=1a1e35" alt="standards 23"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/roles-33-a78bfa?style=flat&labelColor=1a1e35" alt="roles 33"></a>
+  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-534-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 534"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-1335-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 1335"></a>
+  <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-24-f97316?style=flat&labelColor=1a1e35" alt="standards 24"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/format-agentskills.io-8b5cf6?style=flat&labelColor=1a1e35" alt="format agentskills.io"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2ea043?style=flat&labelColor=1a1e35" alt="Apache-2.0"></a>
 </p>
@@ -104,7 +104,7 @@ Every role ships as an executable worker: core engine + CLI + filled template + 
 ## Domain map
 
 <!-- gen:overview -->
-**29 roles** across **12 domains**, binding **490 skills** from Aero Agent Skills and verified by **1200 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
+**33 roles** across **12 domains**, binding **534 skills** from Aero Agent Skills and verified by **1335 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
 <!-- /gen:overview -->
 
 <p align="center">
@@ -131,15 +131,19 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 | Role | Deliverable | Skills bound |
 |---|---|---|
 | [AS9100 Quality / Internal Auditor](roles/as9100-quality-auditor/ROLE.md) | audit plan + findings report + corrective-action follow-up | 15 |
+| [AS9100 Quality Management Engineer](roles/quality-management-engineer/ROLE.md) | AS9100 quality management system audit report | 10 |
 | [Aerodynamics Engineer](roles/aerodynamics-engineer/ROLE.md) | aerodynamic design + analysis report | 28 |
 | [Aircraft Conceptual Design Engineer](roles/aircraft-design-engineer/ROLE.md) | concept design package (sizing + layout + cost) | 34 |
 | [Aircraft Performance Engineer](roles/aircraft-performance-engineer/ROLE.md) | Aircraft Performance Analysis Report | 9 |
+| [Aircraft Systems Sizing Engineer](roles/aircraft-systems-sizing-engineer/ROLE.md) | Aircraft System Sizing Report | 14 |
 | [Airworthiness Compliance Engineer](roles/airworthiness-compliance-engineer/ROLE.md) | compliance checklist / certification matrix | 9 |
+| [Composite Structures Engineer (Analysis + Certification Evidence)](roles/composites-structures-engineer/ROLE.md) | composite structure analysis + certification report | 12 |
 | [DO-160G Environmental Qualification Engineer](roles/do160-environmental-engineer/ROLE.md) | equipment environmental qualification plan/report | 6 |
 | [DO-178C Software Certification Engineer](roles/do178c-cert-engineer/ROLE.md) | certification plan + verification evidence set | 9 |
 | [DO-254 Airborne Electronic Hardware Engineer](roles/do254-hardware-engineer/ROLE.md) | Plan for Hardware Aspects of Certification (PHAC) + design assurance evidence set | 4 |
 | [Data Bus / Avionics Network Engineer](roles/data-bus-avionics-engineer/ROLE.md) | avionics data bus loading + protocol assessment | 5 |
 | [Engineering Analysis and Data Engineer](roles/engineering-analysis-engineer/ROLE.md) | analysis verification + engineering report | 42 |
+| [Finite Element Analysis Engineer](roles/fem-analysis-engineer/ROLE.md) | Finite Element Analysis Report | 8 |
 | [Flight Management Engineer](roles/flight-management-engineer/ROLE.md) | flight plan and RNAV/RNP route assessment | 11 |
 | [Flight Mechanics Engineer](roles/flight-mechanics-engineer/ROLE.md) | performance + stability and control analysis report | 38 |
 | [Flight Software Engineer](roles/flight-software-engineer/ROLE.md) | Flight Software Design and Verification Plan | 4 |

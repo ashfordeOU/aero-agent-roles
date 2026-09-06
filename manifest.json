@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 29,
+ "count": 33,
  "roles": [
   {
    "slug": "aerodynamics-engineer",
@@ -38,6 +38,18 @@
    "skills_bound": 9
   },
   {
+   "slug": "aircraft-systems-sizing-engineer",
+   "title": "Aircraft Systems Sizing Engineer",
+   "domain": "vehicle-design",
+   "deliverable_type": "Aircraft System Sizing Report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 14
+  },
+  {
    "slug": "airworthiness-compliance-engineer",
    "title": "Airworthiness Compliance Engineer",
    "domain": "systems-engineering-safety",
@@ -59,6 +71,18 @@
     "as9100"
    ],
    "skills_bound": 15
+  },
+  {
+   "slug": "composites-structures-engineer",
+   "title": "Composite Structures Engineer (Analysis + Certification Evidence)",
+   "domain": "structures",
+   "deliverable_type": "composite structure analysis + certification report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cmh-17"
+   ],
+   "skills_bound": 12
   },
   {
    "slug": "data-bus-avionics-engineer",
@@ -117,6 +141,19 @@
     "asme-y14-5"
    ],
    "skills_bound": 42
+  },
+  {
+   "slug": "fem-analysis-engineer",
+   "title": "Finite Element Analysis Engineer",
+   "domain": "structures",
+   "deliverable_type": "Finite Element Analysis Report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25",
+    "mmpsd"
+   ],
+   "skills_bound": 8
   },
   {
    "slug": "flight-management-engineer",
@@ -270,6 +307,17 @@
     "far-33"
    ],
    "skills_bound": 34
+  },
+  {
+   "slug": "quality-management-engineer",
+   "title": "AS9100 Quality Management Engineer",
+   "domain": "manufacturing-quality",
+   "deliverable_type": "AS9100 quality management system audit report",
+   "status": "draft",
+   "standards": [
+    "as9100"
+   ],
+   "skills_bound": 10
   },
   {
    "slug": "safety-assessment-engineer",
