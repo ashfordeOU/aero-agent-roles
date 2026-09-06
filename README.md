@@ -56,6 +56,51 @@ each stage must produce, and the hard boundary where a human signs.
 > **Skills = "do this task correctly."**
 > **Roles = "own this deliverable end to end."**
 
+## Quick start
+
+**Browse and pick a role — one command:**
+
+```bash
+npx -y aero-roles list
+npx -y aero-roles search "DO-178C certification plan"
+npx -y aero-roles show do178c-cert-engineer
+```
+
+**Or install the npm CLI** — list, search, show, install, and the MCP server in one zero-dependency binary:
+
+```bash
+npm i -g aero-agent-roles            # or: npx aero-agent-roles <command>
+aero-roles list
+aero-roles search "ARP4754A integration plan"
+```
+
+Package: **[aero-agent-roles on npm](https://www.npmjs.com/package/aero-agent-roles)** (published by Ashforde OÜ, Apache-2.0).
+
+**Or install the JetBrains IDE plugin** (AI Assistant / Junie integration in the IDE):
+
+- Marketplace: **[Aero Agent Roles on the JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34121-aero-agent-roles)**
+- In the IDE: **Settings → Plugins → Marketplace** → search `Aero Agent Roles` → Install
+- The plugin adds a tool window with the role catalog, a **Copy MCP Server Config** action (one-click registration for AI Assistant / Junie), a **Copy Registry URL** action for the skills router, and a **Docs** action to the landing page
+
+**Or as an MCP server** — Claude Desktop, Cursor, VS Code, Windsurf, or any Model Context Protocol host:
+
+```json
+{
+  "mcpServers": {
+    "aero-agent-roles": { "command": "npx", "args": ["-y", "aero-agent-roles", "mcp"] }
+  }
+}
+```
+
+**Or as a Claude Code plugin** — the role routers load on demand and pull the bound skills:
+
+```bash
+claude plugin marketplace add ashfordeOU/aero-agent-roles
+claude plugin install aero-agent-roles@aero-agent-roles
+```
+
+Every role ships as an executable worker: core engine + CLI + filled template + tests, gated by `make validate` (5/5) and the 100% audit.
+
 ## Domain map
 
 <!-- gen:overview -->
