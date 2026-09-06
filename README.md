@@ -207,24 +207,29 @@ scripts/             # gates and role tooling
 
 ## Roadmap
 
-**Shipped:** 22 professional roles binding 432 verified Aero Agent
+**Shipped:** 29 professional roles binding 490 verified Aero Agent
 Skills leaves across 12 engineering domains, every role an executable
 worker (core engine + CLI + filled template + tests) gated by
 `make validate` (5/5) and the 100% audit — from DO-178C certification
 engineer and DO-254 hardware engineer to structures, avionics data
-bus, GNC guidance/state-estimation, flight test performance, NDT, and
+bus, GNC guidance/state-estimation, flight test performance, safety
+assessment (ARP4761A), systems integration (ARP4754A), MBSE, NDT, and
 high-speed aerodynamics. Evidence protocol (`--bundle`) emits
 deliverable + model.json + gates.json + provenance.json for any
 harness; program profiles (`--profile`) tailor one engine to any
-customer's basis; npm CLI + MCP server packaged (`aero-agent-roles`).
+customer's basis; npm CLI + MCP server packaged
+(`aero-agent-roles@1.1.0` live on npm), JetBrains plugin
+(com.ashforde.aeroroles) on the Marketplace, GitHub release v1.1.0 —
+all shipped from the public tree with zero human action.
 
 **Now:** role waves selected deterministically by the coverage planner
-(`scripts/wave-planner.py`) — closing the weakest families first
-(systems engineering & safety, manufacturing quality), every new role
-landing with its core engine, filled deliverable, bundle protocol, and
-dispatch cross-checks against the live skills library.
+(`scripts/wave-planner.py`) and dispatched autonomously (30-min tick,
+monitor-gated) — closing the weakest families first (manufacturing
+quality, vehicle design), every new role landing with its core
+engine, filled deliverable, bundle protocol, and dispatch cross-checks
+against the live skills library.
 
-**Later:** the full role-count release ladder (v1.1.0 @ 25, v1.2.0 @ 50
+**Later:** the role-count release ladder continues (v1.2.0 @ 50
 roles) with npm publish from the public tree; role chains that
 orchestrate multi-role programs (cert engineer ← structures ← flight
 test); reference builds for airframers and suppliers; marketplace

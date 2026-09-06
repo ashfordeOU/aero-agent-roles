@@ -62,13 +62,13 @@ No. Not affiliated with or endorsed by RTCA, EUROCAE, SAE International,
 IAQG, EASA, FAA, or any government. Standards references are
 informational only.
 
-## Why is the npm package not published yet?
+## Is the npm package published?
 
-The npm package (`aero-agent-roles`) is wired and smoke-tested but
-intentionally `private: true`. npm publish is a deliberate, versioned
-release action with real registry history — it is cut from the
-just-published public tree at a role-count milestone (v1.1.0 @ 25 roles)
-the same way Aero Agent Skills releases are managed. See
+The npm package (`aero-agent-roles`) is live on the registry
+(`aero-agent-roles@1.1.0`, published from the public tree at the
+v1.1.0 milestone — 25+ roles) and continues to be cut from the
+just-published public tree at each role-count milestone (v1.2.0 @ 50
+roles) the same way Aero Agent Skills releases are managed. See
 `scripts/release-manager.py`.
 
 ## How do I add a role or request one?
