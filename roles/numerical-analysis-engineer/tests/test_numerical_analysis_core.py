@@ -30,8 +30,9 @@ from numerical_analysis_core import (  # noqa: E402
 )
 
 # Deterministic across midnight: the committed template carries the
-# generation date 2026-09-05; pin fresh renders to it (CI override wins).
-os.environ.setdefault("ROLE_GEN_DATE", "2026-09-05")
+# generation date 2026-09-06 (wave R6 regeneration); pin fresh renders
+# to it (CI override wins).
+os.environ.setdefault("ROLE_GEN_DATE", "2026-09-06")
 
 ROLE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE = os.path.join(ROLE_DIR, "templates",
