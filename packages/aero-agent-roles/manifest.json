@@ -1,11 +1,11 @@
 {
  "schema": "aero-agent-roles/manifest@1",
  "counts": {
-  "roles": 29,
+  "roles": 33,
   "domains": 12,
-  "skills_bound": 490,
-  "tests": 1200,
-  "standards": 23
+  "skills_bound": 534,
+  "tests": 1335,
+  "standards": 24
  },
  "roles": [
   {
@@ -49,6 +49,20 @@
    "stage_preview": "(workbook planning) -> flight-mechanics/performance/balan -> flight-mechanics/performance/prope -> flight-mechanics/performance/rotor -> flight-mechanics/performance/rotor"
   },
   {
+   "slug": "aircraft-systems-sizing-engineer",
+   "title": "Aircraft Systems Sizing Engineer",
+   "domain": "vehicle-design",
+   "deliverable_type": "Aircraft System Sizing Report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 14,
+   "tests": 30,
+   "stage_preview": "sizing/aircraft-electrical-load-an -> sizing/air-cycle-machine-sizing -> sizing/avionics-bay-cooling-sizing -> sizing/aircraft-oxygen-system-sizi -> sizing/brake-energy-sizing, sizing"
+  },
+  {
    "slug": "airworthiness-compliance-engineer",
    "title": "Airworthiness Compliance Engineer",
    "domain": "systems-engineering-safety",
@@ -74,6 +88,20 @@
    "skills_bound": 15,
    "tests": 32,
    "stage_preview": "as9100/internal-quality-audit -> as9100/document-control -> as9100/management-review -> as9100/risk-management + quality -> as9100/nonconformance-control + co"
+  },
+  {
+   "slug": "composites-structures-engineer",
+   "title": "Composite Structures Engineer (Analysis + Certification Evidence)",
+   "domain": "structures",
+   "deliverable_type": "composite structure analysis + certification report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cmh-17"
+   ],
+   "skills_bound": 12,
+   "tests": 36,
+   "stage_preview": "cmh17-allowables -> laminate-stiffness, laminate-first -> failure-criteria, laminate-first-p -> laminate-hygrothermal-response -> laminate-plate-buckling"
   },
   {
    "slug": "data-bus-avionics-engineer",
@@ -142,6 +170,21 @@
    "skills_bound": 42,
    "tests": 41,
    "stage_preview": "isa-atmosphere + density-altitude  -> finite-difference-derivatives + nu -> least-squares-regression + optimiz -> eigenvalue-decomposition + singula -> fast-fourier-transform + fir-filte"
+  },
+  {
+   "slug": "fem-analysis-engineer",
+   "title": "Finite Element Analysis Engineer",
+   "domain": "structures",
+   "deliverable_type": "Finite Element Analysis Report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25",
+    "mmpsd"
+   ],
+   "skills_bound": 8,
+   "tests": 27,
+   "stage_preview": "structures/fem/truss-analysis -> structures/fem/beam-frame-analysis -> structures/fem/beam-column-analysi -> structures/fem/buckling-analysis -> structures/fem/beam-vibration"
   },
   {
    "slug": "flight-management-engineer",
@@ -323,6 +366,19 @@
    "stage_preview": "gas-turbine-cycle + real-cycle-eff -> bypass-ratio-trade + regenerative- -> turbofan-off-design -> compressor-map + multi-stage-compr -> turbine-blade-cooling"
   },
   {
+   "slug": "quality-management-engineer",
+   "title": "AS9100 Quality Management Engineer",
+   "domain": "manufacturing-quality",
+   "deliverable_type": "AS9100 quality management system audit report",
+   "status": "draft",
+   "standards": [
+    "as9100"
+   ],
+   "skills_bound": 10,
+   "tests": 42,
+   "stage_preview": "manufacturing-quality/as9100/gage- -> manufacturing-quality/as9100/gage- -> manufacturing-quality/as9100/attri -> manufacturing-quality/as9100/stati -> manufacturing-quality/as9100/indiv"
+  },
+  {
    "slug": "safety-assessment-engineer",
    "title": "Safety Assessment Engineer (ARP4761A)",
    "domain": "systems-engineering-safety",
@@ -467,7 +523,8 @@
    "gated": true,
    "roles": [
     "as9100-quality-auditor",
-    "ndt-engineer"
+    "ndt-engineer",
+    "quality-management-engineer"
    ]
   },
   {
@@ -489,12 +546,23 @@
    ]
   },
   {
+   "id": "cmh-17",
+   "name": "cmh-17",
+   "publisher": "unknown",
+   "gated": true,
+   "roles": [
+    "composites-structures-engineer"
+   ]
+  },
+  {
    "id": "cs-25",
    "name": "EASA CS-25, Certification Specifications",
    "publisher": "EASA",
    "gated": true,
    "roles": [
+    "aircraft-systems-sizing-engineer",
     "airworthiness-compliance-engineer",
+    "fem-analysis-engineer",
     "flight-test-performance-engineer",
     "flight-test-planning-engineer",
     "guidance-engineer",
@@ -566,7 +634,10 @@
     "aerodynamics-engineer",
     "aircraft-design-engineer",
     "aircraft-performance-engineer",
+    "aircraft-systems-sizing-engineer",
     "airworthiness-compliance-engineer",
+    "composites-structures-engineer",
+    "fem-analysis-engineer",
     "flight-mechanics-engineer",
     "flight-test-engineer",
     "flight-test-performance-engineer",
@@ -621,6 +692,7 @@
    "publisher": "Battelle / FAA",
    "gated": true,
    "roles": [
+    "fem-analysis-engineer",
     "structures-loads-engineer"
    ]
   },
