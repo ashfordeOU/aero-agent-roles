@@ -9,7 +9,7 @@ pipeline: generated
 
 # Role ratings
 
-Audit: CEO, Ashforde OÜ - regenerated 2026-09-06 01:13 UTC · mechanical evidence only (tests, blanks, audit-100, bound skills).
+Audit: CEO, Ashforde OÜ - regenerated 2026-09-06 01:14 UTC · mechanical evidence only (tests, blanks, audit-100, bound skills).
 
 | Role | Rating | Evidence |
 |---|---|---|
