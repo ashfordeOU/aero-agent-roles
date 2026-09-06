@@ -232,6 +232,40 @@ DISPATCH_MAP = {
             "skill_param_map": {},
         },
     ],
+    "mbse-modeling-engineer": [
+        {
+            "leaf": "systems-engineering-safety/mbse/requirements-modeling",
+            "skill_fn": "count_shall_clauses",
+            "core_fn": "count_shall_clauses",
+            "kwargs": {"text": "The CPCS shall maintain cabin pressure "
+                               "altitude at or below 8000 feet during "
+                               "normal cruise operation."},
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "systems-engineering-safety/mbse/n2-diagram",
+            "skill_fn": "total_interfaces",
+            "core_fn": "total_interfaces",
+            "kwargs": {
+                "elements": ["Cabin Pressure Controller",
+                             "Outflow Valve Assembly",
+                             "Safety Valve Assembly",
+                             "Pressure Sensor Package"],
+                "matrix": [[0, 1, 0, 0],
+                           [1, 0, 0, 0],
+                           [1, 0, 0, 0],
+                           [1, 0, 0, 0]],
+            },
+            "skill_param_map": {},
+        },
+        {
+            "leaf": "systems-engineering-safety/mbse/trade-study-analysis",
+            "skill_fn": "weighted_score",
+            "core_fn": "weighted_score",
+            "kwargs": {"weights": [0.5, 0.3, 0.2], "scores": [8, 6, 9]},
+            "skill_param_map": {},
+        },
+    ],
 }
 
 

@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 22,
+ "count": 24,
  "roles": [
   {
    "slug": "aerodynamics-engineer",
@@ -191,6 +191,18 @@
    "skills_bound": 19
   },
   {
+   "slug": "mbse-modeling-engineer",
+   "title": "MBSE Modeling Engineer",
+   "domain": "systems-engineering-safety",
+   "deliverable_type": "system model architecture + MBSE plan",
+   "status": "draft",
+   "standards": [
+    "arp4754a",
+    "arp4761a"
+   ],
+   "skills_bound": 6
+  },
+  {
    "slug": "ndt-engineer",
    "title": "NDT Engineer",
    "domain": "manufacturing-quality",
@@ -257,6 +269,18 @@
     "mmpsd"
    ],
    "skills_bound": 38
+  },
+  {
+   "slug": "systems-integration-engineer",
+   "title": "Systems Integration Engineer",
+   "domain": "systems-engineering-safety",
+   "deliverable_type": "System Development Assurance and Integration Plan (ARP4754A)",
+   "status": "draft",
+   "standards": [
+    "arp4754a",
+    "arp4761a"
+   ],
+   "skills_bound": 8
   }
  ]
 }

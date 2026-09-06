@@ -28,12 +28,12 @@
 <text class="mono" x="204.6" y="398.6" text-anchor="middle" font-size="10.5" fill="#edf0fc">1</text>
 <path d="M 300 340 L 205.1 361.0 A 97.2 97.2 0 0 1 205.1 319.0 Z" fill="#a78bfa" fill-opacity="0.72" stroke="#a78bfa" stroke-width="2"/>
 <text class="mono" x="189.8" y="343.5" text-anchor="middle" font-size="10.5" fill="#edf0fc">1</text>
-<path d="M 300 340 L 207.3 310.8 A 97.2 97.2 0 0 1 228.4 274.4 Z" fill="#f472b6" fill-opacity="0.72" stroke="#f472b6" stroke-width="2"/>
-<text class="mono" x="204.6" y="288.4" text-anchor="middle" font-size="10.5" fill="#edf0fc">1</text>
+<path d="M 300 340 L 139.5 289.4 A 168.3 168.3 0 0 1 175.9 226.3 Z" fill="#f472b6" fill-opacity="0.72" stroke="#f472b6" stroke-width="2"/>
+<text class="mono" x="143.0" y="252.9" text-anchor="middle" font-size="10.5" fill="#edf0fc">3</text>
 <path d="M 300 340 L 234.4 268.4 A 97.2 97.2 0 0 1 270.8 247.3 Z" fill="#fb923c" fill-opacity="0.72" stroke="#fb923c" stroke-width="2"/>
 <text class="mono" x="244.9" y="248.1" text-anchor="middle" font-size="10.5" fill="#edf0fc">1</text>
 <text class="cond" x="600.0" y="74.0" text-anchor="start" font-size="34" fill="#edf0fc" letter-spacing="2">ROLES PER DOMAIN</text>
-<text class="mono" x="600.0" y="100.0" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">22 ROLES ACROSS 12 DOMAINS · AREA-TRUE ROSE</text>
+<text class="mono" x="600.0" y="100.0" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">24 ROLES ACROSS 12 DOMAINS · AREA-TRUE ROSE</text>
 <text class="mono" x="600.0" y="138.0" text-anchor="start" font-size="10" fill="#8a93c4" letter-spacing="1">AERODYNAMICS</text>
 <rect x="600" y="145" width="150" height="9" fill="none" stroke="#2c3564" stroke-width="0.8"/>
 <rect x="600" y="145" width="50.0" height="9" fill="#38bdf8"/>
@@ -76,12 +76,12 @@
 <text class="mono" x="762.0" y="459.0" text-anchor="start" font-size="10" fill="#edf0fc">1R · 38 SKILLS</text>
 <text class="mono" x="600.0" y="478.0" text-anchor="start" font-size="10" fill="#8a93c4" letter-spacing="1">SYS ENG &amp; SAFETY</text>
 <rect x="600" y="485" width="150" height="9" fill="none" stroke="#2c3564" stroke-width="0.8"/>
-<rect x="600" y="485" width="25.0" height="9" fill="#f472b6"/>
-<text class="mono" x="762.0" y="493.0" text-anchor="start" font-size="10" fill="#edf0fc">1R · 9 SKILLS</text>
+<rect x="600" y="485" width="75.0" height="9" fill="#f472b6"/>
+<text class="mono" x="762.0" y="493.0" text-anchor="start" font-size="10" fill="#edf0fc">3R · 23 SKILLS</text>
 <text class="mono" x="600.0" y="512.0" text-anchor="start" font-size="10" fill="#8a93c4" letter-spacing="1">VEHICLE DESIGN</text>
 <rect x="600" y="519" width="150" height="9" fill="none" stroke="#2c3564" stroke-width="0.8"/>
 <rect x="600" y="519" width="25.0" height="9" fill="#fb923c"/>
 <text class="mono" x="762.0" y="527.0" text-anchor="start" font-size="10" fill="#edf0fc">1R · 34 SKILLS</text>
-<text class="mono" x="300.0" y="638.0" text-anchor="middle" font-size="10" fill="#8a93c4" letter-spacing="2">22 ROLES · GRID RINGS 1·3·4·6 · r ∝ √ROLES (AREA-TRUE)</text>
+<text class="mono" x="300.0" y="638.0" text-anchor="middle" font-size="10" fill="#8a93c4" letter-spacing="2">24 ROLES · GRID RINGS 1·3·4·6 · r ∝ √ROLES (AREA-TRUE)</text>
 <text class="mono" x="892.0" y="638.0" text-anchor="end" font-size="9.5" fill="#8a93c4" letter-spacing="1.5" opacity="0.9">AERO AGENT ROLES · ASHFORDE OÜ</text>
 </svg>

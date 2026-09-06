@@ -33,7 +33,8 @@ be purchased or accessed through the publishers' official channels.
 | ac-90-105a | FAA AC 90-105A, Approval Guidance for RNP Operations and Baro-VNAV | FAA | flight-management-engineer | False |
 | arinc-429 | ARINC 429 (Mark 33 DITS) | ARINC / Aeronautical Radio Inc | data-bus-avionics-engineer | True |
 | arinc-664 | ARINC 664 Part 7 (AFDX) | ARINC / Aeronautical Radio Inc | data-bus-avionics-engineer | True |
-| arp4754a | SAE ARP4754A, Development of Civil Aircraft and Systems | SAE | do254-hardware-engineer, guidance-engineer, state-estimation-engineer | True |
+| arp4754a | SAE ARP4754A, Development of Civil Aircraft and Systems | SAE | do254-hardware-engineer, guidance-engineer, mbse-modeling-engineer, state-estimation-engineer, systems-integration-engineer | True |
+| arp4761a | arp4761a | unknown — add to STANDARD_META | mbse-modeling-engineer, systems-integration-engineer | True |
 | as9100 | AS9100D, Aerospace QMS Requirements | SAE / IAQG | as9100-quality-auditor, ndt-engineer | True |
 | asme-vv-20 | ASME V&V 20-2009, Verification and Validation in CFD and Heat Transfer | ASME | numerical-analysis-engineer | True |
 | asme-y14-5 | ASME Y14.5, Dimensioning and Tolerancing | ASME | engineering-analysis-engineer | True |

@@ -1,11 +1,11 @@
 {
  "schema": "aero-agent-roles/manifest@1",
  "counts": {
-  "roles": 22,
+  "roles": 24,
   "domains": 12,
-  "skills_bound": 432,
-  "tests": 829,
-  "standards": 21
+  "skills_bound": 446,
+  "tests": 919,
+  "standards": 22
  },
  "roles": [
   {
@@ -228,6 +228,20 @@
    "stage_preview": "(ISA, offline) -> isentropic-flow-relations -> transonic-similarity + swept-wing- -> normal-shock + oblique-shock + reg -> prandtl-meyer"
   },
   {
+   "slug": "mbse-modeling-engineer",
+   "title": "MBSE Modeling Engineer",
+   "domain": "systems-engineering-safety",
+   "deliverable_type": "system model architecture + MBSE plan",
+   "status": "draft",
+   "standards": [
+    "arp4754a",
+    "arp4761a"
+   ],
+   "skills_bound": 6,
+   "tests": 49,
+   "stage_preview": "mbse/requirements-modeling -> mbse/systems-engineering -> mbse/sysml-modeling -> mbse/systems-engineering -> mbse/trade-study-analysis, mbse/sy"
+  },
+  {
    "slug": "ndt-engineer",
    "title": "NDT Engineer",
    "domain": "manufacturing-quality",
@@ -306,6 +320,20 @@
    "skills_bound": 38,
    "tests": 37,
    "stage_preview": "gust-maneuver-loads + landing-grou -> beam-frame-analysis + truss-analys -> calculix-nonlinear + buckling-anal -> lug-joint-analysis + contact-analy -> modal-analysis + beam-vibration"
+  },
+  {
+   "slug": "systems-integration-engineer",
+   "title": "Systems Integration Engineer",
+   "domain": "systems-engineering-safety",
+   "deliverable_type": "System Development Assurance and Integration Plan (ARP4754A)",
+   "status": "draft",
+   "standards": [
+    "arp4754a",
+    "arp4761a"
+   ],
+   "skills_bound": 8,
+   "tests": 41,
+   "stage_preview": "arp4754a/systems-planning -> arp4754a/development-assurance-lev -> arp4754a/requirements-allocation -> arp4754a/requirements-traceability -> arp4754a/derived-requirements"
   }
  ],
  "standards": [
@@ -344,7 +372,19 @@
    "roles": [
     "do254-hardware-engineer",
     "guidance-engineer",
-    "state-estimation-engineer"
+    "mbse-modeling-engineer",
+    "state-estimation-engineer",
+    "systems-integration-engineer"
+   ]
+  },
+  {
+   "id": "arp4761a",
+   "name": "arp4761a",
+   "publisher": "unknown",
+   "gated": true,
+   "roles": [
+    "mbse-modeling-engineer",
+    "systems-integration-engineer"
    ]
   },
   {
