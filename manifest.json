@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 25,
+ "count": 29,
  "roles": [
   {
    "slug": "aerodynamics-engineer",
@@ -24,6 +24,18 @@
     "far-25"
    ],
    "skills_bound": 34
+  },
+  {
+   "slug": "aircraft-performance-engineer",
+   "title": "Aircraft Performance Engineer",
+   "domain": "flight-mechanics",
+   "deliverable_type": "Aircraft Performance Analysis Report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "far-29"
+   ],
+   "skills_bound": 9
   },
   {
    "slug": "airworthiness-compliance-engineer",
@@ -132,6 +144,17 @@
    "skills_bound": 38
   },
   {
+   "slug": "flight-software-engineer",
+   "title": "Flight Software Engineer",
+   "domain": "avionics",
+   "deliverable_type": "Flight Software Design and Verification Plan",
+   "status": "draft",
+   "standards": [
+    "do-178c"
+   ],
+   "skills_bound": 4
+  },
+  {
    "slug": "flight-test-engineer",
    "title": "Flight Test Engineer",
    "domain": "flight-test-operations",
@@ -154,6 +177,18 @@
     "cs-25"
    ],
    "skills_bound": 15
+  },
+  {
+   "slug": "flight-test-planning-engineer",
+   "title": "Flight Test Planning Engineer",
+   "domain": "flight-test-operations",
+   "deliverable_type": "Flight Test Plan and Requirements Traceability",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 7
   },
   {
    "slug": "gnc-engineer",
@@ -260,6 +295,18 @@
     "ecss"
    ],
    "skills_bound": 45
+  },
+  {
+   "slug": "stability-control-flight-test-engineer",
+   "title": "Stability and Control Flight Test Engineer",
+   "domain": "flight-test-operations",
+   "deliverable_type": "Stability and Control Flight Test Report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 4
   },
   {
    "slug": "state-estimation-engineer",

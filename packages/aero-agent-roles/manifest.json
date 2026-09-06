@@ -1,11 +1,11 @@
 {
  "schema": "aero-agent-roles/manifest@1",
  "counts": {
-  "roles": 25,
+  "roles": 29,
   "domains": 12,
-  "skills_bound": 466,
-  "tests": 966,
-  "standards": 22
+  "skills_bound": 490,
+  "tests": 1200,
+  "standards": 23
  },
  "roles": [
   {
@@ -33,6 +33,20 @@
    "skills_bound": 34,
    "tests": 27,
    "stage_preview": "constraint-analysis -> sizing-mission-profile -> openvsp-geometry -> ws-tw-trade -> weight-estimation + tow-estimation"
+  },
+  {
+   "slug": "aircraft-performance-engineer",
+   "title": "Aircraft Performance Engineer",
+   "domain": "flight-mechanics",
+   "deliverable_type": "Aircraft Performance Analysis Report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "far-29"
+   ],
+   "skills_bound": 9,
+   "tests": 73,
+   "stage_preview": "(workbook planning) -> flight-mechanics/performance/balan -> flight-mechanics/performance/prope -> flight-mechanics/performance/rotor -> flight-mechanics/performance/rotor"
   },
   {
    "slug": "airworthiness-compliance-engineer",
@@ -159,6 +173,19 @@
    "stage_preview": "breguet-range + breguet-endurance  -> climb-performance + descent-perfor -> oei-climb-gradient + energy-height -> rotorcraft-hover-performance + rot -> longitudinal-stability + lateral-d"
   },
   {
+   "slug": "flight-software-engineer",
+   "title": "Flight Software Engineer",
+   "domain": "avionics",
+   "deliverable_type": "Flight Software Design and Verification Plan",
+   "status": "draft",
+   "standards": [
+    "do-178c"
+   ],
+   "skills_bound": 4,
+   "tests": 54,
+   "stage_preview": "avionics/fsw/cfs-architecture -> avionics/fsw/fprime-component -> avionics/fsw/fprime-component -> avionics/fsw/cfs-architecture -> avionics/fsw/real-time-scheduling"
+  },
+  {
    "slug": "flight-test-engineer",
    "title": "Flight Test Engineer",
    "domain": "flight-test-operations",
@@ -185,6 +212,20 @@
    "skills_bound": 15,
    "tests": 45,
    "stage_preview": "flight-test-data-reduction -> (ISA physics, climb leaf method) -> takeoff-distance-determination + e -> landing-distance-determination -> level-acceleration-test + engine-f"
+  },
+  {
+   "slug": "flight-test-planning-engineer",
+   "title": "Flight Test Planning Engineer",
+   "domain": "flight-test-operations",
+   "deliverable_type": "Flight Test Plan and Requirements Traceability",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 7,
+   "tests": 54,
+   "stage_preview": "role core (standalone traceability -> flight-test-operations/planning/te -> flight-test-operations/planning/fl -> flight-test-operations/planning/te -> flight-test-operations/planning/pc"
   },
   {
    "slug": "gnc-engineer",
@@ -309,6 +350,20 @@
    "skills_bound": 45,
    "tests": 33,
    "stage_preview": "mission-delta-v-budget + keplerian -> hohmann-transfer + bi-elliptic-tra -> launch-window-analysis + c3-depart -> satellite-coverage + walker-delta- -> eclipse-time + orbital-perturbatio"
+  },
+  {
+   "slug": "stability-control-flight-test-engineer",
+   "title": "Stability and Control Flight Test Engineer",
+   "domain": "flight-test-operations",
+   "deliverable_type": "Stability and Control Flight Test Report",
+   "status": "draft",
+   "standards": [
+    "far-25",
+    "cs-25"
+   ],
+   "skills_bound": 4,
+   "tests": 53,
+   "stage_preview": "(item facts; no leaf) -> flight-test-operations/stability/s -> flight-test-operations/stability/d -> flight-test-operations/stability/l -> flight-test-operations/stability/c"
   },
   {
    "slug": "state-estimation-engineer",
@@ -441,8 +496,10 @@
    "roles": [
     "airworthiness-compliance-engineer",
     "flight-test-performance-engineer",
+    "flight-test-planning-engineer",
     "guidance-engineer",
-    "safety-assessment-engineer"
+    "safety-assessment-engineer",
+    "stability-control-flight-test-engineer"
    ]
   },
   {
@@ -460,7 +517,8 @@
    "publisher": "RTCA/EUROCAE",
    "gated": true,
    "roles": [
-    "do178c-cert-engineer"
+    "do178c-cert-engineer",
+    "flight-software-engineer"
    ]
   },
   {
@@ -507,13 +565,25 @@
    "roles": [
     "aerodynamics-engineer",
     "aircraft-design-engineer",
+    "aircraft-performance-engineer",
     "airworthiness-compliance-engineer",
     "flight-mechanics-engineer",
     "flight-test-engineer",
     "flight-test-performance-engineer",
+    "flight-test-planning-engineer",
     "guidance-engineer",
     "safety-assessment-engineer",
+    "stability-control-flight-test-engineer",
     "structures-loads-engineer"
+   ]
+  },
+  {
+   "id": "far-29",
+   "name": "far-29",
+   "publisher": "unknown",
+   "gated": true,
+   "roles": [
+    "aircraft-performance-engineer"
    ]
   },
   {

@@ -10,14 +10,14 @@
 <circle cx="300" cy="340" r="238.0" fill="none" stroke="#2c3564" stroke-width="0.8" stroke-opacity="0.55"/>
 <path d="M 300 340 L 270.3 205.8 A 137.4 137.4 0 0 1 329.7 205.8 Z" fill="#38bdf8" fill-opacity="0.72" stroke="#38bdf8" stroke-width="2"/>
 <text class="mono" x="300.0" y="193.1" text-anchor="middle" font-size="10.5" fill="#edf0fc">2</text>
-<path d="M 300 340 L 365.3 132.8 A 217.3 217.3 0 0 1 446.8 179.8 Z" fill="#a78bfa" fill-opacity="0.72" stroke="#a78bfa" stroke-width="2"/>
-<text class="mono" x="415.1" y="144.1" text-anchor="middle" font-size="10.5" fill="#edf0fc">5</text>
+<path d="M 300 340 L 371.6 113.0 A 238.0 238.0 0 0 1 460.8 164.5 Z" fill="#a78bfa" fill-opacity="0.72" stroke="#a78bfa" stroke-width="2"/>
+<text class="mono" x="425.5" y="126.1" text-anchor="middle" font-size="10.5" fill="#edf0fc">6</text>
 <path d="M 300 340 L 401.3 247.2 A 137.4 137.4 0 0 1 431.0 298.7 Z" fill="#f472b6" fill-opacity="0.72" stroke="#f472b6" stroke-width="2"/>
 <text class="mono" x="430.3" y="268.3" text-anchor="middle" font-size="10.5" fill="#edf0fc">2</text>
-<path d="M 300 340 L 394.9 319.0 A 97.2 97.2 0 0 1 394.9 361.0 Z" fill="#fb923c" fill-opacity="0.72" stroke="#fb923c" stroke-width="2"/>
-<text class="mono" x="410.2" y="343.5" text-anchor="middle" font-size="10.5" fill="#edf0fc">1</text>
-<path d="M 300 340 L 431.0 381.3 A 137.4 137.4 0 0 1 401.3 432.8 Z" fill="#38bdf8" fill-opacity="0.72" stroke="#38bdf8" stroke-width="2"/>
-<text class="mono" x="430.3" y="418.7" text-anchor="middle" font-size="10.5" fill="#edf0fc">2</text>
+<path d="M 300 340 L 434.2 310.3 A 137.4 137.4 0 0 1 434.2 369.7 Z" fill="#fb923c" fill-opacity="0.72" stroke="#fb923c" stroke-width="2"/>
+<text class="mono" x="450.4" y="343.5" text-anchor="middle" font-size="10.5" fill="#edf0fc">2</text>
+<path d="M 300 340 L 485.3 398.4 A 194.3 194.3 0 0 1 443.3 471.3 Z" fill="#38bdf8" fill-opacity="0.72" stroke="#38bdf8" stroke-width="2"/>
+<text class="mono" x="479.5" y="447.2" text-anchor="middle" font-size="10.5" fill="#edf0fc">4</text>
 <path d="M 300 340 L 413.7 464.1 A 168.3 168.3 0 0 1 350.6 500.5 Z" fill="#a78bfa" fill-opacity="0.72" stroke="#a78bfa" stroke-width="2"/>
 <text class="mono" x="390.6" y="500.5" text-anchor="middle" font-size="10.5" fill="#edf0fc">3</text>
 <path d="M 300 340 L 329.7 474.2 A 137.4 137.4 0 0 1 270.3 474.2 Z" fill="#f472b6" fill-opacity="0.72" stroke="#f472b6" stroke-width="2"/>
@@ -33,27 +33,27 @@
 <path d="M 300 340 L 234.4 268.4 A 97.2 97.2 0 0 1 270.8 247.3 Z" fill="#fb923c" fill-opacity="0.72" stroke="#fb923c" stroke-width="2"/>
 <text class="mono" x="244.9" y="248.1" text-anchor="middle" font-size="10.5" fill="#edf0fc">1</text>
 <text class="cond" x="600.0" y="74.0" text-anchor="start" font-size="34" fill="#edf0fc" letter-spacing="2">ROLES PER DOMAIN</text>
-<text class="mono" x="600.0" y="100.0" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">25 ROLES ACROSS 12 DOMAINS · AREA-TRUE ROSE</text>
+<text class="mono" x="600.0" y="100.0" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">29 ROLES ACROSS 12 DOMAINS · AREA-TRUE ROSE</text>
 <text class="mono" x="600.0" y="138.0" text-anchor="start" font-size="10" fill="#8a93c4" letter-spacing="1">AERODYNAMICS</text>
 <rect x="600" y="145" width="150" height="9" fill="none" stroke="#2c3564" stroke-width="0.8"/>
 <rect x="600" y="145" width="50.0" height="9" fill="#38bdf8"/>
 <text class="mono" x="762.0" y="153.0" text-anchor="start" font-size="10" fill="#edf0fc">2R · 47 SKILLS</text>
 <text class="mono" x="600.0" y="172.0" text-anchor="start" font-size="10" fill="#8a93c4" letter-spacing="1">AVIONICS</text>
 <rect x="600" y="179" width="150" height="9" fill="none" stroke="#2c3564" stroke-width="0.8"/>
-<rect x="600" y="179" width="125.0" height="9" fill="#a78bfa"/>
-<text class="mono" x="762.0" y="187.0" text-anchor="start" font-size="10" fill="#edf0fc">5R · 35 SKILLS</text>
+<rect x="600" y="179" width="150.0" height="9" fill="#a78bfa"/>
+<text class="mono" x="762.0" y="187.0" text-anchor="start" font-size="10" fill="#edf0fc">6R · 39 SKILLS</text>
 <text class="mono" x="600.0" y="206.0" text-anchor="start" font-size="10" fill="#8a93c4" letter-spacing="1">CROSS-CUTTING</text>
 <rect x="600" y="213" width="150" height="9" fill="none" stroke="#2c3564" stroke-width="0.8"/>
 <rect x="600" y="213" width="50.0" height="9" fill="#f472b6"/>
 <text class="mono" x="762.0" y="221.0" text-anchor="start" font-size="10" fill="#edf0fc">2R · 52 SKILLS</text>
 <text class="mono" x="600.0" y="240.0" text-anchor="start" font-size="10" fill="#8a93c4" letter-spacing="1">FLIGHT MECHANICS</text>
 <rect x="600" y="247" width="150" height="9" fill="none" stroke="#2c3564" stroke-width="0.8"/>
-<rect x="600" y="247" width="25.0" height="9" fill="#fb923c"/>
-<text class="mono" x="762.0" y="255.0" text-anchor="start" font-size="10" fill="#edf0fc">1R · 38 SKILLS</text>
+<rect x="600" y="247" width="50.0" height="9" fill="#fb923c"/>
+<text class="mono" x="762.0" y="255.0" text-anchor="start" font-size="10" fill="#edf0fc">2R · 47 SKILLS</text>
 <text class="mono" x="600.0" y="274.0" text-anchor="start" font-size="10" fill="#8a93c4" letter-spacing="1">FLIGHT TEST &amp; OPS</text>
 <rect x="600" y="281" width="150" height="9" fill="none" stroke="#2c3564" stroke-width="0.8"/>
-<rect x="600" y="281" width="50.0" height="9" fill="#38bdf8"/>
-<text class="mono" x="762.0" y="289.0" text-anchor="start" font-size="10" fill="#edf0fc">2R · 36 SKILLS</text>
+<rect x="600" y="281" width="100.0" height="9" fill="#38bdf8"/>
+<text class="mono" x="762.0" y="289.0" text-anchor="start" font-size="10" fill="#edf0fc">4R · 47 SKILLS</text>
 <text class="mono" x="600.0" y="308.0" text-anchor="start" font-size="10" fill="#8a93c4" letter-spacing="1">GNC &amp; AUTONOMY</text>
 <rect x="600" y="315" width="150" height="9" fill="none" stroke="#2c3564" stroke-width="0.8"/>
 <rect x="600" y="315" width="75.0" height="9" fill="#a78bfa"/>
@@ -82,6 +82,6 @@
 <rect x="600" y="519" width="150" height="9" fill="none" stroke="#2c3564" stroke-width="0.8"/>
 <rect x="600" y="519" width="25.0" height="9" fill="#fb923c"/>
 <text class="mono" x="762.0" y="527.0" text-anchor="start" font-size="10" fill="#edf0fc">1R · 34 SKILLS</text>
-<text class="mono" x="300.0" y="638.0" text-anchor="middle" font-size="10" fill="#8a93c4" letter-spacing="2">25 ROLES · GRID RINGS 1·3·4·6 · r ∝ √ROLES (AREA-TRUE)</text>
+<text class="mono" x="300.0" y="638.0" text-anchor="middle" font-size="10" fill="#8a93c4" letter-spacing="2">29 ROLES · GRID RINGS 1·3·4·6 · r ∝ √ROLES (AREA-TRUE)</text>
 <text class="mono" x="892.0" y="638.0" text-anchor="end" font-size="9.5" fill="#8a93c4" letter-spacing="1.5" opacity="0.9">AERO AGENT ROLES · ASHFORDE OÜ</text>
 </svg>

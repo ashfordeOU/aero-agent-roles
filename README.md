@@ -13,16 +13,16 @@
 
 <!-- gen:statline -->
 <p align="center">
-  <img src="docs/statline-dark.png" alt="25 roles · 466 skills bound · 966 offline tests · 22 standards · 5/5 gates · Apache-2.0" width="100%">
+  <img src="docs/statline-dark.png" alt="29 roles · 490 skills bound · 1200 offline tests · 23 standards · 5/5 gates · Apache-2.0" width="100%">
 </p>
 <!-- /gen:statline -->
 
 <!-- gen:badges -->
 <p align="center">
-  <a href="roles/"><img src="https://img.shields.io/badge/roles-25-a78bfa?style=flat&labelColor=1a1e35" alt="roles 25"></a>
-  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-466-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 466"></a>
-  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-966-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 966"></a>
-  <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-22-f97316?style=flat&labelColor=1a1e35" alt="standards 22"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/roles-29-a78bfa?style=flat&labelColor=1a1e35" alt="roles 29"></a>
+  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-490-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 490"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-1200-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 1200"></a>
+  <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-23-f97316?style=flat&labelColor=1a1e35" alt="standards 23"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/format-agentskills.io-8b5cf6?style=flat&labelColor=1a1e35" alt="format agentskills.io"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2ea043?style=flat&labelColor=1a1e35" alt="Apache-2.0"></a>
 </p>
@@ -59,7 +59,7 @@ each stage must produce, and the hard boundary where a human signs.
 ## Domain map
 
 <!-- gen:overview -->
-**25 roles** across **12 domains**, binding **466 skills** from Aero Agent Skills and verified by **966 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
+**29 roles** across **12 domains**, binding **490 skills** from Aero Agent Skills and verified by **1200 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
 <!-- /gen:overview -->
 
 <p align="center">
@@ -88,6 +88,7 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 | [AS9100 Quality / Internal Auditor](roles/as9100-quality-auditor/ROLE.md) | audit plan + findings report + corrective-action follow-up | 15 |
 | [Aerodynamics Engineer](roles/aerodynamics-engineer/ROLE.md) | aerodynamic design + analysis report | 28 |
 | [Aircraft Conceptual Design Engineer](roles/aircraft-design-engineer/ROLE.md) | concept design package (sizing + layout + cost) | 34 |
+| [Aircraft Performance Engineer](roles/aircraft-performance-engineer/ROLE.md) | Aircraft Performance Analysis Report | 9 |
 | [Airworthiness Compliance Engineer](roles/airworthiness-compliance-engineer/ROLE.md) | compliance checklist / certification matrix | 9 |
 | [DO-160G Environmental Qualification Engineer](roles/do160-environmental-engineer/ROLE.md) | equipment environmental qualification plan/report | 6 |
 | [DO-178C Software Certification Engineer](roles/do178c-cert-engineer/ROLE.md) | certification plan + verification evidence set | 9 |
@@ -96,8 +97,10 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 | [Engineering Analysis and Data Engineer](roles/engineering-analysis-engineer/ROLE.md) | analysis verification + engineering report | 42 |
 | [Flight Management Engineer](roles/flight-management-engineer/ROLE.md) | flight plan and RNAV/RNP route assessment | 11 |
 | [Flight Mechanics Engineer](roles/flight-mechanics-engineer/ROLE.md) | performance + stability and control analysis report | 38 |
+| [Flight Software Engineer](roles/flight-software-engineer/ROLE.md) | Flight Software Design and Verification Plan | 4 |
 | [Flight Test Engineer](roles/flight-test-engineer/ROLE.md) | flight test plan + envelope expansion report | 21 |
 | [Flight Test Performance Engineer](roles/flight-test-performance-engineer/ROLE.md) | flight test performance data analysis report | 15 |
+| [Flight Test Planning Engineer](roles/flight-test-planning-engineer/ROLE.md) | Flight Test Plan and Requirements Traceability | 7 |
 | [Guidance Engineer](roles/guidance-engineer/ROLE.md) | guidance law design and assessment report | 9 |
 | [Guidance, Navigation and Control (GNC) Engineer](roles/gnc-engineer/ROLE.md) | control design + guidance/navigation analysis report | 23 |
 | [High-Speed Aerodynamics Engineer](roles/high-speed-aerodynamics-engineer/ROLE.md) | High-Speed Aerodynamic Analysis Memo | 19 |
@@ -107,6 +110,7 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 | [Propulsion Engineer](roles/propulsion-engineer/ROLE.md) | propulsion system design + cycle analysis report | 34 |
 | [Safety Assessment Engineer (ARP4761A)](roles/safety-assessment-engineer/ROLE.md) | Aircraft/System Safety Assessment Report (ARP4761A) | 20 |
 | [Space Systems Engineer](roles/space-systems-engineer/ROLE.md) | spacecraft mission + subsystem design report | 45 |
+| [Stability and Control Flight Test Engineer](roles/stability-control-flight-test-engineer/ROLE.md) | Stability and Control Flight Test Report | 4 |
 | [State Estimation Engineer](roles/state-estimation-engineer/ROLE.md) | navigation state estimator design report | 7 |
 | [Structures and Loads Engineer](roles/structures-loads-engineer/ROLE.md) | loads + strength/stability analysis report | 38 |
 | [Systems Integration Engineer](roles/systems-integration-engineer/ROLE.md) | System Development Assurance and Integration Plan (ARP4754A) | 8 |
