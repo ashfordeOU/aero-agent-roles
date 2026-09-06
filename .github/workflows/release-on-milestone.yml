@@ -1,0 +1,79 @@
+name: release-on-milestone
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release-on-milestone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Check if a role-count release milestone was crossed
+        id: check
+        run: |
+          ROLES=$(python3 -c "import json; print(json.load(open('docs/metrics.json'))['roles'])")
+          echo "roles=$ROLES"
+          # Release convention (roles 2026-09-05): every role-count
+          # milestone = one version. v1.0.0 @ 12 roles (baseline);
+          # v1.1.0 @ 25; v1.2.0 @ 50; v1.3.0 @ 75; v2.0.0 @ 100.
+          # Same boundary-skip fix as skills: find the LOWEST missing
+          # band tag whose boundary the count has REACHED, so a wave
+          # jumping past a boundary releases skipped bands one at a time.
+          SHOULD="false"
+          NEXT_TAG=""
+          for spec in "25:v1.1.0" "50:v1.2.0" "75:v1.3.0" "100:v2.0.0"; do
+            BOUNDARY="${spec%%:*}"
+            TAG="${spec##*:}"
+            if ! git rev-parse -q --verify "refs/tags/$TAG" >/dev/null 2>&1 && [ "$ROLES" -ge "$BOUNDARY" ]; then
+              SHOULD="true"
+              NEXT_TAG="$TAG"
+              break
+            fi
+          done
+          LAST=$(git tag --list 'v*' --sort=-v:refname | head -1 || echo "")
+          echo "last_tag=$LAST" >> "$GITHUB_OUTPUT"
+          echo "next_tag=$NEXT_TAG" >> "$GITHUB_OUTPUT"
+          echo "Last release tag: $LAST"
+          if [ "$SHOULD" = "true" ]; then
+            echo "Milestone $NEXT_TAG due (roles=$ROLES crossed boundary)."
+            echo "should_release=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No missing milestone band (all role-count tags exist or not reached)."
+            echo "should_release=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create GitHub Release
+        if: steps.check.outputs.should_release == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.check.outputs.next_tag }}
+          ROLES: ${{ steps.check.outputs.roles }}
+        run: |
+          BODY=$(cat <<'EOF'
+          ## Aero Agent Roles — {{TAG}}
+
+          {{ROLES}} executable aerospace engineering roles (core engine + CLI + filled deliverable + tests), standards-mapped (DO-178C · ARP4754A · AS9100 · FAR-25 · ECSS), gated by make validate 5/5 + the 100% audit.
+
+          **Packages in this release:**
+          - npm CLI + MCP server: `aero-agent-roles` (catalog of {{ROLES}} roles)
+          - JetBrains Marketplace plugin (com.ashforde.aeroroles)
+          - GitHub public repo with gate CI (validate 5/5)
+          - Program profiles + evidence bundle protocol (`--bundle`/`--profile`)
+
+          Install: `npx -y aero-agent-roles`
+          EOF
+          )
+          BODY=${BODY//"{{TAG}}"/$TAG}
+          BODY=${BODY//"{{ROLES}}"/$ROLES}
+          git tag "$TAG"
+          git push origin "$TAG"
+          gh release create "$TAG" --title "Aero Agent Roles $TAG" --notes "$BODY"
+          echo "Released $TAG at $ROLES roles"

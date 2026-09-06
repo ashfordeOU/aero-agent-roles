@@ -1,0 +1,43 @@
+name: publish-npm
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  publish-npm:
+    name: Publish aero-agent-roles to npm
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/aero-agent-roles
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - name: Generate manifest + catalog from live tree
+        run: |
+          python3 ../../scripts/gen_manifest.py
+          python3 ../../scripts/gen_npm_manifest.py
+      - name: Verify version matches tag
+        run: |
+          PKG_VER=$(python3 -c "import json; print(json.load(open('package.json'))['version'])")
+          TAG_VER="${GITHUB_REF_NAME#v}"
+          echo "package version: $PKG_VER"
+          echo "tag version: $TAG_VER"
+          if [ "$PKG_VER" != "$TAG_VER" ]; then
+            echo "::error::package.json version ($PKG_VER) does not match tag ($TAG_VER)"
+            exit 1
+          fi
+      - name: Smoke test before publish
+        run: node test/smoke.mjs
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
