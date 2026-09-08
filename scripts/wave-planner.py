@@ -60,8 +60,16 @@ CLUSTER_ROLE_MAP = {
     "systems-engineering-safety/certification": (
         "certification-planning-engineer",
         "Certification Basis and Means of Compliance Plan"),
-    "gnc-autonomy/autopilot": ("autopilot-control-engineer",
-                               "Autopilot Control Law Design Report"),
+    # wave R9 targets (ledger 2026-09-08 — weak families below 70% bar:
+    # gnc-autonomy 38/56=67.9%, aerodynamics 40/58=69.0%). The former
+    # "gnc-autonomy/autopilot" key is repointed to the real skills-tree
+    # cluster "gnc-autonomy/control" (no autopilot cluster exists).
+    "gnc-autonomy/control": ("autopilot-control-engineer",
+                             "Autopilot Control Law Design Report"),
+    "gnc-autonomy/navigation": ("navigation-engineer",
+                                "Integrated GNSS/INS Navigation Design Report"),
+    "aerodynamics/boundary-layer": ("boundary-layer-engineer",
+                                    "Boundary Layer and Viscous Drag Analysis Memo"),
     # weak-family clusters (wave R3+ targets)
     "systems-engineering-safety/arp4754a": (
         "systems-integration-engineer",
