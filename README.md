@@ -88,7 +88,7 @@ aero-roles install do178c-cert-engineer --dest ./my-program
 python3 ./my-program/do178c-cert-engineer/cli.py build --out plan.md
 ```
 
-**3 · Connect over MCP** — Claude Desktop, VS Code, Cursor, Windsurf, Gemini CLI, or any Model Context Protocol host:
+**3 · Connect over MCP** — Claude Desktop, VS Code, Cursor, Windsurf, Gemini CLI, or any Model Context Protocol host. **Working from this repo? The server lives in the repo** — see [MCP.md](MCP.md): the committed `.mcp.json` registers it with editors project-scope, and `bash scripts/mcp-install.sh` wires every host found on the machine (Claude Code, Hermes, self-verify). Consumers use the published copy:
 
 ```json
 {

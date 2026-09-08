@@ -2,12 +2,44 @@
 // Same wire protocol and host-config shape as Aero Agent Skills' MCP
 // server (JetBrains AI Assistant/Junie, Claude Desktop, VS Code, Cursor,
 // Windsurf all speak this identically) — implements initialize, ping,
-// tools/list, tools/call; anything else gets -32601, and requests without
-// an id are notifications and never answered. Offline: every answer comes
-// from the bundled manifest — no network, ever.
+// tools/list, tools/call, plus the SEP-2640 resources model
+// (resources/list, resources/read over role:// URIs) so roles are
+// discoverable as resources, not only through tool calls. Anything else
+// gets -32601, and requests without an id are notifications and never
+// answered. Offline: every answer comes from the bundled manifest — no
+// network, ever.
 'use strict';
 
-const { Catalog, version } = require('./catalog');
+const { Catalog, tokens, version } = require('./catalog');
+const fs = require('fs');
+const path = require('path');
+
+/* Reverse binding index: skill leaf path -> [role slugs that bind it].
+   Built once from ROLE.md frontmatter (skills_bound), cached. Lets a host
+   answer "which role owns the deliverable for this skill?" offline. */
+let _reverseCache = null;
+function reverseIndex(catalog) {
+  if (_reverseCache) return _reverseCache;
+  const inv = new Map();
+  const root = catalog.root; // roles tree (repo checkout or bundled)
+  for (const r of catalog.roles) {
+    const roleMd = path.join(root, r.slug, 'ROLE.md');
+    let text = '';
+    try { text = fs.readFileSync(roleMd, 'utf8'); } catch (e) { continue; }
+    const m = text.match(/^---\n([\s\S]*?)\n---/);
+    if (!m) continue;
+    const fm = m[1];
+    const block = fm.match(/^skills_bound:([\s\S]*?)(?=^[a-z_]+:|\Z)/m);
+    if (!block) continue;
+    for (const lm of block[1].matchAll(/^\s+-\s+([a-z0-9\-/]+)/gm)) {
+      const leaf = lm[1];
+      if (!inv.has(leaf)) inv.set(leaf, []);
+      inv.get(leaf).push(r.slug);
+    }
+  }
+  _reverseCache = inv;
+  return _reverseCache;
+}
 
 const TOOLS = [
   {
@@ -73,6 +105,21 @@ const TOOLS = [
       additionalProperties: false,
     },
   },
+  {
+    name: 'suggest_role',
+    description: 'Reverse binding: given a bound skill leaf path (e.g. avionics/do178c/planning) '
+      + 'or a task in plain words, return the role(s) that own the end-to-end deliverable for it. '
+      + 'Use when a loaded skill says "who executes this method?" — the role pulls the skill '
+      + 'forward; this tool inverts the map. For a task query it ranks roles by title/domain overlap.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        skill: { type: 'string', description: 'Bound skill leaf path (family/pack/skill).' },
+        task: { type: 'string', description: 'Plain-words task to rank roles for (alternative to skill).' },
+      },
+      additionalProperties: false,
+    },
+  },
 ];
 
 function text(t) {
@@ -134,9 +181,69 @@ function callTool(catalog, name, args) {
         `${s.id}: ${s.name}\n  publisher: ${s.publisher}${s.gated ? ' (gated: no verbatim text)' : ''}\n  roles: ${s.roles.join(', ')}`)
         .join('\n\n'));
     }
+    case 'suggest_role': {
+      const inv = reverseIndex(catalog);
+      if (args.skill) {
+        const skill = String(args.skill).replace(/\/+$/, '');
+        const roles = inv.get(skill) || [];
+        if (roles.length === 0) {
+          const prefixHits = [...inv.entries()].filter(([p]) => p.startsWith(skill + '/')).slice(0, 10);
+          if (prefixHits.length === 0) return toolError(`no role binds skill '${skill}' (unbound leaf — wave candidate).`);
+          return text(`leaves under ${skill} bound by roles:\n` + prefixHits.map(([p, rs]) => `${p}: ${rs.join(', ')}`).join('\n'));
+        }
+        return text(`${skill}\n  bound by roles:\n` + roles.map((r) => `    -> roles/${r}/ROLE.md`).join('\n'));
+      }
+      if (args.task) {
+        const q = new Set(tokens(String(args.task)));
+        const scored = catalog.roles.map((r) => {
+          const hay = new Set(tokens(`${r.title} ${r.deliverable_type} ${r.domain} ${r.slug}`));
+          let s = 0; for (const w of q) if (hay.has(w)) s += 1;
+          return { r, s };
+        }).filter((x) => x.s > 0).sort((a, b) => b.s - a.s || (a.r.slug < b.r.slug ? -1 : 1)).slice(0, 8);
+        if (scored.length === 0) return toolError('no role matches that task. Call list_domains to browse.');
+        return text(scored.map(({ r, s }) => `${r.slug} (score ${s}): ${r.title} — ${r.deliverable_type}`).join('\n'));
+      }
+      return toolError('suggest_role needs a skill leaf path or a task query.');
+    }
     default:
       return toolError(`unknown tool '${name}'`);
   }
+}
+
+function resourcesList(catalog) {
+  // SEP-2640: roles are resources under the role:// namespace. Every role
+  // is listed so hosts can enumerate without guessing slugs; domains are
+  // collection URIs.
+  const out = [];
+  const seen = new Set();
+  const push = (uri, name, kind) => {
+    if (seen.has(uri)) return;
+    seen.add(uri);
+    out.push({ uri, name, mimeType: 'text/markdown', description: `${kind} — ${name}` });
+  };
+  for (const r of catalog.roles) {
+    push(`role://${r.slug}`, r.slug, 'role');
+    push(`role://${r.domain}`, r.domain, 'role domain');
+  }
+  push('role://', 'role bank root', 'role');
+  return out;
+}
+
+function readResource(catalog, uri) {
+  const u = String(uri || '');
+  if (u === 'role://' || u === 'role:') {
+    return text(`Aero Agent Roles — resource root\n\nDomains:\n${domainsSummary(catalog)}\n\nLoad a domain or role with role://<domain> or role://<slug>\n`);
+  }
+  if (!u.startsWith('role://')) return toolError(`unknown resource uri '${uri}' (expected role://…)`);
+  const path = u.slice('role://'.length).replace(/\/+$/, '');
+  if (!path) return text(`Aero Agent Roles — resource root\n\n${domainsSummary(catalog)}\n`);
+  const role = catalog.find(path);
+  if (role) return text(catalog.readRoleMd(role.slug));
+  const inDomain = catalog.roles.filter((r) => r.domain === path);
+  if (inDomain.length > 0) {
+    return text(`${path} — ${inDomain.length} roles\n` + inDomain.map((r) => `${r.slug}: ${r.title} — ${r.deliverable_type}`).join('\n'));
+  }
+  return toolError(`no role or domain '${path}'. Closest: ${catalog.search(path.replace(/-/g, ' '), 3).map((h) => h.role.slug).join(', ') || 'none'}`);
 }
 
 function serve() {
@@ -156,7 +263,10 @@ function serve() {
       case 'initialize':
         return reply(req.id, {
           protocolVersion: (req.params && req.params.protocolVersion) || '2025-06-18',
-          capabilities: { tools: { listChanged: false } },
+          capabilities: {
+            tools: { listChanged: false },
+            resources: { subscribe: false, listChanged: false },
+          },
           serverInfo: { name: 'aero-agent-roles', version: version() },
         });
       case 'ping':
@@ -168,6 +278,20 @@ function serve() {
           return reply(req.id, callTool(catalog, req.params && req.params.name, req.params && req.params.arguments));
         } catch (e) {
           return reply(req.id, toolError(`tool failed: ${e.message}`));
+        }
+      case 'resources/list':
+        try {
+          return reply(req.id, { resources: resourcesList(catalog) });
+        } catch (e) {
+          return reply(req.id, undefined, { code: -32603, message: `resources/list failed: ${e.message}` });
+        }
+      case 'resources/read':
+        try {
+          const uri = req.params && req.params.uri;
+          const res = readResource(catalog, uri);
+          return reply(req.id, { contents: [{ uri, mimeType: 'text/markdown', text: res.content[0].text }] });
+        } catch (e) {
+          return reply(req.id, undefined, { code: -32603, message: `resources/read failed: ${e.message}` });
         }
       default:
         if (isNotification) return undefined;
@@ -196,4 +320,4 @@ function serve() {
   process.stdin.on('end', () => process.exit(0));
 }
 
-module.exports = { serve, callTool, TOOLS };
+module.exports = { serve, callTool, TOOLS, resourcesList, readResource };

@@ -20,6 +20,12 @@ skills_bound:
   - avionics/do178c/data-control-coupling-analysis
   - avionics/do178c/airworthiness-liaison
 tools_allowed: [stdlib, offline-file-processing]
+mcp_allowed:
+  - aero-agent-skills:read
+  - aero-agent-roles:read
+mcp_blocked:
+  - github
+  - worldintel
 forbidden:
   - "issue certification approval"
   - "claim regulatory sign-off"

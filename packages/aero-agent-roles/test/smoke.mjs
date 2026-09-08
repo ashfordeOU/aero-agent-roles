@@ -79,7 +79,7 @@ const mcpRoundTrip = () => new Promise((resolve, reject) => {
     while ((nl = buf.indexOf('\n')) !== -1) {
       responses.push(JSON.parse(buf.slice(0, nl)));
       buf = buf.slice(nl + 1);
-      if (responses.length === 4) {
+      if (responses.length === 7) {
         clearTimeout(timer);
         child.stdin.end();
         resolve(responses);
@@ -93,16 +93,20 @@ const mcpRoundTrip = () => new Promise((resolve, reject) => {
   send({ jsonrpc: '2.0', id: 2, method: 'tools/list' });
   send({ jsonrpc: '2.0', id: 3, method: 'tools/call', params: { name: 'search_roles', arguments: { query: 'DO-178C software certification plan' } } });
   send({ jsonrpc: '2.0', id: 4, method: 'tools/call', params: { name: 'get_role', arguments: { slug: 'do178c-cert-engineer' } } });
+  send({ jsonrpc: '2.0', id: 5, method: 'resources/list' });
+  send({ jsonrpc: '2.0', id: 6, method: 'resources/read', params: { uri: 'role://do178c-cert-engineer' } });
+  send({ jsonrpc: '2.0', id: 7, method: 'tools/call', params: { name: 'suggest_role', arguments: { skill: 'avionics/do178c/planning' } } });
 });
 
 try {
-  const [init, toolsList, search, getRole] = await mcpRoundTrip();
+  const [init, toolsList, search, getRole, resList, resRead, suggest] = await mcpRoundTrip();
   check('MCP initialize handshake', () => {
     assert.equal(init.result.serverInfo.name, 'aero-agent-roles');
     assert.ok(init.result.capabilities.tools);
+    assert.ok(init.result.capabilities.resources, 'advertises resources capability');
   });
-  check('MCP tools/list exposes 5 tools', () => {
-    assert.equal(toolsList.result.tools.length, 5);
+  check('MCP tools/list exposes 6 tools', () => {
+    assert.equal(toolsList.result.tools.length, 6);
     for (const t of toolsList.result.tools) assert.ok(t.inputSchema && t.description, t.name);
   });
   check('MCP search_roles finds the DO-178C role', () => {
@@ -110,6 +114,17 @@ try {
   });
   check('MCP get_role returns the full ROLE.md', () => {
     assert.ok(getRole.result.content[0].text.includes('name: do178c-cert-engineer'));
+  });
+  check('MCP resources/list enumerates role:// URIs', () => {
+    assert.ok(resList.result.resources.length >= metrics.roles, `expected >=${metrics.roles} resources, got ${resList.result.resources.length}`);
+    assert.ok(resList.result.resources.some((r) => r.uri === 'role://do178c-cert-engineer'), 'role listed');
+  });
+  check('MCP resources/read serves a role body', () => {
+    assert.equal(resRead.result.contents[0].uri, 'role://do178c-cert-engineer');
+    assert.ok(resRead.result.contents[0].text.includes('name: do178c-cert-engineer'), 'body is the ROLE.md');
+  });
+  check('MCP suggest_role inverts skill -> role', () => {
+    assert.ok(suggest.result.content[0].text.includes('do178c-cert-engineer'), suggest.result.content[0].text.split('\n')[0]);
   });
 } catch (e) {
   failures += 1;

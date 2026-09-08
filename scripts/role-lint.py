@@ -89,6 +89,33 @@ def main():
         for phrase in ["sign_off_required: true", "forbidden"]:
             if phrase not in low:
                 problems.append(f"{slug}: boundary phrase missing: {phrase}")
+        # MCP access policy: optional. Absent = offline-only (the 100%
+        # deterministic default). Present must be a well-formed allow list:
+        #   mcp_allowed:          # optional; omit for offline-only roles
+        #     - <server>:<read|write>     e.g. aero-agent-skills:read
+        #     - <server>:<read|write>     e.g. github:write
+        # Any server NOT listed is blocked for that role. mcp_blocked is a
+        # hard deny list that wins over mcp_allowed.
+        fm_block = re.match(r"^---\n(.*?)\n---", text, re.S)
+        raw_fm = fm_block.group(1) if fm_block else ""
+        mcp_allowed = bool(re.search(r"^mcp_allowed:", raw_fm, re.M))
+        mcp_blocked = bool(re.search(r"^mcp_blocked:", raw_fm, re.M))
+        if mcp_allowed:
+            entries = re.findall(r"^\s+-\s+([a-z0-9][a-z0-9\-_]*):(read|write)$", raw_fm, re.M)
+            if not entries:
+                problems.append(f"{slug}: mcp_allowed must list '<server>:<read|write>' entries (e.g. 'aero-agent-skills:read')")
+            if mcp_blocked:
+                # only lines after the mcp_blocked: header, before the next top-level key
+                m = re.search(r"^mcp_blocked:(.*?)(?=^[a-z_]+:|\Z)", raw_fm, re.M | re.S)
+                blocked = re.findall(r"^\s+-\s+([a-z0-9][a-z0-9\-_]*)", m.group(1), re.M) if m else []
+                if not blocked:
+                    problems.append(f"{slug}: mcp_blocked must list server names")
+                allow_names = {e[0] for e in entries}
+                for b in blocked:
+                    if b in allow_names:
+                        problems.append(f"{slug}: mcp_blocked contradicts mcp_allowed for '{b}'")
+        if mcp_blocked and not mcp_allowed:
+            problems.append(f"{slug}: mcp_blocked without mcp_allowed is redundant (absent mcp_allowed already blocks all); remove or add an allow list")
         # no-approval boundary: in the role body OR its deliverable template
         tdir = os.path.join(rdir, "templates")
         template_text = ""
