@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 35,
+ "count": 38,
  "roles": [
   {
    "slug": "adcs-engineer",
@@ -82,6 +82,28 @@
     "as9100"
    ],
    "skills_bound": 15
+  },
+  {
+   "slug": "autopilot-control-engineer",
+   "title": "Autopilot Control Engineer",
+   "domain": "gnc-autonomy",
+   "deliverable_type": "autopilot control law design package",
+   "status": "draft",
+   "standards": [
+    "mil-std-1797a"
+   ],
+   "skills_bound": 12
+  },
+  {
+   "slug": "boundary-layer-engineer",
+   "title": "Boundary-Layer Engineer",
+   "domain": "aerodynamics",
+   "deliverable_type": "boundary-layer and viscous drag analysis report",
+   "status": "draft",
+   "standards": [
+    "naca-tr-824"
+   ],
+   "skills_bound": 10
   },
   {
    "slug": "composites-structures-engineer",
@@ -284,6 +306,19 @@
     "arp4761a"
    ],
    "skills_bound": 6
+  },
+  {
+   "slug": "navigation-engineer",
+   "title": "Navigation Engineer",
+   "domain": "gnc-autonomy",
+   "deliverable_type": "navigation architecture and position error analysis report",
+   "status": "draft",
+   "standards": [
+    "do-229",
+    "do-208",
+    "icao-annex-10"
+   ],
+   "skills_bound": 13
   },
   {
    "slug": "ndt-engineer",

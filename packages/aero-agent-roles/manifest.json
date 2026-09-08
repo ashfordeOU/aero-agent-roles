@@ -1,11 +1,11 @@
 {
  "schema": "aero-agent-roles/manifest@1",
  "counts": {
-  "roles": 35,
+  "roles": 38,
   "domains": 12,
-  "skills_bound": 562,
-  "tests": 1419,
-  "standards": 24
+  "skills_bound": 597,
+  "tests": 1519,
+  "standards": 27
  },
  "roles": [
   {
@@ -101,6 +101,32 @@
    "skills_bound": 15,
    "tests": 32,
    "stage_preview": "as9100/internal-quality-audit -> as9100/document-control -> as9100/management-review -> as9100/risk-management + quality -> as9100/nonconformance-control + co"
+  },
+  {
+   "slug": "autopilot-control-engineer",
+   "title": "Autopilot Control Engineer",
+   "domain": "gnc-autonomy",
+   "deliverable_type": "autopilot control law design package",
+   "status": "draft",
+   "standards": [
+    "mil-std-1797a"
+   ],
+   "skills_bound": 12,
+   "tests": 46,
+   "stage_preview": "gnc-autonomy/control/state-space-a -> gnc-autonomy/control/pid-control-d -> gnc-autonomy/control/frequency-res -> gnc-autonomy/control/root-locus-de -> gnc-autonomy/control/frequency-res"
+  },
+  {
+   "slug": "boundary-layer-engineer",
+   "title": "Boundary-Layer Engineer",
+   "domain": "aerodynamics",
+   "deliverable_type": "boundary-layer and viscous drag analysis report",
+   "status": "draft",
+   "standards": [
+    "naca-tr-824"
+   ],
+   "skills_bound": 10,
+   "tests": 27,
+   "stage_preview": "aerodynamics/boundary-layer/bounda -> aerodynamics/boundary-layer/squire -> aerodynamics/boundary-layer/mangle -> aerodynamics/boundary-layer/lamina -> aerodynamics/boundary-layer/rough-"
   },
   {
    "slug": "composites-structures-engineer",
@@ -337,6 +363,21 @@
    "skills_bound": 6,
    "tests": 49,
    "stage_preview": "mbse/requirements-modeling -> mbse/systems-engineering -> mbse/sysml-modeling -> mbse/systems-engineering -> mbse/trade-study-analysis, mbse/sy"
+  },
+  {
+   "slug": "navigation-engineer",
+   "title": "Navigation Engineer",
+   "domain": "gnc-autonomy",
+   "deliverable_type": "navigation architecture and position error analysis report",
+   "status": "draft",
+   "standards": [
+    "do-229",
+    "do-208",
+    "icao-annex-10"
+   ],
+   "skills_bound": 13,
+   "tests": 27,
+   "stage_preview": "navigation-frames -> inertial-navigation -> gnss-pseudorange-positioning + dil -> gnss-raim-fde -> gnss-carrier-smoothing + gnss-dopp"
   },
   {
    "slug": "ndt-engineer",
@@ -616,6 +657,24 @@
    ]
   },
   {
+   "id": "do-208",
+   "name": "RTCA DO-208, Minimum Operational Performance Standards for Airborne Supplemental Navigation Equipment Using GPS",
+   "publisher": "RTCA",
+   "gated": true,
+   "roles": [
+    "navigation-engineer"
+   ]
+  },
+  {
+   "id": "do-229",
+   "name": "RTCA DO-229, Minimum Operational Performance Standards for GPS/WAAS Airborne Equipment",
+   "publisher": "RTCA",
+   "gated": true,
+   "roles": [
+    "navigation-engineer"
+   ]
+  },
+  {
    "id": "do-236c",
    "name": "RTCA DO-236C, MASPS: RNP for Area Navigation",
    "publisher": "RTCA",
@@ -695,6 +754,15 @@
    ]
   },
   {
+   "id": "icao-annex-10",
+   "name": "ICAO Annex 10, Aeronautical Telecommunications (Vol I: Radio Navigation Aids)",
+   "publisher": "ICAO",
+   "gated": true,
+   "roles": [
+    "navigation-engineer"
+   ]
+  },
+  {
    "id": "mil-std-1553",
    "name": "MIL-STD-1553B, Digital Time Division Command/Response Multiplex Data Bus",
    "publisher": "US DoD",
@@ -707,8 +775,9 @@
    "id": "mil-std-1797a",
    "name": "MIL-STD-1797A, Flying Qualities of Piloted Aircraft",
    "publisher": "US DoD",
-   "gated": false,
+   "gated": true,
    "roles": [
+    "autopilot-control-engineer",
     "flight-mechanics-engineer",
     "flight-test-engineer",
     "gnc-engineer"
@@ -730,6 +799,7 @@
    "publisher": "NACA/NASA (public domain)",
    "gated": true,
    "roles": [
+    "boundary-layer-engineer",
     "high-speed-aerodynamics-engineer"
    ]
   },

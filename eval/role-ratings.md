@@ -2,14 +2,14 @@
 type: eval
 title: Role ratings (evidence-based)
 status: generated
-updated: 2026-09-06
+updated: 2026-09-08
 tags: [aero, roles, ratings, eval]
 pipeline: generated
 ---
 
 # Role ratings
 
-Audit: CEO, Ashforde OÜ - regenerated 2026-09-06 12:37 UTC · mechanical evidence only (tests, blanks, audit-100, bound skills).
+Audit: CEO, Ashforde OÜ - regenerated 2026-09-08 11:00 UTC · mechanical evidence only (tests, blanks, audit-100, bound skills).
 
 | Role | Rating | Evidence |
 |---|---|---|
@@ -20,6 +20,8 @@ Audit: CEO, Ashforde OÜ - regenerated 2026-09-06 12:37 UTC · mechanical eviden
 | aircraft-systems-sizing-engineer | 10.0 | all checks pass |
 | airworthiness-compliance-engineer | 10.0 | all checks pass |
 | as9100-quality-auditor | 10.0 | all checks pass |
+| autopilot-control-engineer | 10.0 | all checks pass |
+| boundary-layer-engineer | 10.0 | all checks pass |
 | composites-structures-engineer | 10.0 | all checks pass |
 | data-bus-avionics-engineer | 10.0 | all checks pass |
 | do160-environmental-engineer | 10.0 | all checks pass |
@@ -37,6 +39,7 @@ Audit: CEO, Ashforde OÜ - regenerated 2026-09-06 12:37 UTC · mechanical eviden
 | guidance-engineer | 10.0 | all checks pass |
 | high-speed-aerodynamics-engineer | 10.0 | all checks pass |
 | mbse-modeling-engineer | 10.0 | all checks pass |
+| navigation-engineer | 10.0 | all checks pass |
 | ndt-engineer | 10.0 | all checks pass |
 | numerical-analysis-engineer | 10.0 | all checks pass |
 | propulsion-engineer | 10.0 | all checks pass |

@@ -42,6 +42,8 @@ be purchased or accessed through the publishers' official channels.
 | cs-25 | EASA CS-25, Certification Specifications | EASA | aircraft-systems-sizing-engineer, airworthiness-compliance-engineer, fem-analysis-engineer, flight-test-performance-engineer, flight-test-planning-engineer, guidance-engineer, safety-assessment-engineer, stability-control-flight-test-engineer | True |
 | do-160 | RTCA DO-160G / EUROCAE ED-14G, Environmental Conditions and Test Procedures for Airborne Equipment | RTCA/EUROCAE | do160-environmental-engineer | True |
 | do-178c | RTCA DO-178C / EUROCAE ED-12C, Software Considerations in Airborne Systems | RTCA/EUROCAE | do178c-cert-engineer, flight-software-engineer | True |
+| do-208 | RTCA DO-208, Minimum Operational Performance Standards for Airborne Supplemental Navigation Equipment Using GPS | RTCA | navigation-engineer | True |
+| do-229 | RTCA DO-229, Minimum Operational Performance Standards for GPS/WAAS Airborne Equipment | RTCA | navigation-engineer | True |
 | do-236c | RTCA DO-236C, MASPS: RNP for Area Navigation | RTCA | flight-management-engineer | True |
 | do-254 | RTCA DO-254 / EUROCAE ED-80, Design Assurance for Airborne Electronic Hardware | RTCA/EUROCAE | do254-hardware-engineer | True |
 | do-283a | RTCA DO-283A, MOPS for RNP Area Navigation (RNP AR) | RTCA | flight-management-engineer | True |
@@ -49,10 +51,11 @@ be purchased or accessed through the publishers' official channels.
 | far-25 | 14 CFR Part 25, Airworthiness Standards: Transport Category Airplanes | FAA | aerodynamics-engineer, aircraft-design-engineer, aircraft-performance-engineer, aircraft-systems-sizing-engineer, airworthiness-compliance-engineer, composites-structures-engineer, fem-analysis-engineer, flight-mechanics-engineer, flight-test-engineer, flight-test-performance-engineer, flight-test-planning-engineer, guidance-engineer, safety-assessment-engineer, stability-control-flight-test-engineer, structures-loads-engineer | True |
 | far-29 | far-29 | unknown — add to STANDARD_META | aircraft-performance-engineer | True |
 | far-33 | 14 CFR Part 33, Airworthiness Standards: Aircraft Engines | FAA | propulsion-engineer | False |
+| icao-annex-10 | ICAO Annex 10, Aeronautical Telecommunications (Vol I: Radio Navigation Aids) | ICAO | navigation-engineer | True |
 | mil-std-1553 | MIL-STD-1553B, Digital Time Division Command/Response Multiplex Data Bus | US DoD | data-bus-avionics-engineer | False |
-| mil-std-1797a | MIL-STD-1797A, Flying Qualities of Piloted Aircraft | US DoD | flight-mechanics-engineer, flight-test-engineer, gnc-engineer | False |
+| mil-std-1797a | MIL-STD-1797A, Flying Qualities of Piloted Aircraft | US DoD | autopilot-control-engineer, flight-mechanics-engineer, flight-test-engineer, gnc-engineer | True |
 | mmpsd | MMPDS, Metallic Materials Properties Development and Standardization | Battelle / FAA | fem-analysis-engineer, structures-loads-engineer | True |
-| naca-tr-824 | NACA Report 824, Summary of Airfoil Data | NACA/NASA (public domain) | high-speed-aerodynamics-engineer | True |
+| naca-tr-824 | NACA Report 824, Summary of Airfoil Data | NACA/NASA (public domain) | boundary-layer-engineer, high-speed-aerodynamics-engineer | True |
 | nas-410 | NAS 410, Certification and Qualification of Nondestructive Test Personnel | AIA/SAE | ndt-engineer | True |
 
 ## Purchase links

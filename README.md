@@ -13,16 +13,16 @@
 
 <!-- gen:statline -->
 <p align="center">
-  <img src="docs/statline-dark.png" alt="35 roles · 562 skills bound · 1419 offline tests · 24 standards · 5/5 gates · Apache-2.0" width="100%">
+  <img src="docs/statline-dark.png" alt="38 roles · 597 skills bound · 1519 offline tests · 27 standards · 5/5 gates · Apache-2.0" width="100%">
 </p>
 <!-- /gen:statline -->
 
 <!-- gen:badges -->
 <p align="center">
-  <a href="roles/"><img src="https://img.shields.io/badge/roles-35-a78bfa?style=flat&labelColor=1a1e35" alt="roles 35"></a>
-  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-562-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 562"></a>
-  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-1419-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 1419"></a>
-  <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-24-f97316?style=flat&labelColor=1a1e35" alt="standards 24"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/roles-38-a78bfa?style=flat&labelColor=1a1e35" alt="roles 38"></a>
+  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-597-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 597"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-1519-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 1519"></a>
+  <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-27-f97316?style=flat&labelColor=1a1e35" alt="standards 27"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/format-agentskills.io-8b5cf6?style=flat&labelColor=1a1e35" alt="format agentskills.io"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2ea043?style=flat&labelColor=1a1e35" alt="Apache-2.0"></a>
 </p>
@@ -123,7 +123,7 @@ Every role ships as an executable worker: core engine + CLI + filled template + 
 ## Domain map
 
 <!-- gen:overview -->
-**35 roles** across **12 domains**, binding **562 skills** from Aero Agent Skills and verified by **1419 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
+**38 roles** across **12 domains**, binding **597 skills** from Aero Agent Skills and verified by **1519 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
 <!-- /gen:overview -->
 
 <p align="center">
@@ -157,6 +157,8 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 | [Aircraft Performance Engineer](roles/aircraft-performance-engineer/ROLE.md) | Aircraft Performance Analysis Report | 9 |
 | [Aircraft Systems Sizing Engineer](roles/aircraft-systems-sizing-engineer/ROLE.md) | Aircraft System Sizing Report | 14 |
 | [Airworthiness Compliance Engineer](roles/airworthiness-compliance-engineer/ROLE.md) | compliance checklist / certification matrix | 9 |
+| [Autopilot Control Engineer](roles/autopilot-control-engineer/ROLE.md) | autopilot control law design package | 12 |
+| [Boundary-Layer Engineer](roles/boundary-layer-engineer/ROLE.md) | boundary-layer and viscous drag analysis report | 10 |
 | [Composite Structures Engineer (Analysis + Certification Evidence)](roles/composites-structures-engineer/ROLE.md) | composite structure analysis + certification report | 12 |
 | [DO-160G Environmental Qualification Engineer](roles/do160-environmental-engineer/ROLE.md) | equipment environmental qualification plan/report | 6 |
 | [DO-178C Software Certification Engineer](roles/do178c-cert-engineer/ROLE.md) | certification plan + verification evidence set | 9 |
@@ -175,6 +177,7 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 | [High-Speed Aerodynamics Engineer](roles/high-speed-aerodynamics-engineer/ROLE.md) | High-Speed Aerodynamic Analysis Memo | 19 |
 | [MBSE Modeling Engineer](roles/mbse-modeling-engineer/ROLE.md) | system model architecture + MBSE plan | 6 |
 | [NDT Engineer](roles/ndt-engineer/ROLE.md) | nondestructive test plan + method selection report | 10 |
+| [Navigation Engineer](roles/navigation-engineer/ROLE.md) | navigation architecture and position error analysis report | 13 |
 | [Numerical Analysis Engineer](roles/numerical-analysis-engineer/ROLE.md) | numerical methods verification memo | 10 |
 | [Propulsion Engineer](roles/propulsion-engineer/ROLE.md) | propulsion system design + cycle analysis report | 34 |
 | [Rocket Propulsion Engineer](roles/rocket-propulsion-engineer/ROLE.md) | rocket propulsion system design report | 14 |
