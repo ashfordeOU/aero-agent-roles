@@ -83,11 +83,11 @@ def dispatch_crosscheck(leaf: str, skill_fn: str, core_fn,
     leaf         e.g. 'structures/loads/gust-maneuver-loads'
     skill_fn     the function name inside the leaf's *logic.py
     core_fn      a zero-arg callable returning the core's computed value
-    skills_root  AeroSkills root (default: AEROSKILLS_DEV or ~/AeroSkills)
+    skills_root  AeroSkills root (default: AEROSKILLS_DEV or ~/company-ops/aero-agent-skills)
     """
     import importlib.util  # local import (stdlib)
     root = skills_root or os.environ.get(
-        "AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills"))
+        "AEROSKILLS_DEV", os.path.expanduser("~/company-ops/aero-agent-skills"))
     logic_dir = os.path.join(root, "skills", leaf, "scripts")
     if not os.path.isdir(logic_dir):
         return None

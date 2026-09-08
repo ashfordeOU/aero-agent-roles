@@ -51,7 +51,7 @@ import unittest
 
 ROLES_REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__)))))
-AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills"))
+AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/company-ops/aero-agent-skills"))
 HAS_SKILLS = os.path.isdir(os.path.join(AEROSKILLS, "skills"))
 ROLE_DIR = os.path.join(ROLES_REPO, "roles", "{slug}")
 TEMPLATE = os.path.join(ROLE_DIR, "templates", "{templates[0]}")

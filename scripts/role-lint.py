@@ -17,7 +17,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROLES = os.path.join(ROOT, "roles")
-AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills"))
+AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/company-ops/aero-agent-skills"))
 HAS_SKILLS = os.path.isdir(os.path.join(AEROSKILLS, "skills"))
 
 REQUIRED_FM = ["type", "name", "title", "domain", "deliverable_type",

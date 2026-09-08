@@ -20,7 +20,7 @@ import re
 import sys
 
 ROLES_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKILLS_ROOT = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/AeroSkills"))
+SKILLS_ROOT = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/company-ops/aero-agent-skills"))
 
 
 def role_bindings() -> dict[str, list[str]]:
