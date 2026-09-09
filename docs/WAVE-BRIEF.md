@@ -74,8 +74,8 @@ This is the compounding power axis: skills growth makes roles stronger.
 
 ## Quiet hours
 
-Roles work is QH-gated like every bot-system job: the weekday quiet block
-01:00-10:00 UTC (DeepSeek peaks 01-04 + 06-10 plus the gap, so nothing lands
+Roles work is QH-gated like every bot-system job: DeepSeek peak windows
+01:00-04:00 + 06:00-10:00 UTC weekdays (off-peak gap between windows usable; nothing lands
 in 2x peak time; weekends fully open) = null burn unless the founder waives
 it (as he did for the original role build and the 100% rebuild). Gate:
 `python3 ~/.hermes/scripts/quiet-hours-gate.py --check`.
