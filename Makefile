@@ -5,15 +5,16 @@
 #   gate 4 security      no local info / creds / machine paths (tripwire)
 #   gate 5 manifest      manifest.json matches tree (no hand-carried drift)
 #   gate 6 independence  verifier is not the generator (no self-graded output)
+#   gate 7 release-law   current milestone must be tagged (founder 2026-09-03)
 # growth gates (wave doctrine)
 #   coverage-check       COVERAGE-MATRIX.md up to date (numbers-via-script)
-#   release-law          reports milestone / due release (non-blocking)
+#   stale-guard          stats not stale
 
-validate: role-lint role-tests no-verbatim security manifest independence
-	@echo "Aero Agent Roles validate: PASS (6/6 REAL gates)"
+validate: role-lint role-tests no-verbatim security manifest independence release-law
+	@echo "Aero Agent Roles validate: PASS (7/7 REAL gates)"
 
-growth: coverage-check release-law stale-guard
-	@echo "Aero Agent Roles growth: coverage + release law + stale stats checked"
+growth: coverage-check stale-guard
+	@echo "Aero Agent Roles growth: coverage + stale stats checked"
 
 role-lint:
 	@python3 scripts/role-lint.py
@@ -37,7 +38,8 @@ coverage-check:
 	@python3 scripts/coverage-matrix.py --check
 
 release-law:
-	@python3 scripts/release-law.py
+	@python3 scripts/release-law.py --check
+	@python3 scripts/test_release_law.py
 
 visuals:
 	@python3 scripts/gen_visuals.py

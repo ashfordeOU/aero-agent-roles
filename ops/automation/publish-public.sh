@@ -48,8 +48,14 @@ tar -xf "$SCRATCH/tree.tar" -C "$SCRATCH"
 EXPORT="$SCRATCH/export"
 
 # 2. gate battery inside the export
+# Release-law (gate 7) judges whether the current milestone is tagged. The
+# export has no .git (git archive drops tags), so hand the dev repo's tag
+# list in: without it the gate reads "latest tag: none" and blocks every
+# publish. Empty list keeps the gate's teeth (it fails when it cannot verify).
+RELEASE_TAG="$(git tag -l | grep -E '^(roles-)?v[0-9]' | paste -sd, - || true)"
+log "release tags handed to the export: ${RELEASE_TAG:-none}"
 log "running gates inside export"
-if ! (cd "$EXPORT" && make validate >/tmp/roles-pub-validate.log 2>&1); then
+if ! (cd "$EXPORT" && RELEASE_TAG="$RELEASE_TAG" make validate >/tmp/roles-pub-validate.log 2>&1); then
   log "GATES FAILED inside export — public repo NOT touched"
   tail -5 /tmp/roles-pub-validate.log
   exit 1
