@@ -20,6 +20,8 @@ estimation-filtering leaf logic files and cross-checks identical
 computations (alpha-beta gains, Kalman recursion, EKF Jacobian, NEES,
 effective sample size); agreement is recorded in provenance.json.
 """
+from __future__ import annotations  # PEP 604 unions (dict | None) on Python 3.9
+
 import argparse
 import importlib.util
 import json

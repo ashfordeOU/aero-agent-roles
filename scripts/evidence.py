@@ -176,6 +176,11 @@ def write_bundle(out_md: str, role: str, deliverable_type: str,
     model_payload.setdefault("deliverable_type", deliverable_type)
     model_payload.setdefault("generated", _utcnow())
     model_payload.setdefault("status", "draft-for-review")
+    # generator = the producing agent/role. The VERIFIER (gates.checker) must be
+    # independent of it (founder 2026-09-10): no bot grades its own output.
+    # The roles gates are deterministic Python checks, so they qualify; this
+    # field makes the relationship checkable by scripts/verify-independence.py.
+    model_payload.setdefault("generator", role)
 
     prov_payload = dict(provenance or {})
     prov_payload.setdefault("schema_version", 1)

@@ -4,12 +4,13 @@
 #   gate 3 no-verbatim   templates/SOURCES never reproduce proprietary text
 #   gate 4 security      no local info / creds / machine paths (tripwire)
 #   gate 5 manifest      manifest.json matches tree (no hand-carried drift)
+#   gate 6 independence  verifier is not the generator (no self-graded output)
 # growth gates (wave doctrine)
 #   coverage-check       COVERAGE-MATRIX.md up to date (numbers-via-script)
 #   release-law          reports milestone / due release (non-blocking)
 
-validate: role-lint role-tests no-verbatim security manifest
-	@echo "Aero Agent Roles validate: PASS (5/5 REAL gates)"
+validate: role-lint role-tests no-verbatim security manifest independence
+	@echo "Aero Agent Roles validate: PASS (6/6 REAL gates)"
 
 growth: coverage-check release-law stale-guard
 	@echo "Aero Agent Roles growth: coverage + release law + stale stats checked"
@@ -28,6 +29,9 @@ security:
 
 manifest:
 	@python3 scripts/gen_manifest.py --check
+
+independence:
+	@bash scripts/gate-verify-independence.sh
 
 coverage-check:
 	@python3 scripts/coverage-matrix.py --check
@@ -54,4 +58,4 @@ about:
 stale-guard:
 	@bash scripts/roles-stale-guard.sh
 
-.PHONY: validate growth role-lint role-tests no-verbatim security manifest coverage-check release-law visuals visuals-check package-test about stale-guard
+.PHONY: validate growth role-lint role-tests no-verbatim security manifest independence coverage-check release-law visuals visuals-check package-test about stale-guard
