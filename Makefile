@@ -60,4 +60,10 @@ about:
 stale-guard:
 	@bash scripts/roles-stale-guard.sh
 
-.PHONY: validate growth role-lint role-tests no-verbatim security manifest independence coverage-check release-law visuals visuals-check package-test about stale-guard
+growth-guard:
+	@bash ops/automation/growth-guard.sh
+
+growth-guard-test:
+	@python3 scripts/test_growth_guard.py
+
+.PHONY: validate growth role-lint role-tests no-verbatim security manifest independence coverage-check release-law visuals visuals-check package-test about stale-guard growth-guard growth-guard-test

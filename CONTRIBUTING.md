@@ -46,6 +46,13 @@ make package-test  # npm/CLI/MCP smoke (when packaging touched)
    `python3 scripts/gen_manifest.py`, `make visuals`.
 5. Push. Never force-push.
 
+The push path checks steps 3-4 for you: install the fail-closed gate once per
+clone with `bash ops/automation/install-growth-guard-hook.sh`. It runs
+`make growth` + `make visuals-check` as `.git/hooks/pre-push` and refuses the
+push with the exact fix command when a generated stat is stale, so the
+published coverage numbers cannot rot silently. Test it with
+`make growth-guard-test`.
+
 ## The 100% bar
 
 A role is only "done" when it runs STANDALONE

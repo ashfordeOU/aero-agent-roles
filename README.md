@@ -13,7 +13,7 @@
 
 <!-- gen:statline -->
 <p align="center">
-  <img src="docs/statline-dark.png" alt="38 roles · 597 skills bound · 1519 offline tests · 27 standards · 5/5 gates · Apache-2.0" width="100%">
+  <img src="docs/statline-dark.png" alt="38 roles · 597 skills bound · 1519 offline tests · 27 standards · 7/7 gates · Apache-2.0" width="100%">
 </p>
 <!-- /gen:statline -->
 

@@ -9,7 +9,7 @@
 <line x1="120.0" y1="140" x2="142.0" y2="140" stroke="#edf0fc" stroke-width="1.4"/>
 <path d="M 150.0 140 l -9 -4.5 v 9 Z" fill="#edf0fc"/>
 <rect x="154" y="70" width="800" height="140" fill="none" stroke="#a78bfa" stroke-width="1.8"/>
-<text class="mono" x="166.0" y="62.0" text-anchor="start" font-size="11" fill="#a78bfa" letter-spacing="2">MAKE VALIDATE · 5/5 REAL GATES</text>
+<text class="mono" x="166.0" y="62.0" text-anchor="start" font-size="11" fill="#a78bfa" letter-spacing="2">MAKE VALIDATE · 7/7 REAL GATES</text>
 <rect x="168.0" y="112.0" width="144.4" height="56" fill="#111632" stroke="#2c3564" stroke-width="1.3"/>
 <text class="mono" x="240.2" y="136.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">ROLE</text>
 <text class="mono" x="240.2" y="152.0" text-anchor="middle" font-size="10" fill="#edf0fc" letter-spacing="1">LINT</text>
