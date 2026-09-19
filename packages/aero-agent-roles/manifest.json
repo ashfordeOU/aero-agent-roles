@@ -195,7 +195,7 @@
    ],
    "skills_bound": 4,
    "tests": 38,
-   "stage_preview": "do254/hardware-planning -> do254/requirements-capture -> do254/verification -> do254/configuration-management -> core engine"
+   "stage_preview": "do254/hardware-planning -> do254/requirements-capture -> do254/hardware-verification -> do254/hardware-configuration-manag -> core engine"
   },
   {
    "slug": "engineering-analysis-engineer",

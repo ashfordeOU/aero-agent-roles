@@ -14,8 +14,8 @@ standards_bound:
 skills_bound:
   - avionics/do254/hardware-planning
   - avionics/do254/requirements-capture
-  - avionics/do254/verification
-  - avionics/do254/configuration-management
+  - avionics/do254/hardware-verification
+  - avionics/do254/hardware-configuration-management
 tools_allowed: [stdlib, offline-file-processing]
 forbidden:
   - "issue certification approval"
@@ -65,8 +65,8 @@ The role produces:
 |---|---|---|
 | 1. Hardware planning | do254/hardware-planning | AEH class (simple/complex), PHAC scope, artifact set |
 | 2. Requirements capture | do254/requirements-capture | requirement issue list, derived-vs-allocated classification, readiness verdict |
-| 3. Verification strategy | do254/verification | verification methods, coverage ratio (0.98 A/B, 0.95 C/D), independence |
-| 4. Configuration management | do254/configuration-management | change class, ECR/ECO path, HCI entries, baseline control |
+| 3. Verification strategy | do254/hardware-verification | verification methods, coverage ratio (0.98 A/B, 0.95 C/D), independence |
+| 4. Configuration management | do254/hardware-configuration-management | change class, ECR/ECO path, HCI entries, baseline control |
 | 5. Process assurance | core engine | process assurance records plan |
 | 6. Certification liaison | core engine | PHAC input, open items for the cert authority |
 

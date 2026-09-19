@@ -20,7 +20,7 @@ skills_bound:
   - systems-engineering-safety/arp4754a/derived-requirements
   - systems-engineering-safety/arp4754a/validation
   - systems-engineering-safety/arp4754a/verification-planning
-  - systems-engineering-safety/arp4754a/configuration-management
+  - systems-engineering-safety/arp4754a/systems-configuration-management
 tools_allowed: [stdlib, offline-file-processing]
 forbidden:
   - "issue certification approval"
@@ -85,7 +85,7 @@ The role produces:
 | 5. Derived requirements | arp4754a/derived-requirements | derived requirement register with source/rationale obligation |
 | 6. Validation | arp4754a/validation | validation closure score, independence need at A/B |
 | 7. Integration verification | arp4754a/verification-planning | acceptable methods per level, method-to-requirement coverage |
-| 8. Configuration management | arp4754a/configuration-management | CI baseline, change classification (major/minor), change log |
+| 8. Configuration management | arp4754a/systems-configuration-management | CI baseline, change classification (major/minor), change log |
 | 9. Plan + gates | (all above) | the System Development Assurance and Integration Plan + bundle |
 
 ## Evidence gates

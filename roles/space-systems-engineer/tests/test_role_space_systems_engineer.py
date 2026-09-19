@@ -54,7 +54,7 @@ EXPECTED_BOUND = [
     "space-systems/subsystems/thermal-design",
     "space-systems/subsystems/propellant-tank-sizing",
     "space-systems/subsystems/command-data-handling",
-    "space-systems/ecss/systems-engineering",
+    "space-systems/ecss/e10-systems-engineering",
     "space-systems/ecss/software-engineering",
     "space-systems/ecss/software-verification"
 ]

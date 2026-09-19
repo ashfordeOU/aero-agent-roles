@@ -40,7 +40,7 @@ EXPECTED_BOUND = [
     "systems-engineering-safety/arp4754a/derived-requirements",
     "systems-engineering-safety/arp4754a/validation",
     "systems-engineering-safety/arp4754a/verification-planning",
-    "systems-engineering-safety/arp4754a/configuration-management",
+    "systems-engineering-safety/arp4754a/systems-configuration-management",
 ]
 
 EXPECTED_STAGES = [

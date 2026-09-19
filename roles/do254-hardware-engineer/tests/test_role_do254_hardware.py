@@ -26,8 +26,8 @@ PHAC_TEMPLATE = os.path.join(ROLE_DIR, "templates", "phac-template.md")
 EXPECTED_BOUND = [
     "avionics/do254/hardware-planning",
     "avionics/do254/requirements-capture",
-    "avionics/do254/verification",
-    "avionics/do254/configuration-management",
+    "avionics/do254/hardware-verification",
+    "avionics/do254/hardware-configuration-management",
 ]
 
 EXPECTED_STAGES = [

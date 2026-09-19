@@ -47,13 +47,13 @@ DALS = ("A", "B", "C", "D", "E")
 
 # DO-254 verification logic: requirements-based test coverage ratio by
 # level: 0.98 at levels A/B, 0.95 at levels C/D (as encoded in the bound
-# avionics/do254/verification leaf). Level E (no safety effect) is
+# avionics/do254/hardware-verification leaf). Level E (no safety effect) is
 # typically outside DO-254 scope: no coverage target.
 COVERAGE_RATIO = {"A": 0.98, "B": 0.98, "C": 0.95, "D": 0.95, "E": None}
 
 # Verification independence by DAL: independent verification expected at
 # the higher hardware design assurance levels (A/B) per the bound
-# avionics/do254/verification leaf.
+# avionics/do254/hardware-verification leaf.
 INDEPENDENT = {"A": True, "B": True, "C": False, "D": False, "E": False}
 
 # Life cycle data set by DAL: the hardware life cycle data items a PHAC
@@ -218,7 +218,7 @@ def planning_artifacts(classification: str) -> list:
 
 
 # ---------------------------------------------------------------------------
-# Verification rules (grounded in avionics/do254/verification leaf)
+# Verification rules (grounded in avionics/do254/hardware-verification leaf)
 # ---------------------------------------------------------------------------
 
 def _check_dal(dal: str) -> None:
@@ -284,7 +284,7 @@ def structural_methods_text(dal: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Configuration management (grounded in avionics/do254/configuration-management)
+# Configuration management (grounded in avionics/do254/hardware-configuration-management)
 # ---------------------------------------------------------------------------
 
 VALID_HARDWARE_CLASSES = ("simple", "complex")

@@ -91,8 +91,8 @@ class TestDo254BundleProfile(unittest.TestCase):
         # all four bound leaves dispatch at least one logic cross-check
         leaves = {row["leaf"] for row in p["skills"]}
         for leaf in ("avionics/do254/hardware-planning",
-                     "avionics/do254/verification",
-                     "avionics/do254/configuration-management",
+                     "avionics/do254/hardware-verification",
+                     "avionics/do254/hardware-configuration-management",
                      "avionics/do254/requirements-capture"):
             self.assertIn(leaf, leaves, f"no dispatch row for {leaf}")
         for row in p["skills"]:

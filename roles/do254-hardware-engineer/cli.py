@@ -31,8 +31,8 @@ HAS_SKILLS = os.path.isdir(os.path.join(AEROSKILLS, "skills"))
 # Bound avionics/do254 leaves and their logic files.
 DO254_LEAVES = {
     "hardware-planning": "avionics/do254/hardware-planning",
-    "verification": "avionics/do254/verification",
-    "configuration-management": "avionics/do254/configuration-management",
+    "verification": "avionics/do254/hardware-verification",
+    "configuration-management": "avionics/do254/hardware-configuration-management",
     "requirements-capture": "avionics/do254/requirements-capture",
 }
 

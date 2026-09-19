@@ -52,7 +52,7 @@ skills_bound:
   - space-systems/subsystems/thermal-design
   - space-systems/subsystems/propellant-tank-sizing
   - space-systems/subsystems/command-data-handling
-  - space-systems/ecss/systems-engineering
+  - space-systems/ecss/e10-systems-engineering
   - space-systems/ecss/software-engineering
   - space-systems/ecss/software-verification
 tools_allowed: [stdlib, offline-file-processing]
@@ -104,7 +104,7 @@ budgets. Do NOT use for aircraft certification or airframe roles.
 | 9. Power/thermal | power-thermal-budget + solar-array-sizing + spacecraft-battery-sizing + thermal-design | power/thermal budgets |
 | 10. Comms | communication-link-budget + antenna-aperture-sizing | link budget |
 | 11. Propulsion/C&DH | propellant-tank-sizing + command-data-handling | propulsion sizing, C&DH |
-| 12. ECSS context | ecss/systems-engineering + ecss/software-engineering + ecss/software-verification | process + software context |
+| 12. ECSS context | ecss/e10-systems-engineering + ecss/software-engineering + ecss/software-verification | process + software context |
 | 13. Report | (all above) | mission + subsystem reports |
 
 ## Evidence gates
