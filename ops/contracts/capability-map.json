@@ -1,0 +1,39 @@
+{
+  "_comment": [
+    "What each capability term in this corpus's ROLE.md `tools_allowed`",
+    "actually requires, stated in the harness's tool vocabulary.",
+    "",
+    "WHY THIS FILE EXISTS",
+    "A role declared `tools_allowed: [stdlib, offline-file-processing]` and a",
+    "harness declared `fs_write:ask, network:deny`. Two vocabularies, two",
+    "repositories, and nothing that read both -- so the reconciliation rule",
+    "lived only in whoever last thought about it. This file is this corpus",
+    "making its request in the harness's own words. It grants nothing: the",
+    "harness computes min(ceiling, requested) and the ceiling always wins.",
+    "",
+    "WHY THE SOLVER ENTRIES NAME shell_rw AND NOT shell_ro",
+    "An external solver writes its results. Classing it as read-only because",
+    "it happens to write into a scratch directory would be a permission the",
+    "system cannot enforce, described as one it can. A harness ceiling that",
+    "denies shell_rw therefore blocks these roles' solver step, and that is",
+    "the truthful outcome -- visible in `make permissions-report`, changeable",
+    "in exactly one line of the harness's edges/tools.allow, and never",
+    "obtained by relabelling the requirement.",
+    "",
+    "A term with an empty requirement is refused by the reader: 'needs",
+    "nothing' and 'we have not worked this out yet' serialise identically."
+  ],
+  "context": "aero-capability-map/v1",
+  "source": "aero-agent-roles",
+  "vocabulary": "aero-harness contract/tool-vocabulary.csv",
+  "capabilities": {
+    "stdlib": ["fs_read"],
+    "offline-file-processing": ["fs_read", "fs_write"],
+    "avl-cli": ["shell_rw", "fs_read", "fs_write"],
+    "calculix-cli": ["shell_rw", "fs_read", "fs_write"],
+    "cea-cli": ["shell_rw", "fs_read", "fs_write"],
+    "jsbsim-cli": ["shell_rw", "fs_read", "fs_write"],
+    "openvsp-cli": ["shell_rw", "fs_read", "fs_write"],
+    "xfoil-avl-su2-cli": ["shell_rw", "fs_read", "fs_write"]
+  }
+}
