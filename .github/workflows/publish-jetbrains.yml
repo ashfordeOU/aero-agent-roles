@@ -15,6 +15,8 @@ jobs:
         working-directory: packages/jetbrains-plugin
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0   # tags are needed for the version sync below
       - uses: actions/setup-java@v4
         with:
           java-version: 21
@@ -22,6 +24,19 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           cache-disabled: true
+      - name: Sync plugin version to latest release tag
+        run: |
+          # Without this the hardcoded build.gradle.kts version ships. It
+          # sat at 1.1.0 while the marketplace already had 1.1.0, so every
+          # publish 409'd and the tolerant check below turned that into a
+          # green run: the plugin could not ship, and nothing said so.
+          TAG=$(git tag --list 'v[0-9]*.[0-9]*.0' --sort=-v:refname | head -1)
+          VER=${TAG#v}
+          if [ -z "$VER" ]; then echo '::error::no release tag found'; exit 1; fi
+          perl -pi -e 's/^version = ".*"/version = "'"$VER"'"/' build.gradle.kts
+          echo "INTENDED_VERSION=$VER" >> "$GITHUB_ENV"
+          echo "Publishing plugin version $VER (from tag $TAG)"
+          grep -n '^version' build.gradle.kts
       - name: Generate catalog from live tree
         run: python3 ../../scripts/gen_jetbrains_catalog.py
       - name: Build plugin
@@ -38,9 +53,15 @@ jobs:
           RC=${PIPESTATUS[0]}
           set -e
           if [ $RC -ne 0 ]; then
-            if grep -qiE "already contains version|version .* already|HTTP.*409|conflict|HTTP.*422" /tmp/jb_publish.log; then
-              echo "::warning::Version already on marketplace — treating as success (re-run idempotent)"
+            # Forgive ONLY a re-run of the version this run meant to publish.
+            # The old test forgave any "already contains version" at all,
+            # which is how a plugin pinned to a version the marketplace
+            # already had reported success on every single run.
+            if grep -qiE "already contains version|HTTP.*409" /tmp/jb_publish.log \
+               && grep -qF "$INTENDED_VERSION" /tmp/jb_publish.log; then
+              echo "::warning::$INTENDED_VERSION already on the marketplace — idempotent re-run"
             else
+              echo "::error::publishPlugin failed, and not as an idempotent re-run of $INTENDED_VERSION"
               cat /tmp/jb_publish.log
               exit $RC
             fi
