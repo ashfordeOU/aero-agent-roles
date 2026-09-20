@@ -38,6 +38,30 @@ jobs:
       - name: Smoke test before publish
         run: node test/smoke.mjs
       - name: Publish to npm
-        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          VER=$(python3 -c "import json; print(json.load(open('package.json'))['version'])")
+          set +e
+          npm publish --access public 2>&1 | tee /tmp/npm_publish.log
+          RC=${PIPESTATUS[0]}
+          set -e
+          if [ "$RC" -eq 0 ]; then
+            echo "published aero-agent-roles@$VER"
+            exit 0
+          fi
+
+          # A re-run, or two runs racing, gets E409 even when the version is
+          # live. The registry is the only authority on whether this job's
+          # contract -- "$VER is published" -- is actually met.
+          echo "publish exited $RC; asking the registry what it actually serves"
+          sleep 10
+          LIVE=$(npm view "aero-agent-roles@$VER" version 2>/dev/null || true)
+          if [ "$LIVE" = "$VER" ]; then
+            echo "::warning::aero-agent-roles@$VER is already on the registry -- idempotent re-run, contract met"
+            exit 0
+          fi
+
+          echo "::error::publish failed and aero-agent-roles@$VER is NOT on the registry (view returned '${LIVE:-nothing}')"
+          cat /tmp/npm_publish.log
+          exit "$RC"
