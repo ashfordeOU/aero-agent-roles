@@ -30,7 +30,7 @@ jobs:
           # sat at 1.1.0 while the marketplace already had 1.1.0, so every
           # publish 409'd and the tolerant check below turned that into a
           # green run: the plugin could not ship, and nothing said so.
-          TAG=$(git tag --list 'v[0-9]*.[0-9]*.0' --sort=-v:refname | head -1)
+          TAG=$(git tag --list 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -1)
           VER=${TAG#v}
           if [ -z "$VER" ]; then echo '::error::no release tag found'; exit 1; fi
           perl -pi -e 's/^version = ".*"/version = "'"$VER"'"/' build.gradle.kts
