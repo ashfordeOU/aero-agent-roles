@@ -1,5 +1,9 @@
 # Role gates (mirror AeroSkills 5-gate discipline, role-sized)
 #   gate 1 role-lint     structure + frontmatter + bound-skill resolution
+#                        (against a live corpus via AEROSKILLS_DEV, else the
+#                        pinned ledger; NEVER skipped -- it used to skip
+#                        wherever the developer's checkout was absent, which
+#                        is every environment but one machine)
 #   gate 2 role-tests    every role's offline test suite passes
 #   gate 3 no-verbatim   templates/SOURCES never reproduce proprietary text
 #   gate 4 security      no local info / creds / machine paths (tripwire)
@@ -50,6 +54,19 @@ capabilities:
 	@python3 scripts/gate-capabilities.py
 	@python3 scripts/test_gate_capabilities.py 2>&1 | tail -3
 
+# The pinned leaf ledger: what role-lint resolves bindings against when no
+# live skills corpus is handed in. Refresh it when leaves are renamed or
+# retired -- adding leaves cannot break a binding, so a merely-behind ledger
+# is reported and not fatal.
+skills-ledger:
+	@test -n "$(SKILLS)" || { echo "FAIL: SKILLS=<path to aero-agent-skills> is required" >&2; exit 2; }
+	@python3 scripts/gen_skill_ledger.py "$(SKILLS)"
+
+ledger-check:
+	@test -n "$(SKILLS)" || { echo "FAIL: SKILLS=<path to aero-agent-skills> is required" >&2; exit 2; }
+	@python3 scripts/gen_skill_ledger.py --check "$(SKILLS)"
+	@python3 scripts/test_skill_ledger.py 2>&1 | tail -3
+
 visuals:
 	@python3 scripts/gen_visuals.py
 	@python3 scripts/gen_npm_manifest.py
@@ -75,4 +92,4 @@ growth-guard:
 growth-guard-test:
 	@python3 scripts/test_growth_guard.py
 
-.PHONY: validate growth role-lint role-tests no-verbatim security manifest independence coverage-check release-law capabilities visuals visuals-check package-test about stale-guard growth-guard growth-guard-test
+.PHONY: validate growth role-lint role-tests no-verbatim security manifest independence coverage-check release-law capabilities skills-ledger ledger-check visuals visuals-check package-test about stale-guard growth-guard growth-guard-test

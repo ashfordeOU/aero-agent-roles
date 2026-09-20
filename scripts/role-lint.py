@@ -17,8 +17,45 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROLES = os.path.join(ROOT, "roles")
-AEROSKILLS = os.environ.get("AEROSKILLS_DEV", os.path.expanduser("~/company-ops/aero-agent-skills"))
-HAS_SKILLS = os.path.isdir(os.path.join(AEROSKILLS, "skills"))
+# WHERE BOUND LEAVES ARE RESOLVED, AND WHY THERE IS NO SKIP
+#
+# This used to default to a path inside the developer's home directory and
+# SKIP the binding check when that path was absent -- which is every
+# environment except one machine: public CI, an npm tarball, a fresh clone.
+# The skip was printed, which is better than silence and is still not a
+# check. The default also shipped the developer's directory layout to every
+# reader of this file, which is a thing this project does not do.
+#
+# Two sources now, in order, and no third outcome:
+#   1. a LIVE corpus, handed in via AEROSKILLS_DEV -- the strongest answer,
+#      because it is the corpus as it is right now;
+#   2. the PINNED LEDGER at ops/contracts/skills-leaves.json -- a snapshot,
+#      good everywhere, refreshed with `make skills-ledger SKILLS=<path>`.
+# With neither, the lint FAILS. "I could not check" and "it checks out" must
+# not print the same line.
+AEROSKILLS = os.environ.get("AEROSKILLS_DEV", "").strip()
+HAS_SKILLS = bool(AEROSKILLS) and os.path.isdir(
+    os.path.join(AEROSKILLS, "skills"))
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:
+    import gen_skill_ledger
+except ImportError:                     # pragma: no cover
+    gen_skill_ledger = None
+
+
+def _pinned_leaves():
+    """The ledger, as a set, or None when there is no usable ledger."""
+    if gen_skill_ledger is None:
+        return None
+    try:
+        doc = gen_skill_ledger.load()
+    except ValueError:
+        return None
+    return set(doc["leaves"]) if doc else None
+
+
+PINNED = _pinned_leaves()
 
 REQUIRED_FM = ["type", "name", "title", "domain", "deliverable_type",
                "standards_bound", "skills_bound", "forbidden",
@@ -82,7 +119,6 @@ def bound_skills(fm):
 
 def main():
     problems = []
-    skipped = []
     checked = 0
     roles = sorted(d for d in os.listdir(ROLES) if os.path.isdir(os.path.join(ROLES, d)))
     for slug in roles:
@@ -101,21 +137,32 @@ def main():
                 problems.append(f"{slug}: section '{sec}' missing")
         if fm.get("type") != "role":
             problems.append(f"{slug}: type != role")
-        # Bound skills must resolve. Skipped only when there is no skills
-        # checkout to resolve against -- and that skip is now REPORTED, so a
-        # green run cannot quietly mean "checked nothing".
+        # Bound skills must resolve -- against a live corpus if one was
+        # handed in, otherwise against the pinned ledger. There is no skip.
         declared = bound_skills(fm)
         if not declared:
             problems.append(f"{slug}: declares no bound skills")
-        elif not HAS_SKILLS:
-            skipped.append(slug)
-        else:
+        elif HAS_SKILLS:
             for leaf in declared:
                 if os.path.exists(os.path.join(AEROSKILLS, "skills", leaf,
                                                "SKILL.md")):
                     continue
                 problems.append(f"{slug}: bound skill unresolved: {leaf}")
             checked += len(declared)
+        elif PINNED:
+            for leaf in declared:
+                if leaf in PINNED:
+                    continue
+                problems.append(
+                    f"{slug}: bound skill unresolved against the pinned "
+                    f"ledger ({len(PINNED)} leaves): {leaf}")
+            checked += len(declared)
+        else:
+            problems.append(
+                f"{slug}: cannot resolve {len(declared)} bound skill(s) -- "
+                f"no live corpus (AEROSKILLS_DEV) and no usable ledger at "
+                f"ops/contracts/skills-leaves.json. Refusing to pass a check "
+                f"that examined nothing.")
         if not os.path.isdir(os.path.join(rdir, "templates")) or not any(
                 f.endswith(".md") for f in os.listdir(os.path.join(rdir, "templates"))):
             problems.append(f"{slug}: templates/ missing deliverable")
@@ -181,12 +228,23 @@ def main():
                     "not a clearance", "not production release",
                     "or an approval"]):
             problems.append(f"{slug}: no-approval boundary missing")
+    # A pass must state its denominator, and WHICH corpus answered.
+    # "0 bindings resolved against nothing" and "597 bindings resolved
+    # against 3189 leaves" are different outcomes and used to print the
+    # same line.
+    if HAS_SKILLS:
+        against = "a live skills corpus"
+    elif PINNED:
+        against = "the pinned ledger (%d leaves)" % len(PINNED)
+    else:
+        against = "NOTHING"
     if problems:
         print(f"ROLE-LINT: {len(problems)} problem(s)")
         for p in problems:
             print(f"  ✗ {p}")
         return 1
-    print(f"ROLE-LINT: {len(roles)} role(s) pass")
+    print(f"ROLE-LINT: {len(roles)} role(s) pass; "
+          f"{checked} binding(s) resolved against {against}")
     return 0
 
 
