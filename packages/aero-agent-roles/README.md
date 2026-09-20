@@ -2,7 +2,7 @@
 
 **The role layer for aerospace engineering agents** — professional roles that bind verified [Aero Agent Skills](https://github.com/ashfordeOU/aero-agent-skills) into end-to-end deliverables, with evidence gates and a human sign-off stop, shipped as an npm CLI and an MCP server. Built and maintained by [Ashforde OÜ](https://ashforde.org).
 
-> **Not yet published.** This package is wired and tested (`make package-test`) but `private: true` in `package.json` — npm refuses to publish it until that is deliberately removed. Ready to release, not released.
+> Published on npm as [`aero-agent-roles`](https://www.npmjs.com/package/aero-agent-roles). Install with `npm i -g aero-agent-roles`, then run `aero-roles --help`.
 
 Full role bank, figures, and provenance: [github.com/ashfordeOU/aero-agent-roles](https://github.com/ashfordeOU/aero-agent-roles) · [ashforde.org/aeroagentroles](https://ashforde.org/aeroagentroles)
 

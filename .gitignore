@@ -17,3 +17,7 @@ sources/**/*.pdf
 
 # internal acquisition tracking lives in the KB, never here
 sources/
+
+# prepack copies this in from the repo root so the tarball is
+# self-contained; the checked-in copy would be a second source of truth
+packages/aero-agent-roles/scripts/evidence.py

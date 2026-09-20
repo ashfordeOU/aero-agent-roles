@@ -19,6 +19,13 @@ fs.rmSync(path.join(pkg, 'roles'), { recursive: true, force: true });
 fs.cpSync(path.join(repo, 'roles'), path.join(pkg, 'roles'), { recursive: true });
 fs.copyFileSync(path.join(repo, 'NOTICE'), path.join(pkg, 'NOTICE'));
 
+// scripts/evidence.py travels with the tarball. Every role's cli.py does
+// `sys.path.insert(.., '../../scripts'); import evidence`, so without this the
+// installed package has 38 CLIs that all die on import. Shipped 1.2.0 did.
+fs.mkdirSync(path.join(pkg, 'scripts'), { recursive: true });
+fs.copyFileSync(path.join(repo, 'scripts', 'evidence.py'),
+                path.join(pkg, 'scripts', 'evidence.py'));
+
 // Strip Python bytecode caches: local test runs leave __pycache__/*.pyc
 // behind, and a plain cpSync copies them straight into the tarball. Never
 // ship compiled bytecode in a public package regardless of dev-tree state.
@@ -36,4 +43,4 @@ function stripPycache(dir) {
 }
 stripPycache(path.join(pkg, 'roles'));
 
-console.log('prepack: bundled roles/, NOTICE from repo root (pycache stripped)');
+console.log('prepack: bundled roles/, scripts/evidence.py, NOTICE from repo root (pycache stripped)');

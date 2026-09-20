@@ -28,20 +28,62 @@ REQUIRED_SECTIONS = ["Role identity", "Deliverable contract", "Workflow",
                      "Compliance"]
 
 
+_LIST_ITEM = re.compile(r"^\s+-\s+(.+?)\s*$")
+_TOP_KEY = re.compile(r"^([A-Za-z0-9_-]+):\s*(.*?)\s*$")
+
+
 def frontmatter(text):
+    """Parse the frontmatter, keeping block lists as lists.
+
+    The previous version split each line on ':' and kept the scalar, so a
+    block list -- whose items are on following lines with no ':' -- collapsed
+    to the empty string. Every consumer that iterated such a value iterated
+    nothing, silently. Scalars still come back as strings so existing callers
+    are unaffected; only list-valued keys change shape.
+    """
     m = re.match(r"^---\n(.*?)\n---", text, re.S)
     if not m:
         return {}
     fm = {}
+    current = None
     for line in m.group(1).splitlines():
-        if ":" in line:
-            k, v = line.split(":", 1)
-            fm[k.strip()] = v.strip()
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        item = _LIST_ITEM.match(line)
+        if current is not None and item:
+            fm[current].append(item.group(1).strip().strip("\"'"))
+            continue
+        key = _TOP_KEY.match(line)
+        if key:
+            k, v = key.group(1), key.group(2)
+            if v == "":
+                current = k
+                fm[k] = []          # a block list may follow
+            elif v.startswith("[") and v.endswith("]"):
+                current = None
+                fm[k] = [p.strip().strip("\"'")
+                         for p in v[1:-1].split(",") if p.strip()]
+            else:
+                current = None
+                fm[k] = v
     return fm
+
+
+def bound_skills(fm):
+    """The declared leaf slugs, whatever shape the frontmatter used."""
+    value = fm.get("skills_bound")
+    if isinstance(value, list):
+        return [v for v in value if v]
+    if isinstance(value, str) and value.strip():
+        # tolerate the old single-scalar spelling
+        return [value.strip()]
+    return []
 
 
 def main():
     problems = []
+    skipped = []
+    checked = 0
     roles = sorted(d for d in os.listdir(ROLES) if os.path.isdir(os.path.join(ROLES, d)))
     for slug in roles:
         rdir = os.path.join(ROLES, slug)
@@ -59,13 +101,21 @@ def main():
                 problems.append(f"{slug}: section '{sec}' missing")
         if fm.get("type") != "role":
             problems.append(f"{slug}: type != role")
-        # bound skills resolve (skip when skills checkout absent - CI verifies)
-        for leaf in re.findall(r"^\s+-\s+([a-z0-9\-/]+)$", fm.get("skills_bound", ""), re.M) if fm.get("skills_bound") else []:
-            if not HAS_SKILLS:
-                break
-            if os.path.exists(os.path.join(AEROSKILLS, "skills", leaf, "SKILL.md")):
-                continue
-            problems.append(f"{slug}: bound skill unresolved: {leaf}")
+        # Bound skills must resolve. Skipped only when there is no skills
+        # checkout to resolve against -- and that skip is now REPORTED, so a
+        # green run cannot quietly mean "checked nothing".
+        declared = bound_skills(fm)
+        if not declared:
+            problems.append(f"{slug}: declares no bound skills")
+        elif not HAS_SKILLS:
+            skipped.append(slug)
+        else:
+            for leaf in declared:
+                if os.path.exists(os.path.join(AEROSKILLS, "skills", leaf,
+                                               "SKILL.md")):
+                    continue
+                problems.append(f"{slug}: bound skill unresolved: {leaf}")
+            checked += len(declared)
         if not os.path.isdir(os.path.join(rdir, "templates")) or not any(
                 f.endswith(".md") for f in os.listdir(os.path.join(rdir, "templates"))):
             problems.append(f"{slug}: templates/ missing deliverable")
