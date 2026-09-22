@@ -243,6 +243,7 @@ def load_roles():
             "status": fm.get("status", "draft"),
             "standards": standards,
             "skills_bound": len(skills),
+            "_skills": skills,
         })
     return roles
 
@@ -287,10 +288,17 @@ def collect_metrics():
         d["tests"] += r["tests"]
     for d in domains.values():
         d["role_count"] = len(d["roles"])
+        # A skill bound by two roles is one skill and two bindings. The sum
+        # above counts bindings; this counts skills.
+        d["skills_distinct"] = len(set(s for r in d["roles"] for s in r["_skills"]))
+    distinct = set(s for r in roles for s in r["_skills"])
+    for r in roles:
+        r.pop("_skills")
 
     return {
         "roles": len(roles),
         "skills_bound": sum(r["skills_bound"] for r in roles),
+        "skills_distinct": len(distinct),
         "standards": len(standards),
         "tests": sum(test_counts.values()),
         "gates": count_gates(),
@@ -308,7 +316,7 @@ def gen_statline(m, t):
     W, H = 1240, 74
     stats = [
         (m["roles"], "ROLES", t["violet"]),
-        (m["skills_bound"], "SKILLS BOUND", t["cyan"]),
+        (m["skills_distinct"], "SKILLS BOUND", t["cyan"]),
         (m["tests"], "OFFLINE TESTS", t["magenta"]),
         (m["standards"], "STANDARDS", t["orange"]),
         (m["domains"], "DOMAINS", t["cyan"]),
@@ -336,7 +344,7 @@ def gen_radar(m, t):
     vs what's proven" pairing, one level up (roles, not leaves)."""
     W, H = 940, 820
     cx, cy, R = 430, 410, 262
-    peak = max(max(d["tests"], d["skills_bound"]) for d in m["per_domain"].values())
+    peak = max(max(d["tests"], d["skills_distinct"]) for d in m["per_domain"].values())
     for step in (5, 10, 20, 25, 50, 100, 200, 500):
         if math.ceil(peak / step) <= 6:
             break
@@ -376,7 +384,7 @@ def gen_radar(m, t):
         o.append(f'<rect x="{x - 3.2:.1f}" y="{y - 3.2:.1f}" width="6.4" height="6.4" '
                  f'fill="{t["canvas"]}" stroke="{mag}" stroke-width="1.6"/>')
 
-    skill_pts = [pt(cx, cy, R * d["skills_bound"] / rmax, a) for _, d, a in axes]
+    skill_pts = [pt(cx, cy, R * d["skills_distinct"] / rmax, a) for _, d, a in axes]
     o.append(poly(skill_pts, fill=mint, fill_opacity=t["fill_data"], stroke=mint, stroke_width="2.6"))
     for x, y in skill_pts:
         o.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.6" fill="{mint}" stroke="{ink}" stroke-width="1.2"/>')
@@ -394,7 +402,7 @@ def gen_radar(m, t):
              f'stroke="{ink}" stroke-width="1.2"/>')
     o.append(f'<line x1="{bx}" y1="{by + 74}" x2="{bx + bw}" y2="{by + 74}" stroke="{faint}" stroke-width="0.8"/>')
     o.append(f'<circle cx="{bx + 22}" cy="{by + 24}" r="4" fill="{mint}" stroke="{ink}" stroke-width="1.2"/>')
-    o.append(txt(bx + 36, by + 28, f'SKILLS BOUND · {m["skills_bound"]}', size=10.5, fill=ink))
+    o.append(txt(bx + 36, by + 28, f'SKILLS BOUND · {m["skills_distinct"]}', size=10.5, fill=ink))
     o.append(f'<rect x="{bx + 18}" y="{by + 44}" width="8" height="8" fill="none" stroke="{t["magenta"]}" stroke-width="1.6"/>')
     o.append(txt(bx + 36, by + 52, f'OFFLINE TESTS · {m["tests"]}', size=10.5, fill=ink))
     rows = [("UNIT", "COUNT PER DOMAIN"), ("SCALE", f"0–{int(rmax)} · RINGS {int(rings[0])}"),
@@ -404,7 +412,7 @@ def gen_radar(m, t):
         o.append(txt(bx + 14, yy, k, size=9, fill=pencil, ls=1))
         o.append(txt(bx + 66, yy, v, size=9, fill=ink))
 
-    o.append(txt(48, H - 22, f'{m["roles"]} ROLES · {m["skills_bound"]} SKILLS BOUND · '
+    o.append(txt(48, H - 22, f'{m["roles"]} ROLES · {m["skills_distinct"]} SKILLS BOUND · '
                  f'{m["tests"]} OFFLINE TESTS', size=10, fill=pencil, ls=2))
     o.append(ownermark(t, bx + bw, H - 8))
     o.append("</svg>")
@@ -473,7 +481,7 @@ def gen_polar(m, t):
 
 def gen_structure(m, t):
     """Sunburst: inner ring = 12 domains, outer ring = every role, arc
-    length proportional to skills bound."""
+    length proportional to bindings (a skill bound by two roles counts twice)."""
     W, H = 940, 900
     cx, cy = 470, 460
     r_hole, r_dom, r_role0, r_role1 = 96, 186, 192, 262
@@ -512,19 +520,19 @@ def gen_structure(m, t):
         dy = 10 if math.sin(math.radians(mid)) > 0.35 else (
             -4 if math.sin(math.radians(mid)) < -0.35 else 4)
         o.append(txt(lx, ly + dy, d["label"], size=11, fill=pencil, anchor=anchor, ls=1))
-        o.append(txt(lx, ly + dy + 15, f'{d["role_count"]}R · {d["skills_bound"]}S', size=9.5,
+        o.append(txt(lx, ly + dy + 15, f'{d["role_count"]}R · {d["skills_distinct"]}S', size=9.5,
                      fill=c, anchor=anchor, ls=1))
         a = a1 + dom_gap
 
     o.append(txt(cx, cy - 8, str(m["roles"]), cls="cond", size=52, fill=ink,
                  anchor="middle", ls=1))
     o.append(txt(cx, cy + 16, "ROLES", size=10, fill=pencil, anchor="middle", ls=2))
-    o.append(txt(cx, cy + 34, f'{m["skills_bound"]} SKILLS BOUND · {m["domains"]} DOMAINS',
+    o.append(txt(cx, cy + 34, f'{m["skills_distinct"]} SKILLS BOUND · {m["domains"]} DOMAINS',
                  size=9.5, fill=pencil, anchor="middle", ls=1))
 
     o.append(txt(52, 64, "ROLE BANK STRUCTURE", cls="cond", size=34, fill=ink, ls=2))
     o.append(txt(52, 90, "INNER RING: DOMAINS · OUTER RING: ROLES · "
-                 "ARC LENGTH = SKILLS BOUND", size=10.5, fill=pencil, ls=1))
+                 "ARC LENGTH = BINDINGS", size=10.5, fill=pencil, ls=1))
     o.append(txt(cx, H - 24, f'EVERY ARC COMPUTED FROM roles/ AT HEAD · '
                  f'FULL PER-DOMAIN LISTS IN docs/DOMAINS.md', size=10, fill=pencil,
                  anchor="middle", ls=2))
@@ -692,7 +700,7 @@ def block_badges(m):
                 f'{lab}-{enc}-{color}?style=flat&labelColor=1a1e35" alt="{alt or (label + " " + msg)}"></a>')
     row = [
         b("roles", str(m["roles"]), "a78bfa", "roles/"),
-        b("skills bound", str(m["skills_bound"]), "0ea5e9", "https://github.com/ashfordeOU/aero-agent-skills"),
+        b("skills bound", str(m["skills_distinct"]), "0ea5e9", "https://github.com/ashfordeOU/aero-agent-skills"),
         b("offline tests", str(m["tests"]), "2ea043", "roles/"),
         b("standards", str(m["standards"]), "f97316", "STANDARDS.md"),
         b("format", "agentskills.io", "8b5cf6", "https://agentskills.io"),
@@ -721,7 +729,8 @@ def block_role_table(m):
 
 def block_overview(m):
     return (f'**{m["roles"]} roles** across **{m["domains"]} domains**, binding '
-            f'**{m["skills_bound"]} skills** from Aero Agent Skills and verified by '
+            f'**{m["skills_distinct"]} distinct skills** ({m["skills_bound"]} bindings: a skill '
+            f'counts once per role that binds it) from Aero Agent Skills and verified by '
             f'**{m["tests"]} offline tests** — every figure below is computed from '
             f'the tree at HEAD; nothing is hand-counted.')
 
@@ -740,7 +749,7 @@ def render_readme(m, src):
             raise SystemExit(f"README.md: missing generator block <!-- gen:{name} -->")
         src = pat.sub(lambda mo: mo.group(1) + fn(m) + mo.group(2), src)
     alt_pat = re.compile(r'(<img src="docs/statline-dark\.png" alt=")[^"]*(")')
-    alt = (f'{m["roles"]} roles · {m["skills_bound"]} skills bound · '
+    alt = (f'{m["roles"]} roles · {m["skills_distinct"]} skills bound · '
            f'{m["tests"]} offline tests · {m["standards"]} standards · '
            f'{m["gates"]}/{m["gates"]} gates · {m["license"]}')
     src = alt_pat.sub(rf'\g<1>{alt}\g<2>', src)
@@ -810,7 +819,7 @@ def gen_domains(m):
         "",
         "Machine-readable source of truth: `roles/*/ROLE.md` frontmatter. This",
         f'page is the human companion — {m["domains"]} domains, {m["roles"]} roles, '
-        f'{m["skills_bound"]} skills bound.',
+        f'{m["skills_distinct"]} skills bound ({m["skills_bound"]} bindings).',
         "",
         "Generated by `make visuals` (scripts/gen_visuals.py) — do not edit by hand;",
         "CI fails if this page drifts from the tree. Aero Agent Roles is built and",
@@ -830,11 +839,11 @@ def gen_domains(m):
             out.append(f"    {rid}[{r['slug']} · {r['skills_bound']}]")
             out.append(f"    {mid(name)} --> {rid}")
     out += ["```", "",
-            f'*{m["roles"]} roles · {m["skills_bound"]} skills bound rendered above.*']
+            f'*{m["roles"]} roles · {m["skills_distinct"]} skills bound ({m["skills_bound"]} bindings) rendered above.*']
     for name in sorted(doms):
         d = doms[name]
         out += ["", f"## {name}", "",
-                f'**{d["role_count"]} roles · {d["skills_bound"]} skills bound · {d["tests"]} offline tests**',
+                f'**{d["role_count"]} roles · {d["skills_distinct"]} skills bound ({d["skills_bound"]} bindings) · {d["tests"]} offline tests**',
                 "", "| Role | Deliverable | Skills bound | Tests |", "|---|---|---|---|"]
         for r in sorted(d["roles"], key=lambda r: r["title"]):
             out.append(f'| [{r["title"]}](../roles/{r["slug"]}/ROLE.md) | '

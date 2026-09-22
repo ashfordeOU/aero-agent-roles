@@ -21,8 +21,8 @@ capability that uses the knowledge.
 ## What does "verified" mean?
 
 For each role: a replayable offline test suite that passes
-(`make validate`, 5 gates: role-lint, role-tests, no-verbatim, security,
-manifest) plus the 100% audit (audit-100.sh: core + cli + filled
+(`make validate`, every gate in it: role-lint, role-tests, no-verbatim,
+security, manifest, independence, release-law, capabilities) plus the 100% audit (audit-100.sh: core + cli + filled
 template + tests per role). When the Aero Agent Skills library is
 present, the role dispatches bound leaf logic and cross-checks its own
 computed numbers against the leaf's — agreement is recorded in

@@ -13,14 +13,14 @@
 
 <!-- gen:statline -->
 <p align="center">
-  <img src="docs/statline-dark.png" alt="38 roles · 597 skills bound · 1519 offline tests · 27 standards · 8/8 gates · Apache-2.0" width="100%">
+  <img src="docs/statline-dark.png" alt="38 roles · 524 skills bound · 1519 offline tests · 27 standards · 8/8 gates · Apache-2.0" width="100%">
 </p>
 <!-- /gen:statline -->
 
 <!-- gen:badges -->
 <p align="center">
   <a href="roles/"><img src="https://img.shields.io/badge/roles-38-a78bfa?style=flat&labelColor=1a1e35" alt="roles 38"></a>
-  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-597-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 597"></a>
+  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-524-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 524"></a>
   <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-1519-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 1519"></a>
   <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-27-f97316?style=flat&labelColor=1a1e35" alt="standards 27"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/format-agentskills.io-8b5cf6?style=flat&labelColor=1a1e35" alt="format agentskills.io"></a>
@@ -118,12 +118,12 @@ git clone https://github.com/ashfordeOU/aero-agent-roles
 cp -r aero-agent-roles/roles/do178c-cert-engineer ~/your-workspace/
 ```
 
-Every role ships as an executable worker: core engine + CLI + filled template + tests, gated by `make validate` (5/5) and the 100% audit. Publisher: **[aero-agent-roles on npm](https://www.npmjs.com/package/aero-agent-roles)** by Ashforde OÜ, Apache-2.0.
+Every role ships as an executable worker: core engine + CLI + filled template + tests, gated by `make validate` (every gate green) and the 100% audit. Publisher: **[aero-agent-roles on npm](https://www.npmjs.com/package/aero-agent-roles)** by Ashforde OÜ, Apache-2.0.
 
 ## Domain map
 
 <!-- gen:overview -->
-**38 roles** across **12 domains**, binding **597 skills** from Aero Agent Skills and verified by **1519 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
+**38 roles** across **12 domains**, binding **524 distinct skills** (597 bindings: a skill counts once per role that binds it) from Aero Agent Skills and verified by **1519 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
 <!-- /gen:overview -->
 
 <p align="center">
@@ -250,10 +250,10 @@ Public-domain regulations (FAR/CS) are quotable with citation. See
 
 ## Quality gates
 
-Every role passes a 5-gate battery before it ships:
+Every role passes the `make validate` battery before it ships:
 
 <p align="center">
-  <img src="docs/gates-dark.png" alt="Verification battery: commit passes 5 validate gates and the visuals-freshness check before CI goes green" width="100%">
+  <img src="docs/gates-dark.png" alt="Verification battery: commit passes every make validate gate and the visuals-freshness check before CI goes green" width="100%">
 </p>
 
 ```bash
@@ -280,10 +280,10 @@ scripts/             # gates and role tooling
 
 ## Roadmap
 
-**Shipped:** 33 professional roles binding 534 verified Aero Agent
-Skills leaves across 12 engineering domains, every role an executable
+**Shipped:** the role bank above, every figure in it generated from
+the tree, every role an executable
 worker (core engine + CLI + filled template + tests) gated by
-`make validate` (5/5) and the 100% audit — from DO-178C certification
+`make validate` (every gate green) and the 100% audit — from DO-178C certification
 engineer and DO-254 hardware engineer to structures, composites,
 FEA, avionics data bus, GNC guidance/state-estimation, flight test
 performance, safety assessment (ARP4761A), systems integration
@@ -314,7 +314,7 @@ listings alongside Aero Agent Skills.
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR: every role
 ships with its executable core + filled template + tests, every
 contributor certifies their submission contains no controlled data and
-no verbatim standards text, every merge must pass `make validate` (5/5)
+no verbatim standards text, every merge must pass `make validate` (every gate)
 and `make growth`.
 
 ## Security
@@ -329,7 +329,7 @@ code dependency. Report vulnerabilities privately per
 [docs/FAQ.md](docs/FAQ.md) covers license, certification status, export
 control, what verified means, roles-vs-skills, and affiliation. Short
 answers: Apache-2.0, not certified, not controlled as published,
-verified = replayable `make validate` 5/5 + the 100% audit on the commit
+verified = replayable `make validate`, every gate, + the 100% audit on the commit
 you are looking at, roles = executable workers on the skills substrate,
 not affiliated with RTCA, SAE, EASA, FAA, or any government.
 
