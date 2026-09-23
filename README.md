@@ -356,11 +356,36 @@ Apache-2.0. See [LICENSE](LICENSE) · [NOTICE](NOTICE) ·
 Aero Agent Roles is built and maintained by Ashforde OÜ (Estonia).
 Copyright © 2026 Ashforde OÜ.
 
-## Related
+<!-- family:begin -->
+<!-- Generated from contract/family.csv and
+     contract/family-links.csv in the runtime. Do not edit by
+     hand: `make gate-family` re-renders this block and
+     refuses a change made here. -->
 
-- [Aero Agent Skills](https://github.com/ashfordeOU/aero-agent-skills) - the knowledge substrate this role bank builds on
-- [Aero Agent Roles on the web](https://ashforde.org/aeroagentroles/)
+## Related repositories
 
+This repository is one of a family. Each connection below is pinned by
+a digest, a signature or a byte-for-byte copy, and a named check goes red
+when a pin breaks.
+
+- **[aero-agent-skills](https://github.com/ashfordeOU/aero-agent-skills)** &mdash; The corpus of leaf skills, the published specification directory and the sealing code
+- **[aero-harness-records](https://github.com/ashfordeOU/aero-harness-records)** &mdash; The calibration registry, the dated log of every proof, and the public evidence log
+- **[ahcs-conformance](https://github.com/ashfordeOU/ahcs-conformance)** &mdash; The test suite that grades an implementation against the published specification
+
+### What connects it
+
+| Between | What flows | Held red by |
+|---|---|---|
+| aero-agent-roles to aero-agent-skills | Each role's bound leaf skills | `gate-bindings` |
+| aero-agent-roles to aero-harness | The roles and the tools they request | `gate-permissions` |
+
+Each connection carries a number in the runtime's own map, used to
+cross-reference it. The numbers are left out here because nothing a
+reader of this page can follow them to.
+
+A glossary of every abbreviation used here is in the specification
+directory that ships beside the corpus.
+<!-- family:end -->
 ---
 
 <div align="center">
