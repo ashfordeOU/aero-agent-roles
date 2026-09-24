@@ -1,7 +1,7 @@
 # Aero Agent Roles Standards Reference (STANDARDS.md)
 
-Every role references standards from the aerospace regulatory and
-quality ecosystem. This file is generated from every role's
+Every role references standards published by aerospace regulators and
+quality bodies. This file is generated from every role's
 `standards_bound` frontmatter (the same source `manifest.json` is
 generated from) — a standard's row and `Roles`/`Gated` columns can
 never silently drift from the tree again. Names and publishers below
