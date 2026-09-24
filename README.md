@@ -370,7 +370,7 @@ when a pin breaks.
 
 - **[aero-agent-skills](https://github.com/ashfordeOU/aero-agent-skills)** &mdash; The corpus of leaf skills, the published specification directory and the sealing code
 - **[aero-harness-records](https://github.com/ashfordeOU/aero-harness-records)** &mdash; The calibration registry, the dated log of every proof, and the public evidence log
-- **[ahcs-conformance](https://github.com/ashfordeOU/ahcs-conformance)** &mdash; The test suite that grades an implementation against the published specification
+- **[arcs-conformance](https://github.com/ashfordeOU/arcs-conformance)** &mdash; The test suite that grades an implementation against the published specification
 
 ### What connects it
 
