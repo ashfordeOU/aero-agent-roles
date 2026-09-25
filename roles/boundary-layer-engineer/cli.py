@@ -29,7 +29,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "core"))
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)),
                                 "..", "..", "scripts"))
 import boundary_layer_engineer_core as core  # noqa: E402
 import evidence  # noqa: E402

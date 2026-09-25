@@ -5,7 +5,7 @@
 //  2. installer: copy + role-not-found error path
 //  3. MCP server: initialize / tools/list / tools/call round-trip on stdio
 //  4. CLI: list, search, show
-import { spawn, execFileSync } from 'node:child_process';
+import { spawn, spawnSync, execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -66,6 +66,32 @@ check('installer copies a role and requires --dest', () => {
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
   }
+});
+
+check('an installed role runs, copied and linked', () => {
+  // Shipped 1.2.1 copied the role but not scripts/evidence.py, so every
+  // cli.py died on its import. Run one from each install mode.
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'aeroroles-run-'));
+  try {
+    const slug = catalog.roles[0].slug;
+    for (const link of [false, true]) {
+      const dest = path.join(tmp, link ? 'linked' : 'copied');
+      install(catalog, [slug], { dest, link });
+      const run = spawnSync('python3', [path.join(dest, slug, 'cli.py'), '--help'], { encoding: 'utf8' });
+      assert.equal(run.status, 0, `${link ? 'linked' : 'copied'} ${slug}/cli.py --help: ${run.stderr}`);
+    }
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+});
+
+check('search finds a role by the standard it is gated on', () => {
+  // A space engineer types the standard, not a job title: 'ECSS' matched
+  // nothing while three roles are gated on it.
+  const hits = catalog.search('ECSS', 10).map((h) => h.role.slug);
+  const gated = catalog.manifest.roles.filter((r) => (r.standards || []).includes('ecss')).map((r) => r.slug);
+  assert.ok(gated.length > 0, 'no role is gated on ecss');
+  for (const slug of gated) assert.ok(hits.includes(slug), `search ECSS misses ${slug}`);
 });
 
 const mcpRoundTrip = () => new Promise((resolve, reject) => {

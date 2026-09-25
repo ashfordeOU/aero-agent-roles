@@ -29,6 +29,7 @@ function install(catalog, slugs, opts) {
       }
       return r;
     });
+  const evidencePy = path.join(catalog.root, '..', 'scripts', 'evidence.py');
   fs.mkdirSync(dest, { recursive: true });
   const installed = [];
   for (const r of selection) {
@@ -39,6 +40,10 @@ function install(catalog, slugs, opts) {
       fs.symlinkSync(src, dst, 'dir');
     } else {
       fs.cpSync(src, dst, { recursive: true, force: true });
+      // cli.py imports evidence from ../../scripts, which does not exist
+      // beside a copied role. Its core/ directory is also on the import
+      // path, so the copy carries its own evidence.py there.
+      fs.copyFileSync(evidencePy, path.join(dst, 'core', 'evidence.py'));
     }
     installed.push({ slug: r.slug, folder: r.slug });
   }

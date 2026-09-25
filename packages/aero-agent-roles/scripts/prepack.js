@@ -18,6 +18,9 @@ if (!fs.existsSync(path.join(repo, 'roles')) || !fs.existsSync(path.join(repo, '
 fs.rmSync(path.join(pkg, 'roles'), { recursive: true, force: true });
 fs.cpSync(path.join(repo, 'roles'), path.join(pkg, 'roles'), { recursive: true });
 fs.copyFileSync(path.join(repo, 'NOTICE'), path.join(pkg, 'NOTICE'));
+// Apache-2.0 section 4(a): a copy of the licence goes with every copy of the
+// work, and npm only picks LICENSE up from the package directory itself.
+fs.copyFileSync(path.join(repo, 'LICENSE'), path.join(pkg, 'LICENSE'));
 
 // scripts/evidence.py travels with the tarball. Every role's cli.py does
 // `sys.path.insert(.., '../../scripts'); import evidence`, so without this the
@@ -43,4 +46,4 @@ function stripPycache(dir) {
 }
 stripPycache(path.join(pkg, 'roles'));
 
-console.log('prepack: bundled roles/, scripts/evidence.py, NOTICE from repo root (pycache stripped)');
+console.log('prepack: bundled roles/, scripts/evidence.py, NOTICE, LICENSE from repo root (pycache stripped)');

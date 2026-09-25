@@ -4,7 +4,7 @@
 // Roles are adopted deliberately, not routed by a trigger description the
 // way Aero Agent Skills' SKILL.md files are (ROLE.md has no `description`
 // field) — search() here is a plain token-overlap match over title,
-// deliverable_type, and domain, useful for "what role fits this job"
+// deliverable_type, domain and the standards a role is gated on, useful for "what role fits this job"
 // browsing, not a claimed parity port of any evaluated router.
 'use strict';
 
@@ -70,7 +70,7 @@ class Catalog {
     let t = this._tok.get(role.slug);
     if (!t) {
       t = {
-        haystack: new Set(tokens(`${role.title} ${role.deliverable_type} ${role.domain} ${role.slug}`)),
+        haystack: new Set(tokens(`${role.title} ${role.deliverable_type} ${role.domain} ${role.slug} ${(role.standards || []).join(' ')}`)),
       };
       this._tok.set(role.slug, t);
     }
