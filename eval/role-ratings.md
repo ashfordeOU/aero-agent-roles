@@ -2,14 +2,14 @@
 type: eval
 title: Role ratings (evidence-based)
 status: generated
-updated: 2026-09-08
+updated: 2026-09-25
 tags: [aero, roles, ratings, eval]
 pipeline: generated
 ---
 
 # Role ratings
 
-Audit: CEO, Ashforde OÜ - regenerated 2026-09-08 11:00 UTC · mechanical evidence only (tests, blanks, audit-100, bound skills).
+Audit: CEO, Ashforde OÜ - regenerated 2026-09-25 21:31 UTC · mechanical evidence only (tests, blanks, audit-100, bound skills).
 
 | Role | Rating | Evidence |
 |---|---|---|
@@ -46,6 +46,7 @@ Audit: CEO, Ashforde OÜ - regenerated 2026-09-08 11:00 UTC · mechanical eviden
 | quality-management-engineer | 10.0 | all checks pass |
 | rocket-propulsion-engineer | 10.0 | all checks pass |
 | safety-assessment-engineer | 10.0 | all checks pass |
+| software-product-assurance-engineer | 10.0 | all checks pass |
 | space-systems-engineer | 10.0 | all checks pass |
 | stability-control-flight-test-engineer | 10.0 | all checks pass |
 | state-estimation-engineer | 10.0 | all checks pass |

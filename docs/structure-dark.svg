@@ -4,83 +4,84 @@
     .cond { font-family: "Barlow Condensed", "DIN Condensed", "Arial Narrow", sans-serif; font-weight: 700; text-transform: uppercase; }
   </style>
 <rect width="940" height="900" fill="#0a0d1e"/>
-<path d="M 470.0 274.0 A 186.0 186.0 0 0 1 568.2 302.0 L 524.9 371.7 A 104.0 104.0 0 0 0 470.0 356.0 Z" fill="#38bdf8" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 470.0 198.0 A 262.0 262.0 0 0 1 537.6 206.9 L 519.6 274.5 A 192.0 192.0 0 0 0 470.0 268.0 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 540.7 207.7 A 262.0 262.0 0 0 1 563.9 215.4 L 538.8 280.8 A 192.0 192.0 0 0 0 521.8 275.1 Z" fill="#38bdf8" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 566.9 216.6 A 262.0 262.0 0 0 1 608.3 237.5 L 571.3 296.9 A 192.0 192.0 0 0 0 541.0 281.6 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="547.9" y="182.9" text-anchor="middle" font-size="11" fill="#8a93c4" letter-spacing="1">AERODYNAMICS</text>
-<text class="mono" x="547.9" y="197.9" text-anchor="middle" font-size="9.5" fill="#38bdf8" letter-spacing="1">3R · 45S</text>
-<path d="M 574.1 305.9 A 186.0 186.0 0 0 1 623.9 355.6 L 556.1 401.6 A 104.0 104.0 0 0 0 528.2 373.8 Z" fill="#a78bfa" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 616.7 242.9 A 262.0 262.0 0 0 1 625.5 249.1 L 583.9 305.5 A 192.0 192.0 0 0 0 577.5 300.9 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 628.0 251.0 A 262.0 262.0 0 0 1 638.1 259.0 L 593.2 312.7 A 192.0 192.0 0 0 0 585.8 306.9 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 640.5 261.1 A 262.0 262.0 0 0 1 654.7 274.2 L 605.4 323.8 A 192.0 192.0 0 0 0 595.0 314.2 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 657.0 276.5 A 262.0 262.0 0 0 1 662.9 282.7 L 611.3 330.1 A 192.0 192.0 0 0 0 607.0 325.5 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 665.0 285.1 A 262.0 262.0 0 0 1 680.0 303.3 L 623.9 345.2 A 192.0 192.0 0 0 0 612.9 331.8 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 681.9 305.9 A 262.0 262.0 0 0 1 686.8 312.9 L 628.9 352.2 A 192.0 192.0 0 0 0 625.3 347.1 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="670.6" y="255.0" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">AVIONICS</text>
-<text class="mono" x="670.6" y="270.0" text-anchor="start" font-size="9.5" fill="#a78bfa" letter-spacing="1">6R · 39S</text>
-<path d="M 627.8 361.6 A 186.0 186.0 0 0 1 655.8 450.6 L 573.9 454.7 A 104.0 104.0 0 0 0 558.2 405.0 Z" fill="#f472b6" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 692.3 321.3 A 262.0 262.0 0 0 1 728.7 418.8 L 659.6 429.8 A 192.0 192.0 0 0 0 632.9 358.4 Z" fill="#f472b6" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 729.2 421.9 A 262.0 262.0 0 0 1 731.7 446.8 L 661.8 450.3 A 192.0 192.0 0 0 0 660.0 432.1 Z" fill="#f472b6" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="741.0" y="378.9" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">CROSS-CUTTING</text>
-<text class="mono" x="741.0" y="393.9" text-anchor="start" font-size="9.5" fill="#f472b6" letter-spacing="1">2R · 42S</text>
-<path d="M 656.0 457.7 A 186.0 186.0 0 0 1 637.8 540.3 L 563.8 504.9 A 104.0 104.0 0 0 0 574.0 458.7 Z" fill="#fb923c" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 732.0 456.8 A 262.0 262.0 0 0 1 731.3 479.2 L 661.5 474.1 A 192.0 192.0 0 0 0 662.0 457.7 Z" fill="#fb923c" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 731.0 482.4 A 262.0 262.0 0 0 1 706.3 573.1 L 643.2 542.9 A 192.0 192.0 0 0 0 661.3 476.4 Z" fill="#fb923c" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="747.3" y="525.1" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">FLIGHT MECHANICS</text>
-<text class="mono" x="747.3" y="540.1" text-anchor="start" font-size="9.5" fill="#fb923c" letter-spacing="1">2R · 47S</text>
-<path d="M 634.6 546.6 A 186.0 186.0 0 0 1 579.3 610.5 L 531.1 544.2 A 104.0 104.0 0 0 0 562.0 508.4 Z" fill="#38bdf8" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 701.8 582.1 A 262.0 262.0 0 0 1 674.9 623.3 L 620.1 579.7 A 192.0 192.0 0 0 0 639.9 549.4 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 672.9 625.8 A 262.0 262.0 0 0 1 648.8 651.5 L 601.0 600.4 A 192.0 192.0 0 0 0 618.7 581.5 Z" fill="#38bdf8" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 646.4 653.7 A 262.0 262.0 0 0 1 633.9 664.4 L 590.1 609.8 A 192.0 192.0 0 0 0 599.3 601.9 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 631.4 666.4 A 262.0 262.0 0 0 1 623.9 672.0 L 582.8 615.4 A 192.0 192.0 0 0 0 588.3 611.2 Z" fill="#38bdf8" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="684.7" y="655.9" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">FLIGHT TEST &amp; OPS</text>
-<text class="mono" x="684.7" y="670.9" text-anchor="start" font-size="9.5" fill="#38bdf8" letter-spacing="1">4R · 42S</text>
-<path d="M 573.4 614.6 A 186.0 186.0 0 0 1 463.5 645.9 L 466.4 563.9 A 104.0 104.0 0 0 0 527.8 546.5 Z" fill="#a78bfa" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 615.6 677.8 A 262.0 262.0 0 0 1 591.3 692.2 L 558.9 630.2 A 192.0 192.0 0 0 0 576.7 619.6 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 588.5 693.7 A 262.0 262.0 0 0 1 538.0 713.0 L 519.8 645.4 A 192.0 192.0 0 0 0 556.8 631.2 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 534.9 713.8 A 262.0 262.0 0 0 1 514.2 718.2 L 502.4 649.2 A 192.0 192.0 0 0 0 517.6 646.0 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 511.0 718.8 A 262.0 262.0 0 0 1 480.6 721.8 L 477.8 651.8 A 192.0 192.0 0 0 0 500.1 649.6 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 477.4 721.9 A 262.0 262.0 0 0 1 460.9 721.8 L 463.3 651.9 A 192.0 192.0 0 0 0 475.4 651.9 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="547.8" y="743.1" text-anchor="middle" font-size="11" fill="#8a93c4" letter-spacing="1">GNC &amp; AUTONOMY</text>
-<text class="mono" x="547.8" y="758.1" text-anchor="middle" font-size="9.5" fill="#a78bfa" letter-spacing="1">5R · 49S</text>
-<path d="M 456.4 645.5 A 186.0 186.0 0 0 1 395.1 630.2 L 428.1 555.2 A 104.0 104.0 0 0 0 462.4 563.7 Z" fill="#f472b6" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 450.9 721.3 A 262.0 262.0 0 0 1 415.6 716.3 L 430.2 647.8 A 192.0 192.0 0 0 0 456.0 651.5 Z" fill="#f472b6" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 412.5 715.6 A 262.0 262.0 0 0 1 389.6 709.4 L 411.1 642.7 A 192.0 192.0 0 0 0 427.9 647.3 Z" fill="#f472b6" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 386.6 708.4 A 262.0 262.0 0 0 1 364.5 699.8 L 392.7 635.7 A 192.0 192.0 0 0 0 408.9 642.0 Z" fill="#f472b6" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="401.4" y="745.6" text-anchor="middle" font-size="11" fill="#8a93c4" letter-spacing="1">MFG QUALITY</text>
-<text class="mono" x="401.4" y="760.6" text-anchor="middle" font-size="9.5" fill="#f472b6" letter-spacing="1">3R · 35S</text>
-<path d="M 388.6 627.2 A 186.0 186.0 0 0 1 321.9 572.5 L 387.2 522.9 A 104.0 104.0 0 0 0 424.5 553.5 Z" fill="#fb923c" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 355.4 695.6 A 262.0 262.0 0 0 1 286.5 647.0 L 335.5 597.1 A 192.0 192.0 0 0 0 386.0 632.6 Z" fill="#fb923c" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 284.2 644.8 A 262.0 262.0 0 0 1 261.4 618.5 L 317.1 576.2 A 192.0 192.0 0 0 0 333.9 595.4 Z" fill="#fb923c" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="289.9" y="689.6" text-anchor="end" font-size="11" fill="#8a93c4" letter-spacing="1">PROPULSION</text>
-<text class="mono" x="289.9" y="704.6" text-anchor="end" font-size="9.5" fill="#fb923c" letter-spacing="1">2R · 38S</text>
-<path d="M 317.7 566.8 A 186.0 186.0 0 0 1 284.1 466.7 L 366.1 463.7 A 104.0 104.0 0 0 0 384.8 519.7 Z" fill="#38bdf8" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 255.5 610.4 A 262.0 262.0 0 0 1 237.3 580.5 L 299.5 548.3 A 192.0 192.0 0 0 0 312.8 570.2 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 235.9 577.6 A 262.0 262.0 0 0 1 208.2 469.4 L 278.1 466.9 A 192.0 192.0 0 0 0 298.4 546.2 Z" fill="#38bdf8" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="200.7" y="554.3" text-anchor="end" font-size="11" fill="#8a93c4" letter-spacing="1">SPACE SYSTEMS</text>
-<text class="mono" x="200.7" y="569.3" text-anchor="end" font-size="9.5" fill="#38bdf8" letter-spacing="1">2R · 49S</text>
-<path d="M 284.0 459.5 A 186.0 186.0 0 0 1 313.2 359.9 L 382.3 404.0 A 104.0 104.0 0 0 0 366.0 459.7 Z" fill="#a78bfa" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 208.0 459.4 A 262.0 262.0 0 0 1 209.7 430.1 L 279.3 438.1 A 192.0 192.0 0 0 0 278.0 459.5 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 210.1 426.9 A 262.0 262.0 0 0 1 213.3 407.6 L 281.9 421.6 A 192.0 192.0 0 0 0 279.5 435.8 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 213.9 404.5 A 262.0 262.0 0 0 1 249.2 319.0 L 308.2 356.7 A 192.0 192.0 0 0 0 282.4 419.3 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="197.5" y="384.1" text-anchor="end" font-size="11" fill="#8a93c4" letter-spacing="1">STRUCTURES</text>
-<text class="mono" x="197.5" y="399.1" text-anchor="end" font-size="9.5" fill="#a78bfa" letter-spacing="1">3R · 47S</text>
-<path d="M 317.2 354.0 A 186.0 186.0 0 0 1 373.6 300.9 L 416.1 371.1 A 104.0 104.0 0 0 0 384.5 400.7 Z" fill="#f472b6" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 254.7 310.7 A 262.0 262.0 0 0 1 267.4 293.9 L 321.5 338.3 A 192.0 192.0 0 0 0 312.2 350.6 Z" fill="#f472b6" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 269.4 291.5 A 262.0 262.0 0 0 1 278.7 281.0 L 329.8 328.8 A 192.0 192.0 0 0 0 323.0 336.5 Z" fill="#f472b6" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 280.9 278.7 A 262.0 262.0 0 0 1 316.0 248.0 L 357.1 304.7 A 192.0 192.0 0 0 0 331.4 327.1 Z" fill="#f472b6" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 318.6 246.2 A 262.0 262.0 0 0 1 334.2 235.9 L 370.5 295.8 A 192.0 192.0 0 0 0 359.0 303.3 Z" fill="#f472b6" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="275.5" y="249.1" text-anchor="end" font-size="11" fill="#8a93c4" letter-spacing="1">SYS ENG &amp; SAFETY</text>
-<text class="mono" x="275.5" y="264.1" text-anchor="end" font-size="9.5" fill="#f472b6" letter-spacing="1">4R · 43S</text>
-<path d="M 379.8 297.4 A 186.0 186.0 0 0 1 462.9 274.1 L 466.0 356.1 A 104.0 104.0 0 0 0 419.5 369.1 Z" fill="#fb923c" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
-<path d="M 342.9 230.9 A 262.0 262.0 0 0 1 422.2 202.4 L 434.9 271.2 A 192.0 192.0 0 0 0 376.9 292.1 Z" fill="#fb923c" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
-<path d="M 425.3 201.8 A 262.0 262.0 0 0 1 459.9 198.2 L 462.6 268.1 A 192.0 192.0 0 0 0 437.3 270.8 Z" fill="#fb923c" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
-<text class="mono" x="393.6" y="182.5" text-anchor="middle" font-size="11" fill="#8a93c4" letter-spacing="1">VEHICLE DESIGN</text>
-<text class="mono" x="393.6" y="197.5" text-anchor="middle" font-size="9.5" fill="#fb923c" letter-spacing="1">2R · 48S</text>
-<text class="cond" x="470.0" y="452.0" text-anchor="middle" font-size="52" fill="#edf0fc" letter-spacing="1">38</text>
+<path d="M 470.0 274.0 A 186.0 186.0 0 0 1 567.0 301.3 L 524.2 371.3 A 104.0 104.0 0 0 0 470.0 356.0 Z" fill="#38bdf8" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 470.0 198.0 A 262.0 262.0 0 0 1 536.7 206.6 L 518.9 274.3 A 192.0 192.0 0 0 0 470.0 268.0 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 539.8 207.5 A 262.0 262.0 0 0 1 562.7 214.9 L 537.9 280.4 A 192.0 192.0 0 0 0 521.2 274.9 Z" fill="#38bdf8" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 565.7 216.1 A 262.0 262.0 0 0 1 606.6 236.4 L 570.1 296.2 A 192.0 192.0 0 0 0 540.1 281.3 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="546.9" y="182.6" text-anchor="middle" font-size="11" fill="#8a93c4" letter-spacing="1">AERODYNAMICS</text>
+<text class="mono" x="546.9" y="197.6" text-anchor="middle" font-size="9.5" fill="#38bdf8" letter-spacing="1">3R · 45S</text>
+<path d="M 573.0 305.1 A 186.0 186.0 0 0 1 622.6 353.7 L 555.3 400.5 A 104.0 104.0 0 0 0 527.6 373.4 Z" fill="#a78bfa" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 615.1 241.9 A 262.0 262.0 0 0 1 623.8 247.9 L 582.7 304.5 A 192.0 192.0 0 0 0 576.3 300.1 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 626.4 249.8 A 262.0 262.0 0 0 1 636.3 257.6 L 591.9 311.7 A 192.0 192.0 0 0 0 584.6 305.9 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 638.8 259.6 A 262.0 262.0 0 0 1 652.9 272.4 L 604.0 322.5 A 192.0 192.0 0 0 0 593.7 313.2 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 655.1 274.6 A 262.0 262.0 0 0 1 661.0 280.7 L 610.0 328.6 A 192.0 192.0 0 0 0 605.7 324.1 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 663.2 283.0 A 262.0 262.0 0 0 1 678.1 300.8 L 622.5 343.4 A 192.0 192.0 0 0 0 611.6 330.3 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 680.0 303.4 A 262.0 262.0 0 0 1 685.0 310.2 L 627.5 350.2 A 192.0 192.0 0 0 0 623.9 345.2 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="668.6" y="253.0" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">AVIONICS</text>
+<text class="mono" x="668.6" y="268.0" text-anchor="start" font-size="9.5" fill="#a78bfa" letter-spacing="1">6R · 39S</text>
+<path d="M 626.6 359.6 A 186.0 186.0 0 0 1 655.5 447.1 L 573.7 452.8 A 104.0 104.0 0 0 0 557.6 403.9 Z" fill="#f472b6" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 690.6 318.6 A 262.0 262.0 0 0 1 728.0 414.2 L 659.0 426.4 A 192.0 192.0 0 0 0 631.6 356.4 Z" fill="#f472b6" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 728.5 417.3 A 262.0 262.0 0 0 1 731.4 441.8 L 661.5 446.6 A 192.0 192.0 0 0 0 659.4 428.7 Z" fill="#f472b6" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="739.6" y="374.7" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">CROSS-CUTTING</text>
+<text class="mono" x="739.6" y="389.7" text-anchor="start" font-size="9.5" fill="#f472b6" letter-spacing="1">2R · 42S</text>
+<path d="M 655.9 454.2 A 186.0 186.0 0 0 1 639.8 536.0 L 564.9 502.5 A 104.0 104.0 0 0 0 573.9 456.7 Z" fill="#fb923c" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 731.9 451.8 A 262.0 262.0 0 0 1 731.6 473.9 L 661.7 470.2 A 192.0 192.0 0 0 0 661.9 454.0 Z" fill="#fb923c" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 731.4 477.1 A 262.0 262.0 0 0 1 709.1 567.1 L 645.2 538.5 A 192.0 192.0 0 0 0 661.6 472.5 Z" fill="#fb923c" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="748.6" y="519.0" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">FLIGHT MECHANICS</text>
+<text class="mono" x="748.6" y="534.0" text-anchor="start" font-size="9.5" fill="#fb923c" letter-spacing="1">2R · 47S</text>
+<path d="M 636.7 542.5 A 186.0 186.0 0 0 1 583.9 607.0 L 533.7 542.2 A 104.0 104.0 0 0 0 563.2 506.1 Z" fill="#38bdf8" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 704.8 576.2 A 262.0 262.0 0 0 1 679.3 617.5 L 623.4 575.5 A 192.0 192.0 0 0 0 642.1 545.1 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 677.4 620.1 A 262.0 262.0 0 0 1 654.4 646.1 L 605.1 596.4 A 192.0 192.0 0 0 0 622.0 577.3 Z" fill="#38bdf8" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 652.1 648.4 A 262.0 262.0 0 0 1 640.1 659.3 L 594.7 606.0 A 192.0 192.0 0 0 0 603.5 598.0 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 637.7 661.3 A 262.0 262.0 0 0 1 630.4 667.1 L 587.6 611.8 A 192.0 192.0 0 0 0 592.9 607.5 Z" fill="#38bdf8" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="689.8" y="649.8" text-anchor="start" font-size="11" fill="#8a93c4" letter-spacing="1">FLIGHT TEST &amp; OPS</text>
+<text class="mono" x="689.8" y="664.8" text-anchor="start" font-size="9.5" fill="#38bdf8" letter-spacing="1">4R · 42S</text>
+<path d="M 578.2 611.3 A 186.0 186.0 0 0 1 470.9 646.0 L 470.5 564.0 A 104.0 104.0 0 0 0 530.5 544.6 Z" fill="#a78bfa" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 622.4 673.1 A 262.0 262.0 0 0 1 598.9 688.1 L 564.5 627.2 A 192.0 192.0 0 0 0 581.7 616.2 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 596.1 689.7 A 262.0 262.0 0 0 1 547.0 710.4 L 526.4 643.5 A 192.0 192.0 0 0 0 562.4 628.3 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 543.9 711.4 A 262.0 262.0 0 0 1 523.7 716.4 L 509.3 647.9 A 192.0 192.0 0 0 0 524.2 644.2 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 520.5 717.1 A 262.0 262.0 0 0 1 490.7 721.2 L 485.1 651.4 A 192.0 192.0 0 0 0 507.0 648.4 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 487.5 721.4 A 262.0 262.0 0 0 1 471.2 722.0 L 470.9 652.0 A 192.0 192.0 0 0 0 482.8 651.6 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="557.4" y="740.2" text-anchor="middle" font-size="11" fill="#8a93c4" letter-spacing="1">GNC &amp; AUTONOMY</text>
+<text class="mono" x="557.4" y="755.2" text-anchor="middle" font-size="9.5" fill="#a78bfa" letter-spacing="1">5R · 49S</text>
+<path d="M 463.7 645.9 A 186.0 186.0 0 0 1 402.6 633.4 L 432.3 556.9 A 104.0 104.0 0 0 0 466.5 563.9 Z" fill="#f472b6" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 461.2 721.9 A 262.0 262.0 0 0 1 426.3 718.3 L 438.0 649.3 A 192.0 192.0 0 0 0 463.5 651.9 Z" fill="#f472b6" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 423.1 717.8 A 262.0 262.0 0 0 1 400.4 712.6 L 419.0 645.1 A 192.0 192.0 0 0 0 435.7 648.9 Z" fill="#f472b6" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 397.3 711.7 A 262.0 262.0 0 0 1 375.1 704.2 L 400.5 639.0 A 192.0 192.0 0 0 0 416.7 644.5 Z" fill="#f472b6" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="413.0" y="748.2" text-anchor="middle" font-size="11" fill="#8a93c4" letter-spacing="1">MFG QUALITY</text>
+<text class="mono" x="413.0" y="763.2" text-anchor="middle" font-size="9.5" fill="#f472b6" letter-spacing="1">3R · 35S</text>
+<path d="M 396.0 630.7 A 186.0 186.0 0 0 1 327.7 579.8 L 390.5 527.0 A 104.0 104.0 0 0 0 428.6 555.4 Z" fill="#fb923c" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 365.8 700.4 A 262.0 262.0 0 0 1 295.8 655.7 L 342.3 603.4 A 192.0 192.0 0 0 0 393.7 636.2 Z" fill="#fb923c" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 293.4 653.5 A 262.0 262.0 0 0 1 269.6 628.8 L 323.1 583.7 A 192.0 192.0 0 0 0 340.6 601.8 Z" fill="#fb923c" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="300.4" y="697.8" text-anchor="end" font-size="11" fill="#8a93c4" letter-spacing="1">PROPULSION</text>
+<text class="mono" x="300.4" y="712.8" text-anchor="end" font-size="9.5" fill="#fb923c" letter-spacing="1">2R · 38S</text>
+<path d="M 323.2 574.3 A 186.0 186.0 0 0 1 284.0 463.1 L 366.0 461.7 A 104.0 104.0 0 0 0 387.9 523.9 Z" fill="#38bdf8" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 263.3 621.0 A 262.0 262.0 0 0 1 244.2 592.9 L 304.5 557.4 A 192.0 192.0 0 0 0 318.5 578.0 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 242.6 590.1 A 262.0 262.0 0 0 1 233.6 572.9 L 296.8 542.8 A 192.0 192.0 0 0 0 303.3 555.4 Z" fill="#38bdf8" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 232.2 570.0 A 262.0 262.0 0 0 1 208.0 464.4 L 278.0 463.2 A 192.0 192.0 0 0 0 295.8 540.6 Z" fill="#38bdf8" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="202.2" y="558.5" text-anchor="end" font-size="11" fill="#8a93c4" letter-spacing="1">SPACE SYSTEMS</text>
+<text class="mono" x="202.2" y="573.5" text-anchor="end" font-size="9.5" fill="#38bdf8" letter-spacing="1">3R · 55S</text>
+<path d="M 284.0 456.0 A 186.0 186.0 0 0 1 314.4 358.1 L 383.0 403.0 A 104.0 104.0 0 0 0 366.0 457.7 Z" fill="#a78bfa" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 208.1 454.3 A 262.0 262.0 0 0 1 210.3 425.5 L 279.7 434.7 A 192.0 192.0 0 0 0 278.0 455.8 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 210.7 422.3 A 262.0 262.0 0 0 1 214.2 403.4 L 282.5 418.5 A 192.0 192.0 0 0 0 280.0 432.4 Z" fill="#a78bfa" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 214.9 400.2 A 262.0 262.0 0 0 1 250.8 316.5 L 309.4 354.8 A 192.0 192.0 0 0 0 283.1 416.2 Z" fill="#a78bfa" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="198.7" y="379.9" text-anchor="end" font-size="11" fill="#8a93c4" letter-spacing="1">STRUCTURES</text>
+<text class="mono" x="198.7" y="394.9" text-anchor="end" font-size="9.5" fill="#a78bfa" letter-spacing="1">3R · 47S</text>
+<path d="M 318.4 352.2 A 186.0 186.0 0 0 1 374.6 300.3 L 416.6 370.7 A 104.0 104.0 0 0 0 385.3 399.7 Z" fill="#f472b6" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 256.5 308.1 A 262.0 262.0 0 0 1 269.1 291.8 L 322.8 336.7 A 192.0 192.0 0 0 0 313.5 348.7 Z" fill="#f472b6" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 271.2 289.3 A 262.0 262.0 0 0 1 280.5 279.1 L 331.1 327.4 A 192.0 192.0 0 0 0 324.3 334.9 Z" fill="#f472b6" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 282.7 276.8 A 262.0 262.0 0 0 1 317.5 246.9 L 358.3 303.9 A 192.0 192.0 0 0 0 332.7 325.8 Z" fill="#f472b6" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 320.1 245.1 A 262.0 262.0 0 0 1 335.6 235.1 L 371.5 295.2 A 192.0 192.0 0 0 0 360.2 302.5 Z" fill="#f472b6" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="277.3" y="247.4" text-anchor="end" font-size="11" fill="#8a93c4" letter-spacing="1">SYS ENG &amp; SAFETY</text>
+<text class="mono" x="277.3" y="262.4" text-anchor="end" font-size="9.5" fill="#f472b6" letter-spacing="1">4R · 43S</text>
+<path d="M 380.8 296.8 A 186.0 186.0 0 0 1 462.9 274.1 L 466.0 356.1 A 104.0 104.0 0 0 0 420.1 368.7 Z" fill="#fb923c" fill-opacity="0.9" stroke="#0a0d1e" stroke-width="1.5"/>
+<path d="M 344.3 230.1 A 262.0 262.0 0 0 1 422.6 202.3 L 435.3 271.2 A 192.0 192.0 0 0 0 377.9 291.5 Z" fill="#fb923c" fill-opacity="0.55" stroke="#0a0d1e" stroke-width="1"/>
+<path d="M 425.8 201.8 A 262.0 262.0 0 0 1 459.9 198.2 L 462.6 268.1 A 192.0 192.0 0 0 0 437.6 270.8 Z" fill="#fb923c" fill-opacity="0.32" stroke="#0a0d1e" stroke-width="1"/>
+<text class="mono" x="394.4" y="182.2" text-anchor="middle" font-size="11" fill="#8a93c4" letter-spacing="1">VEHICLE DESIGN</text>
+<text class="mono" x="394.4" y="197.2" text-anchor="middle" font-size="9.5" fill="#fb923c" letter-spacing="1">2R · 48S</text>
+<text class="cond" x="470.0" y="452.0" text-anchor="middle" font-size="52" fill="#edf0fc" letter-spacing="1">39</text>
 <text class="mono" x="470.0" y="476.0" text-anchor="middle" font-size="10" fill="#8a93c4" letter-spacing="2">ROLES</text>
-<text class="mono" x="470.0" y="494.0" text-anchor="middle" font-size="9.5" fill="#8a93c4" letter-spacing="1">524 SKILLS BOUND · 12 DOMAINS</text>
+<text class="mono" x="470.0" y="494.0" text-anchor="middle" font-size="9.5" fill="#8a93c4" letter-spacing="1">530 SKILLS BOUND · 12 DOMAINS</text>
 <text class="cond" x="52.0" y="64.0" text-anchor="start" font-size="34" fill="#edf0fc" letter-spacing="2">ROLE BANK STRUCTURE</text>
 <text class="mono" x="52.0" y="90.0" text-anchor="start" font-size="10.5" fill="#8a93c4" letter-spacing="1">INNER RING: DOMAINS · OUTER RING: ROLES · ARC LENGTH = BINDINGS</text>
 <text class="mono" x="470.0" y="876.0" text-anchor="middle" font-size="10" fill="#8a93c4" letter-spacing="2">EVERY ARC COMPUTED FROM roles/ AT HEAD · FULL PER-DOMAIN LISTS IN docs/DOMAINS.md</text>

@@ -1,10 +1,10 @@
 {
  "schema": "aero-agent-roles/manifest@1",
  "counts": {
-  "roles": 38,
+  "roles": 39,
   "domains": 12,
-  "skills_bound": 597,
-  "tests": 1519,
+  "skills_bound": 605,
+  "tests": 1625,
   "standards": 27
  },
  "roles": [
@@ -462,6 +462,19 @@
    "stage_preview": "arp4761a/safety-assessment -> arp4761a/functional-hazard-assessm -> arp4761a/preliminary-system-safety -> arp4761a/fta-fmea -> arp4761a/fault-tree-importance-mea"
   },
   {
+   "slug": "software-product-assurance-engineer",
+   "title": "Software Product Assurance Engineer (ECSS-Q-ST-80C)",
+   "domain": "space-systems",
+   "deliverable_type": "ECSS-Q-ST-80C compliance matrix + milestone evidence check",
+   "status": "draft",
+   "standards": [
+    "ecss"
+   ],
+   "skills_bound": 8,
+   "tests": 106,
+   "stage_preview": "space-systems/ecss/q80-software-cr -> space-systems/ecss/q80-software-cr -> space-systems/ecss/q80-compliance- -> space-systems/ecss/q80-compliance- -> space-systems/ecss/q80-compliance-"
+  },
+  {
    "slug": "space-systems-engineer",
    "title": "Space Systems Engineer",
    "domain": "space-systems",
@@ -709,6 +722,7 @@
    "roles": [
     "adcs-engineer",
     "rocket-propulsion-engineer",
+    "software-product-assurance-engineer",
     "space-systems-engineer"
    ]
   },

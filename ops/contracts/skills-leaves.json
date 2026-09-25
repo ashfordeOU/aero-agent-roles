@@ -9,8 +9,8 @@
     "Refresh with: make skills-ledger SKILLS=<path to aero-agent-skills>"
   ],
   "context": "aero-skills-leaf-ledger/v1",
-  "leaf_count": 3189,
-  "leaf_set_digest": "81ba4128f320c513cece58602bf209a9ec027fbb1106bd2680268bbead6d3a93",
+  "leaf_count": 3195,
+  "leaf_set_digest": "3e1d7ed785238fa3ed1c147b453a14fa6cf20fbef654382718831cb038b2fe2e",
   "leaves": [
     "aerodynamics/aeroelasticity/added-mass-coefficients-potential-flow",
     "aerodynamics/aeroelasticity/aeroelastic-gust-response",
@@ -2960,6 +2960,12 @@
     "space-systems/ecss/q7080-process-window-qualification",
     "space-systems/ecss/q7080-support-structure-removal",
     "space-systems/ecss/q7080-surface-condition-control",
+    "space-systems/ecss/q80-compliance-matrix",
+    "space-systems/ecss/q80-milestone-assurance-evidence",
+    "space-systems/ecss/q80-software-criticality-tailoring",
+    "space-systems/ecss/q80-software-process-assurance",
+    "space-systems/ecss/q80-software-product-assurance-plan",
+    "space-systems/ecss/q80-software-product-quality-metrics",
     "space-systems/ecss/qualification-test-programme",
     "space-systems/ecss/reduced-fracture-control-programme",
     "space-systems/ecss/reduced-full-consistency-checks",

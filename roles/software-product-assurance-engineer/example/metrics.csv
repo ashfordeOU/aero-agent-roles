@@ -1,0 +1,11 @@
+metric,value
+cyclomatic_complexity,12
+nesting_depth,3
+function_size_loc,55
+comment_density,0.27
+requirement_coverage,1.0
+requirement_test_coverage,0.94
+statement_coverage,
+decision_coverage,
+open_major_nonconformances,0
+coding_standard_violations,3

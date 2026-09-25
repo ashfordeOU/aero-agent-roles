@@ -13,15 +13,15 @@
 
 <!-- gen:statline -->
 <p align="center">
-  <img src="docs/statline-dark.png" alt="38 roles · 524 skills bound · 1519 offline tests · 27 standards · 8/8 gates · Apache-2.0" width="100%">
+  <img src="docs/statline-dark.png" alt="39 roles · 530 skills bound · 1625 offline tests · 27 standards · 8/8 gates · Apache-2.0" width="100%">
 </p>
 <!-- /gen:statline -->
 
 <!-- gen:badges -->
 <p align="center">
-  <a href="roles/"><img src="https://img.shields.io/badge/roles-38-a78bfa?style=flat&labelColor=1a1e35" alt="roles 38"></a>
-  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-524-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 524"></a>
-  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-1519-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 1519"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/roles-39-a78bfa?style=flat&labelColor=1a1e35" alt="roles 39"></a>
+  <a href="https://github.com/ashfordeOU/aero-agent-skills"><img src="https://img.shields.io/badge/skills_bound-530-0ea5e9?style=flat&labelColor=1a1e35" alt="skills bound 530"></a>
+  <a href="roles/"><img src="https://img.shields.io/badge/offline_tests-1625-2ea043?style=flat&labelColor=1a1e35" alt="offline tests 1625"></a>
   <a href="STANDARDS.md"><img src="https://img.shields.io/badge/standards-27-f97316?style=flat&labelColor=1a1e35" alt="standards 27"></a>
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/format-agentskills.io-8b5cf6?style=flat&labelColor=1a1e35" alt="format agentskills.io"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-2ea043?style=flat&labelColor=1a1e35" alt="Apache-2.0"></a>
@@ -36,6 +36,7 @@
 <!-- /gen:badges -->
 
 <p align="center">
+  <a href="#software-product-assurance-under-ecss-q-st-80c">ECSS-Q-ST-80C</a> ·
   <a href="#domain-map">Domain map</a> ·
   <a href="#roles">Roles</a> ·
   <a href="#how-a-role-works">How a role works</a> ·
@@ -55,6 +56,54 @@ each stage must produce, and the hard boundary where a human signs.
 
 > **Skills = "do this task correctly."**
 > **Roles = "own this deliverable end to end."**
+
+## Software product assurance under ECSS-Q-ST-80C
+
+For a European space supplier, the software product assurance (PA) path
+runs through one role: [`software-product-assurance-engineer`](roles/software-product-assurance-engineer/ROLE.md).
+It answers ECSS-Q-ST-80C Rev.2 (30 April 2025), the European Cooperation
+for Space Standardization (ECSS) standard for software product assurance,
+clause by clause, the way a PA manager has to before a milestone review.
+
+**What goes in:** the software criticality category (A to D, or the
+function severity it is derived from), the project's evidence index as a
+comma-separated values (CSV) file (clause, document, section, status,
+justification), the folder of project documents the evidence cites, and
+optionally the target review (system requirements review, SRR;
+preliminary design review, PDR; critical design review, CDR;
+qualification review, QR; acceptance review, AR), the review pack and a
+measurement set.
+
+**What comes out:** the compliance matrix as Markdown and CSV, one row per
+clause with its tailoring and status; the coverage summary; the gap list,
+each gap routed to the skill that resolves it; the document trace, which
+flags every cited document that is not in the folder, so each clause
+traces to a real file; the documents the review owes and how the pack
+measures up; the software product assurance milestone report (SPAMR)
+skeleton; and the metrics graded against the category.
+
+**Where it stops:** everything is marked DRAFT and ends at
+`STOP: human sign-off required before submission.` The role never marks a
+matrix approved. A named human signs it, and `cli.py check` verifies that
+signature, including that an approval over open gaps lists them as
+accepted.
+
+**The six skills it binds** (all under `space-systems/ecss/` in Aero Agent
+Skills): `q80-software-criticality-tailoring`, `q80-compliance-matrix`,
+`q80-milestone-assurance-evidence`, `q80-software-product-assurance-plan`
+(the software product assurance plan, SPAP), `q80-software-process-assurance`
+and `q80-software-product-quality-metrics`. It also binds the
+`software-engineering` and `software-verification` leaves for the
+ECSS-E-ST-40C engineering side those clauses assure. The engine runs
+without the skills; with them present it cross-checks its matrix against
+theirs.
+
+```bash
+aero-roles install software-product-assurance-engineer --dest ./pa
+python3 ./pa/software-product-assurance-engineer/cli.py build --out matrix.md   # the bundled worked example
+python3 ./pa/software-product-assurance-engineer/cli.py build --out matrix.md \
+    --evidence evidence.csv --category B --docs ./project-docs --review PDR
+```
 
 ## Quick start
 
@@ -123,7 +172,7 @@ Every role ships as an executable worker: core engine + CLI + filled template + 
 ## Domain map
 
 <!-- gen:overview -->
-**38 roles** across **12 domains**, binding **524 distinct skills** (597 bindings: a skill counts once per role that binds it) from Aero Agent Skills and verified by **1519 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
+**39 roles** across **12 domains**, binding **530 distinct skills** (605 bindings: a skill counts once per role that binds it) from Aero Agent Skills and verified by **1625 offline tests** — every figure below is computed from the tree at HEAD; nothing is hand-counted.
 <!-- /gen:overview -->
 
 <p align="center">
@@ -182,6 +231,7 @@ Each role directory contains `ROLE.md` (the contract), `templates/`
 | [Propulsion Engineer](roles/propulsion-engineer/ROLE.md) | propulsion system design + cycle analysis report | 34 |
 | [Rocket Propulsion Engineer](roles/rocket-propulsion-engineer/ROLE.md) | rocket propulsion system design report | 14 |
 | [Safety Assessment Engineer (ARP4761A)](roles/safety-assessment-engineer/ROLE.md) | Aircraft/System Safety Assessment Report (ARP4761A) | 20 |
+| [Software Product Assurance Engineer (ECSS-Q-ST-80C)](roles/software-product-assurance-engineer/ROLE.md) | ECSS-Q-ST-80C compliance matrix + milestone evidence check | 8 |
 | [Space Systems Engineer](roles/space-systems-engineer/ROLE.md) | spacecraft mission + subsystem design report | 45 |
 | [Stability and Control Flight Test Engineer](roles/stability-control-flight-test-engineer/ROLE.md) | Stability and Control Flight Test Report | 4 |
 | [State Estimation Engineer](roles/state-estimation-engineer/ROLE.md) | navigation state estimator design report | 7 |

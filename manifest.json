@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "generated_from": "roles/*/ROLE.md frontmatter",
- "count": 38,
+ "count": 39,
  "roles": [
   {
    "slug": "adcs-engineer",
@@ -389,6 +389,17 @@
     "cs-25"
    ],
    "skills_bound": 20
+  },
+  {
+   "slug": "software-product-assurance-engineer",
+   "title": "Software Product Assurance Engineer (ECSS-Q-ST-80C)",
+   "domain": "space-systems",
+   "deliverable_type": "ECSS-Q-ST-80C compliance matrix + milestone evidence check",
+   "status": "draft",
+   "standards": [
+    "ecss"
+   ],
+   "skills_bound": 8
   },
   {
    "slug": "space-systems-engineer",
