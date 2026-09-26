@@ -7,8 +7,10 @@
         <p><b>Aero Agent Roles</b> — the role layer for aerospace engineering agents.</p>
         <p>A skill does one task correctly. A role binds the right verified skills from
         Aero Agent Skills into a certification workflow, in order, with evidence gates and
-        a human sign-off line. 22+ roles across aerodynamics, avionics, flight mechanics,
-        GNC/autonomy, propulsion, structures, space systems, and more.</p>
+        a human sign-off line. Roles cover aerodynamics, avionics, flight mechanics,
+        guidance, navigation and control (GNC) and autonomy, propulsion, structures,
+        space systems, and more. Every role is a draft, and its output is a draft
+        for a named human to review and sign.</p>
         <ul>
             <li>Role catalog browser (search any role in the IDE)</li>
             <li>One-click MCP registration for JetBrains AI Assistant / Junie</li>

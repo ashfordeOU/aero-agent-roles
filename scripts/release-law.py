@@ -101,6 +101,59 @@ def latest_tag(tags: list[str] | None) -> str:
     return max(versioned, key=_version_key)
 
 
+# Every file that states the package version. They must agree with each
+# other and with the newest release tag (first-principles review FP-17,
+# 2026-09-26: npm said 1.2.3 while the JetBrains build said 1.1.0 and the
+# Claude plugin said 0.1.0). Requiring the newest TAG, not just agreement,
+# is what makes a bump land only in the release commit: a bumped file with
+# no tag of its own turns this gate red until that commit is tagged.
+VERSION_ANCHOR = "packages/aero-agent-roles/package.json"
+
+
+def _json_version(rel: str) -> str | None:
+    return json.load(open(os.path.join(ROOT, rel))).get("version")
+
+
+def _gradle_version(rel: str) -> str | None:
+    import re
+    m = re.search(r'^version\s*=\s*"([^"]+)"',
+                  open(os.path.join(ROOT, rel)).read(), re.M)
+    return m.group(1) if m else None
+
+
+VERSION_FILES = [
+    (VERSION_ANCHOR, _json_version),
+    (".claude-plugin/plugin.json", _json_version),
+    ("packages/jetbrains-plugin/build.gradle.kts", _gradle_version),
+]
+
+
+def version_problems(tags: list[str] | None) -> list[str]:
+    """Why the version files do not name the newest release ([] = fine).
+
+    A tree without the npm package (a bare test export) has no version
+    files to grade; the real repo always has it, and then every listed
+    file must exist."""
+    if not os.path.exists(os.path.join(ROOT, VERSION_ANCHOR)):
+        return []
+    found, problems = {}, []
+    for rel, read in VERSION_FILES:
+        if not os.path.exists(os.path.join(ROOT, rel)):
+            problems.append(f"version file missing: {rel}")
+            continue
+        found[rel] = read(rel)
+    newest = latest_tag(tags)
+    want = newest[1:] if newest.startswith("v") else None
+    for rel, ver in found.items():
+        if want is None:
+            problems.append(f"{rel} says {ver}, but no release tag is "
+                            "known to compare it with")
+        elif ver != want:
+            problems.append(f"{rel} says {ver}, the newest release is "
+                            f"{newest}")
+    return problems
+
+
 def main() -> int:
     count = current_count()
     due = [v for n, v in THRESHOLDS if count >= n]
@@ -115,11 +168,16 @@ def main() -> int:
 
     tags, source = tag_set()
     print(f"ROLE COUNT: {count}")
-    print(f"CURRENT VERSION: {current_v}  "
-          f"(latest tag: {latest_tag(tags)}, source: {source})")
+    # The milestone is a floor, not the version: patch and early releases
+    # (v1.2.0 was cut by hand at 38 roles) sit above it, so print both.
+    print(f"MILESTONE REACHED: {current_v}  "
+          f"(released version: {latest_tag(tags)}, source: {source})")
     if nxt:
+        early = bool(tags) and nxt[1] in tags
         print(f"NEXT MILESTONE: {nxt[1]} at {nxt[0]} roles "
-              f"({nxt[0] - count} to go)")
+              f"({nxt[0] - count} to go)"
+              + ("; already tagged early, so it will not be cut again"
+                 if early else ""))
     else:
         print("ALL MILESTONES REACHED")
 
@@ -142,7 +200,16 @@ def main() -> int:
     if not (current in tags or _tag_at_or_above(current, tags)):
         print(f"RELEASE DUE: {current} (highest milestone crossed, no tag)")
         return 1
-    print(f"release-law: OK — current milestone {current} is tagged")
+    problems = version_problems(tags)
+    if problems:
+        for p in problems:
+            print(f"VERSION DRIFT: {p}")
+        print("release-law: FAIL — a version file names a version that is "
+              "not the newest release; bump versions only in the tagged "
+              "release commit")
+        return 1
+    print(f"release-law: OK — current milestone {current} is tagged, and "
+          f"every version file says {latest_tag(tags)[1:]}")
     return 0
 
 

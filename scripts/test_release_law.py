@@ -112,13 +112,43 @@ def main() -> int:
     check("git work tree, no tag (38 roles) -> FAIL", r.returncode != 0,
           r.stdout.strip().splitlines()[-1] if r.stdout.strip() else "")
 
+    # 8-11. version files (FP-17): they must all name the newest tag.
+    def with_versions(pkg: str, plugin: str, gradle: str) -> str:
+        tree = make_export(38)
+        for rel, body in (
+                ("packages/aero-agent-roles/package.json",
+                 json.dumps({"version": pkg})),
+                (".claude-plugin/plugin.json", json.dumps({"version": plugin})),
+                ("packages/jetbrains-plugin/build.gradle.kts",
+                 f'group = "x"\nversion = "{gradle}"\n')):
+            os.makedirs(os.path.dirname(os.path.join(tree, rel)), exist_ok=True)
+            with open(os.path.join(tree, rel), "w") as fh:
+                fh.write(body)
+        return tree
+
+    r = run(with_versions("1.2.3", "1.2.3", "1.2.3"), "v1.1.0,v1.2.3")
+    check("all version files at the newest tag -> OK", r.returncode == 0,
+          r.stdout.strip().splitlines()[-1] if r.stdout.strip() else "")
+    r = run(with_versions("1.2.3", "0.1.0", "1.1.0"), "v1.1.0,v1.2.3")
+    check("plugin.json + gradle behind npm -> FAIL", r.returncode != 0
+          and "VERSION DRIFT" in r.stdout, r.stdout.strip()[-120:])
+    r = run(with_versions("1.2.4", "1.2.4", "1.2.4"), "v1.1.0,v1.2.3")
+    check("bumped past the newest tag (untagged bump) -> FAIL",
+          r.returncode != 0 and "VERSION DRIFT" in r.stdout,
+          r.stdout.strip()[-120:])
+    tree = with_versions("1.2.3", "1.2.3", "1.2.3")
+    os.remove(os.path.join(tree, ".claude-plugin/plugin.json"))
+    r = run(tree, "v1.2.3")
+    check("a listed version file missing -> FAIL", r.returncode != 0
+          and "missing" in r.stdout, r.stdout.strip()[-120:])
+
     for tree in temps:
         shutil.rmtree(tree, ignore_errors=True)
 
     if fails:
         print(f"\nrelease-law regression: {len(fails)} FAILED")
         return 1
-    print("\nrelease-law regression: 7/7 PASS")
+    print("\nrelease-law regression: 11/11 PASS")
     return 0
 
 

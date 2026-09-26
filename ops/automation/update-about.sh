@@ -36,13 +36,24 @@ fi
 metrics="docs/metrics.json"
 
 payload=$(METRICS="$metrics" /usr/bin/python3 - <<'PY'
-import json, os
+import glob, json, os, re
 m = json.load(open(os.environ["METRICS"]))
+# FP-17 (2026-09-26): say DISTINCT skills (a skill bound by three roles is
+# one skill, not three) and say the roles are drafts, because every ROLE.md
+# says so. The draft count is read from the tree, never typed.
+statuses = [re.search(r"^status:\s*(\S+)", open(p).read(), re.M)
+            for p in glob.glob("roles/*/ROLE.md")]
+drafts = sum(1 for s in statuses if s and s.group(1) == "draft")
+if drafts == m["roles"]:
+    roles = f"{m['roles']} draft roles"
+else:
+    roles = f"{m['roles']} roles ({drafts} still draft)"
 desc = ("\U0001F9D1\u200D\U0001F680 The role layer for aerospace engineering agents — "
-        f"{m['roles']} roles binding {m['skills_bound']} Aero Agent Skills "
-        f"across {m['domains']} domains, verified by {m['tests']} offline "
-        f"tests, gated on {m['standards']} standards. Every role ends at "
-        "the human sign-off. Apache-2.0 · by Ashforde OÜ")
+        f"{roles} binding {m['skills_distinct']} distinct Aero Agent Skills "
+        f"({m['skills_bound']} bindings) across {m['domains']} domains, "
+        f"verified by {m['tests']} offline tests, gated on {m['standards']} "
+        "standards. Every role ends at the human sign-off. Apache-2.0 · by "
+        "Ashforde OÜ")
 print(json.dumps({"description": desc, "homepage": "https://ashforde.org/aeroagentroles"}))
 PY
 )
