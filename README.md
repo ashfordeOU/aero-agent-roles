@@ -418,23 +418,23 @@ This repository is one of a family. Each connection below is pinned by
 a digest, a signature or a byte-for-byte copy, and a named check goes red
 when a pin breaks.
 
-- **[aero-agent-skills](https://github.com/ashfordeOU/aero-agent-skills)** &mdash; The corpus of leaf skills, the published specification directory and the sealing code
+- **[aero-agent-skills](https://github.com/ashfordeOU/aero-agent-skills)** &mdash; The corpus of leaf skills and the sealing code
 - **[aero-harness-records](https://github.com/ashfordeOU/aero-harness-records)** &mdash; The calibration registry, the dated log of every proof, and the public evidence log
-- **[arcs-conformance](https://github.com/ashfordeOU/arcs-conformance)** &mdash; The test suite that grades an implementation against the published specification
+- **[arcs-conformance](https://github.com/ashfordeOU/arcs-conformance)** &mdash; ARCS-1, the Agent Run Conformance Specification, which is the aerospace profile of Trust, Runtime Attestation and Compliance Evidence (TRACE): its one canonical copy, and the test suite that grades an implementation against it
 
 ### What connects it
 
 | Between | What flows | Held red by |
 |---|---|---|
 | aero-agent-roles to aero-agent-skills | Each role's bound leaf skills | `gate-bindings` |
-| aero-agent-roles to aero-harness | The roles and the tools they request | `gate-permissions` |
+| aero-agent-roles to the runtime (private) | The roles and the tools they request | `gate-permissions` |
 
 Each connection carries a number in the runtime's own map, used to
 cross-reference it. The numbers are left out here because nothing a
 reader of this page can follow them to.
 
-A glossary of every abbreviation used here is in the specification
-directory that ships beside the corpus.
+Every abbreviation used here is spelled out in the glossary of
+[aero-harness-records](https://github.com/ashfordeOU/aero-harness-records#glossary).
 <!-- family:end -->
 ---
 
