@@ -8,6 +8,10 @@ Full role bank, figures, and provenance: [github.com/ashfordeOU/aero-agent-roles
 
 Each role is gated by a replayable offline battery (structure lint, offline behavior tests, no-verbatim sweep, security tripwire, manifest-matches-tree). This package bundles the tree at the released commit; live counts come from `aero-roles list`, never from this README.
 
+## Need the ECSS-Q-ST-80C work run for you?
+
+The `software-product-assurance-engineer` role answers ECSS-Q-ST-80C Rev.2, the European Cooperation for Space Standardization (ECSS) standard for software product assurance, clause by clause. Ashforde OÜ offers a five-day evidence pilot that runs this same open-source role and its skills over your own evidence, delivered as a service on Aero Harness, the runtime Ashforde operates, and hands back the draft compliance matrix, the gap list, the trace to your own files and a signed record you can check offline. It stops at your own sign-off. Pricing on request: [ashforde.org/pilot](https://ashforde.org/pilot/) · [contact@ashforde.org](mailto:contact@ashforde.org)
+
 ## CLI
 
 ```bash

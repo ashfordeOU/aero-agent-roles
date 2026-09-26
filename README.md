@@ -37,6 +37,7 @@
 
 <p align="center">
   <a href="#software-product-assurance-under-ecss-q-st-80c">ECSS-Q-ST-80C</a> ·
+  <a href="#from-free-roles-to-a-signed-evidence-pack">Evidence pilot</a> ·
   <a href="#domain-map">Domain map</a> ·
   <a href="#roles">Roles</a> ·
   <a href="#how-a-role-works">How a role works</a> ·
@@ -104,6 +105,12 @@ python3 ./pa/software-product-assurance-engineer/cli.py build --out matrix.md   
 python3 ./pa/software-product-assurance-engineer/cli.py build --out matrix.md \
     --evidence evidence.csv --category B --docs ./project-docs --review PDR
 ```
+
+## From free roles to a signed evidence pack
+
+The [`software-product-assurance-engineer`](roles/software-product-assurance-engineer/ROLE.md) role is free under Apache-2.0: install it and run it on your own evidence, as above. If you would rather have it run for you, Ashforde OÜ offers a **five-day ECSS-Q-ST-80C Rev.2 evidence pilot**, delivered as a service on Aero Harness, the runtime Ashforde operates. It runs this same open-source role and its skills over your criticality category, evidence table and document folder, and hands back the clause-by-clause draft compliance matrix, the gap list, the trace to your own files, and a signed record you can check offline without us. It ends where the role ends, at your own named human's sign-off: Ashforde never signs compliance on your behalf. Pricing on request.
+
+**[See the pilot: ashforde.org/pilot](https://ashforde.org/pilot/)** · talk to us at [contact@ashforde.org](mailto:contact@ashforde.org)
 
 ## Quick start
 

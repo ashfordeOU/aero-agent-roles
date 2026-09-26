@@ -17,6 +17,7 @@
             <li>Aero Agent Roles external-registry link (browse roles in the AI Assistant)</li>
         </ul>
         <p>Apache-2.0 · <a href="https://github.com/ashfordeOU/aero-agent-roles">github.com/ashfordeOU/aero-agent-roles</a></p>
+        <p>Need the ECSS-Q-ST-80C (European Cooperation for Space Standardization, software product assurance) work run on your own evidence? Ashforde OÜ offers a five-day evidence pilot, pricing on request: <a href="https://ashforde.org/pilot/">ashforde.org/pilot</a>.</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
