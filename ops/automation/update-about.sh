@@ -24,9 +24,15 @@ url=$(git remote get-url origin)
 token=$(printf '%s' "$url" | sed -E 's#https://[^:]+:([^@]+)@.*#\1#')
 slug=$(printf '%s' "$url" | sed -E -e 's#.*github\.com/##' -e 's#\.git$##')
 # Not every clone embeds a token in the remote URL (e.g. a mirror pushing
-# via a credential helper) — fall back to gh's own token.
+# via a credential helper) — fall back to gh's own token, for the account
+# that OWNS the repo first. The bare `gh auth token` answers for whichever
+# account is active, and with the development account active the PATCH got
+# HTTP 403 and the description stayed stale behind a "non-fatal" warning
+# (2026-09-26).
 if [ "$token" = "$url" ] && command -v gh >/dev/null 2>&1; then
-  token=$(gh auth token 2>/dev/null || true)
+  owner=${slug%%/*}
+  token=$(gh auth token --user "$owner" 2>/dev/null \
+          || gh auth token 2>/dev/null || true)
 fi
 if [ -z "$token" ] || [ "$slug" = "$url" ]; then
   echo "FAIL about: no usable token (neither embedded in origin nor via gh auth token) or unexpected remote shape" >&2
